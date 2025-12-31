@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mommy's Meal Helper Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --primary: #ff8a80; --bg: #fdfaf6; --card-bg: #ffffff; 
+            --breakfast-color: #ffd54f; --lunch-color: #81c784; --dinner-color: #64b5f6;
+        }
+        body { font-family: 'Quicksand', sans-serif; background: var(--bg); margin: 0; padding: 15px; color: #444; -webkit-tap-highlight-color: transparent; }
+        .container { max-width: 900px; margin: auto; }
+        header { text-align: center; padding: 10px 0; }
+        h1 { color: var(--primary); margin: 0; font-size: 2.2em; }
+        
+        /* Layout Components */
+        .card { background: var(--card-bg); border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .section-title { font-weight: 600; font-size: 1.2em; margin-bottom: 15px; display: block; color: #555; border-left: 4px solid var(--primary); padding-left: 10px; }
+        
+        /* Symbol-Based Recommendation Grid */
+        .rec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .rec-item { background: #fffcf0; border-radius: 20px; padding: 15px; text-align: center; border: 2px solid #f0e6d6; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
+        .rec-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-color: var(--primary); }
+        
+        /* Hero Symbol Styling */
+        .dish-symbol { font-size: 3.5em; display: block; margin-bottom: 10px; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); transition: transform 0.3s; }
+        .rec-item:hover .dish-symbol { transform: scale(1.1) rotate(5deg); }
+        
+        .dish-name { font-weight: 600; font-size: 0.95em; height: 42px; display: flex; align-items: center; justify-content: center; line-height: 1.2; color: #333; }
+        
+        /* Category Badges */
+        .type-badge { font-size: 0.7em; text-transform: uppercase; font-weight: 600; padding: 3px 10px; border-radius: 20px; color: white; display: inline-block; margin-bottom: 8px; }
+        .bg-breakfast { background: var(--breakfast-color); }
+        .bg-lunch { background: var(--lunch-color); }
+        .bg-dinner { background: var(--dinner-color); }
+
+        /* Checklist Chips */
+        .cat-group { margin-bottom: 20px; }
+        .cat-label { font-weight: 600; color: var(--primary); font-size: 0.9em; margin-bottom: 10px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .grid-select { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+        .chip { display: flex; align-items: center; background: #f3f3f3; padding: 12px; border-radius: 15px; cursor: pointer; font-size: 0.85em; transition: 0.2s; border: 2px solid transparent; }
+        .chip:has(input:checked) { background: #fff; border-color: var(--primary); box-shadow: 0 4px 10px rgba(255,138,128,0.2); }
+        .chip input { margin-right: 10px; accent-color: var(--primary); width: 18px; height: 18px; }
+
+        /* Generated Results */
+        .gen-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gen-item { background: #f1f8e9; padding: 20px; border-radius: 25px; text-align: center; cursor: pointer; border: 2px solid #c8e6c9; transition: 0.3s; }
+        .gen-item:hover { background: #fff; transform: scale(1.03); border-color: var(--accent); }
+
+        /* Modal Pop-up */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 15px; }
+        .modal-content { background: white; padding: 35px; border-radius: 30px; max-width: 450px; width: 100%; position: relative; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #ccc; }
+        
+        button { width: 100%; background: var(--primary); color: white; border: none; padding: 20px; border-radius: 20px; font-weight: 600; font-size: 1.1em; cursor: pointer; margin-top: 15px; transition: 0.2s; box-shadow: 0 4px 0 #e57373; }
+        button:active { transform: translateY(3px); box-shadow: 0 1px 0 #e57373; }
+        .btn-skip { background: #fff; color: #999; border: 1px solid #ddd; padding: 5px 15px; font-size: 0.75em; margin-top: 10px; border-radius: 20px; font-weight: 600; width: auto; }
+
+        select { width: 100%; padding: 18px; border-radius: 18px; border: 2px solid #f0f0f0; font-family: inherit; font-size: 1em; margin-bottom: 15px; background-color: white; cursor: pointer; outline: none; }
+        select:focus { border-color: var(--primary); }
+
+        @media (max-width: 600px) { .rec-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Mommy's Meal Helper</h1>
+        <p style="color: #888; font-weight: 600;">Consistent, simple, and healthy</p>
+    </header>
+
+    <span class="section-title">Today's Symbols of Health</span>
+    <div class="card rec-grid" id="rec-container">
+        </div>
+
+    <span class="section-title">Quick Preset & Pantry</span>
+    <div class="card">
+        <select id="fridgePreset" onchange="applyPreset()">
+            <option value="">-- Choose Common Fridge Setup --</option>
+            <option value="basics">Standard Fridge (Chicken, Potato, Carrots, Rice)</option>
+            <option value="healthy">Super Healthy (Salmon, Quinoa, Spinach, Broccoli)</option>
+            <option value="breakfast_favs">Breakfast Favorites (Eggs, Oats, Banana, Berries)</option>
+            <option value="quick_soft">Quick & Soft (Pasta, Peas, Dairy, Turkey)</option>
+            <option value="strong_child">Strong Child (Buckwheat, Quinoa, Beef, Spinach)</option>
+            <option value="morning_fruit">Morning Fruits (Dairy, Apple, Mango, Pear)</option>
+        </select>
+
+        <div id="checklist-area"></div>
+
+        <span class="cat-label">Select Meal Time</span>
+        <select id="mealType">
+            <option value="breakfast">🍳 Breakfast Time</option>
+            <option value="lunch">🍲 Lunch Time</option>
+            <option value="dinner">🥪 Dinner Time</option>
+        </select>
+
+        <button onclick="generateFiltered()">✨ Generate 3 Ideas</button>
+        <div class="gen-results" id="gen-results"></div>
+    </div>
+</div>
+
+<div id="recipeModal" class="modal" onclick="if(event.target==this) closeModal()">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalHero" style="font-size: 5em; margin-bottom: 10px;"></div>
+        <h2 id="modalTitle" style="color:var(--primary); margin:0 0 10px 0;"></h2>
+        <div id="modalIngredients" style="font-weight: 600; color: #aaa; margin-bottom: 20px; font-size: 0.85em; text-transform: uppercase;"></div>
+        <p id="modalRecipe" style="line-height:1.8; color:#555; background: #fffcf0; padding: 25px; border-radius: 20px; text-align: left; border: 1px dashed #ffd54f;"></p>
+    </div>
+</div>
+
+<script>
+    // --- DATABASE ---
+    const DB = [];
+    const rawCategories = {
+        breakfast: ["Banana Oat Pancakes", "Blueberry Porridge", "Apple Buckwheat Mash", "Egg Soldiers", "Mango Quinoa Bowl", "Pear & Ricotta Toast", "Spinach Scramble", "Potato Breakfast Hash", "Fruit & Yogurt Parfait", "Carrot Egg Muffins", "Salmon Egg Scramble", "Banana Peanut Sushi", "Simple Oatmeal", "Avocado Toast Strips", "Zucchini Egg Fritters", "Cottage Cheese & Peach", "Sweet Potato Scramble", "Blueberry Egg Crepes", "Chia Seed Pudding", "Lentil Breakfast Dhal", "Beef & Egg Skillet", "Quinoa Apple Porridge", "Sweet Rice Pudding", "Smoothie Bowl", "Baked Honey Apples", "Shakshuka for Kids", "Buckwheat Crepes", "Tofu Veggie Scramble", "Peach & Oat Smash", "Hard Boiled Egg Salad"],
+        lunch: ["Chicken Carrot Puree", "Beef & Potato Stew", "Salmon Pasta Stars", "Turkey Rice Risotto", "White Fish & Peas", "Red Lentil Soup", "Beef Broccoli Stir-fry", "Turkey & Veggie Pasta", "Chicken Quinoa Mix", "Salmon & Brown Rice", "Mini Beef Patties", "Turkey Rice Medley", "White Fish & Spinach", "Chicken & Pea Risotto", "Lentil & Tomato Pasta", "Beef Quinoa Skillet", "Chicken Sweet Potato", "Turkey Broccoli Mash", "Salmon Avocado Rice", "Beef & Pea Stew", "Baked White Fish", "Chicken Apple Salad", "Turkey Pumpkin Mash", "Beef Spinach Pasta", "Salmon Quinoa Medley", "Chicken & Star Pasta", "Turkey & Cauliflower", "Beef Lentil Bowl", "White Fish Zucchini", "Chicken Corn Chowder"],
+        dinner: ["Turkey Potato Cakes", "Beef & Carrot Pasta", "Salmon & Broccoli Mash", "Chicken Rice Veggie", "White Fish Puree", "Beef & Potato Mash", "Turkey & Green Pea Stew", "Lentil & Potato Mash", "Chicken Spinach Pasta", "Salmon & Potato Stew", "Beef Quinoa Medley", "Turkey Spinach Rice", "White Fish & Pea Mash", "Chicken Broccoli Bowl", "Beef & Pea Pasta", "Salmon & Veggie Stew", "Turkey Rice Stars", "Lentil Potato Stew", "Chicken Quinoa Salad", "Beef Broccoli Rice", "Turkey Carrot Pasta", "White Fish Carrot Mash", "Salmon Rice Bowl", "Chicken Veggie Skillet", "Beef & Sweet Potato", "Turkey Spinach Pasta", "White Fish & Quinoa", "Salmon & Pea Risotto", "Chicken Pumpkin Mash", "Lentil & Rice Bowl"]
+    };
+
+    const baseRecipes = {
+        mash: "1. Steam or boil ingredients until soft.\n2. Mash thoroughly with a fork.\n3. Add a drop of olive oil or butter for creaminess.",
+        pasta: "1. Boil pasta until very soft.\n2. Sauté protein and veggies in a pan.\n3. Mix together and cut into small bites.",
+        stew: "1. Sauté meat until brown.\n2. Add chopped veggies and water/broth.\n3. Simmer on low heat for 20 mins until tender.",
+        eggs: "1. Whisk eggs in a bowl.\n2. Cook on low heat with butter, stirring gently.\n3. Mix in steamed toppings at the end."
+    };
+
+    // Symbol Mapping
+    function getSymbol(dish) {
+        const lower = dish.name.toLowerCase();
+        if(lower.includes("pancake")) return "🥞";
+        if(lower.includes("oat") || lower.includes("porridge") || lower.includes("buckwheat")) return "🥣";
+        if(lower.includes("egg")) return "🍳";
+        if(lower.includes("fish") || lower.includes("salmon")) return "🐟";
+        if(lower.includes("chicken") || lower.includes("turkey")) return "🍗";
+        if(lower.includes("beef")) return "🥩";
+        if(lower.includes("pasta")) return "🍝";
+        if(lower.includes("fruit") || lower.includes("apple") || lower.includes("berry") || lower.includes("mango")) return "🍎";
+        if(lower.includes("stew") || lower.includes("soup") || lower.includes("lentil")) return "🍲";
+        if(lower.includes("potato")) return "🥔";
+        // Final fallback by type
+        if(dish.type === "breakfast") return "☀️";
+        if(dish.type === "lunch") return "🍱";
+        return "🌙";
+    }
+
+    Object.keys(rawCategories).forEach(type => {
+        rawCategories[type].forEach(name => {
+            const lower = name.toLowerCase();
+            let ings = [];
+            ["rice", "potato", "buckwheat", "quinoa", "pasta", "oats", "chicken", "beef", "turkey", "salmon", "fish", "eggs", "lentils", "broccoli", "carrots", "spinach", "peas", "banana", "apple", "berries", "pear", "mango", "dairy"].forEach(i => {
+                if(lower.includes(i)) ings.push(i);
+            });
+            let recipe = lower.includes("pasta") ? baseRecipes.pasta : (lower.includes("stew") || lower.includes("soup") ? baseRecipes.stew : (lower.includes("egg") ? baseRecipes.eggs : baseRecipes.mash));
+            DB.push({ name, type, ings, recipe });
+        });
+    });
+
+    // --- UI LOGIC ---
+    let activeRecs = [];
+    const checklistItems = [
+        { label: "Bases", list: ["rice", "potato", "buckwheat", "quinoa", "pasta", "oats"] },
+        { label: "Proteins", list: ["chicken", "beef", "turkey", "salmon", "fish", "eggs", "lentils"] },
+        { label: "Fruits & Veggies", list: ["broccoli", "carrots", "spinach", "peas", "banana", "apple", "berries", "pear", "mango"] }
+    ];
+
+    function renderUI() {
+        document.getElementById('checklist-area').innerHTML = checklistItems.map(cat => `
+            <div class="cat-group">
+                <span class="cat-label">${cat.label}</span>
+                <div class="grid-select">
+                    ${cat.list.map(i => `<label class="chip"><input type="checkbox" name="ing" value="${i}"> ${i.charAt(0).toUpperCase()+i.slice(1)}</label>`).join('')}
+                </div>
+            </div>
+        `).join('');
+        for(let i=0; i<6; i++) refreshSlot(i);
+    }
+
+    function refreshSlot(idx) {
+        const dish = DB[Math.floor(Math.random() * DB.length)];
+        activeRecs[idx] = dish;
+        const container = document.getElementById('rec-container');
+        if(!document.getElementById(`slot-${idx}`)) {
+            container.innerHTML += `
+                <div class="rec-item" id="slot-${idx}" onclick="showRecipeFromRec(${idx})">
+                    <span class="type-badge bg-${dish.type}">${dish.type}</span>
+                    <span class="dish-symbol" id="sym-${idx}"></span>
+                    <span id="name-${idx}" class="dish-name"></span>
+                    <button class="btn-skip" onclick="event.stopPropagation(); refreshSlot(${idx})">Skip</button>
+                </div>
+            `;
+        }
+        document.getElementById(`name-${idx}`).innerText = dish.name;
+        document.getElementById(`sym-${idx}`).innerText = getSymbol(dish);
+    }
+
+    function applyPreset() {
+        const p = document.getElementById('fridgePreset').value;
+        const boxes = document.querySelectorAll('input[name="ing"]');
+        boxes.forEach(b => b.checked = false);
+        const map = {
+            basics: ["chicken", "potato", "carrots", "rice"],
+            healthy: ["salmon", "quinoa", "spinach", "broccoli"],
+            breakfast_favs: ["eggs", "oats", "banana", "berries"],
+            quick_soft: ["pasta", "peas", "turkey"],
+            strong_child: ["buckwheat", "quinoa", "beef", "spinach"],
+            morning_fruit: ["apple", "mango", "pear"]
+        };
+        if(map[p]) map[p].forEach(v => {
+            const el = document.querySelector(`input[value="${v}"]`);
+            if(el) el.checked = true;
+        });
+    }
+
+    function generateFiltered() {
+        const selected = Array.from(document.querySelectorAll('input[name="ing"]:checked')).map(cb => cb.value);
+        const type = document.getElementById('mealType').value;
+        const resArea = document.getElementById('gen-results');
+        let matches = DB.filter(d => d.type === type && (selected.length === 0 || d.ings.some(i => selected.includes(i))));
+        if(matches.length === 0) matches = DB.filter(d => d.type === type);
+        const picks = matches.sort(() => 0.5 - Math.random()).slice(0, 3);
+        resArea.innerHTML = picks.map(r => `
+            <div class="gen-item" onclick='showRecipeObject(${JSON.stringify(r).replace(/'/g, "&apos;")})'>
+                <span style="font-size:3em; display:block; margin-bottom:10px;">${getSymbol(r)}</span>
+                <b>${r.name}</b>
+            </div>
+        `).join('');
+        resArea.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showRecipeFromRec(idx) { showRecipeObject(activeRecs[idx]); }
+
+    function showRecipeObject(dish) {
+        document.getElementById('modalTitle').innerText = dish.name;
+        document.getElementById('modalRecipe').innerText = dish.recipe;
+        document.getElementById('modalHero').innerText = getSymbol(dish);
+        document.getElementById('modalIngredients').innerText = "Includes: " + (dish.ings.join(" + ") || "various basics");
+        document.getElementById('recipeModal').style.display = "flex";
+    }
+
+    function closeModal() { document.getElementById('recipeModal').style.display = "none"; }
+
+    window.onload = renderUI;
+</script>
+</body>
+</html>
