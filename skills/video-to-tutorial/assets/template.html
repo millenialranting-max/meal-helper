@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>{{TITLE}}</title>
+<style>
+@page{size:A4;margin:11mm 12mm 12mm}
+*{box-sizing:border-box}
+:root{--navy:#16213E;--mute:#6B7285;--line:#E3E6EE;--blue:#2D7FF9;--teal:#0E9F9A;--violet:#6C5CE7;--amber:#F2A93B;--coral:#EE5D50;--green:#1FA86B}
+body{font-family:"DejaVu Sans",Arial,sans-serif;color:#2B3245;font-size:8.2pt;line-height:1.3;margin:0}
+.top{background:linear-gradient(120deg,#16213E,#26357A 60%,#0E9F9A);color:#fff;border-radius:12px;padding:12px 16px;margin-bottom:9px}
+.top h1{margin:0;font-size:18pt}.top p{margin:3px 0 0;color:#D6DDFB;font-size:8.8pt}
+h2{font-size:11.5pt;color:var(--navy);margin:10px 0 5px;display:flex;align-items:center;gap:7px;break-after:avoid}
+h2 .n{display:inline-block;min-width:22px;height:22px;border-radius:6px;color:#fff;text-align:center;font-size:9pt;line-height:22px;padding:0 5px}
+.pb{break-before:page}
+.road{display:flex;gap:4px;margin:4px 0 2px}
+.road div{flex:1;border-radius:8px;color:#fff;padding:6px 6px;font-size:7.4pt;text-align:center;position:relative}
+.road b{display:block;font-size:8.2pt}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.box{border:1px solid var(--line);border-radius:10px;padding:8px 10px;break-inside:avoid;background:#fff}
+.box h4{margin:0 0 4px;font-size:9pt;color:var(--navy)}
+.box ul{margin:2px 0 0;padding-left:14px}.box li{margin-bottom:1.5px}
+.recipe{border-radius:10px;overflow:hidden;border:1px solid var(--line);break-inside:avoid;margin-bottom:8px}
+.recipe .hd{color:#fff;padding:6px 10px;font-weight:700;font-size:9.4pt;display:flex;justify-content:space-between}
+.recipe .hd span{font-weight:400;font-size:7.8pt;opacity:.9}
+.recipe table{width:100%;border-collapse:collapse}
+.recipe td{padding:3.5px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+.recipe td:first-child{width:23%;font-weight:700;color:var(--navy);background:#F7F8FB}
+.gate{display:flex;align-items:stretch;gap:0;margin:4px 0}
+.gate div{flex:1;padding:6px 7px;color:#fff;font-size:7.5pt;text-align:center;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%)}
+.gate div:first-child{clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%)}
+.gate b{display:block;font-size:8.2pt}
+.tree .row{display:grid;grid-template-columns:21% 5% 26% 5% 43%;align-items:center;margin-bottom:4px;break-inside:avoid}
+.q{background:#16213E;color:#fff;border-radius:8px;padding:5px 7px;font-size:7.8pt}
+.q b{color:#9FE6E2}
+.arrow{text-align:center;color:var(--mute);font-weight:700}
+.no{background:#FDECEA;border-left:4px solid var(--coral);border-radius:6px;padding:4px 7px;font-size:7.7pt}
+.fix{background:#E4F6EE;border-left:4px solid var(--green);border-radius:6px;padding:4px 7px;font-size:7.7pt}
+.down{color:var(--green);font-size:7.3pt;margin:-2px 0 3px 7%}
+.callout{border-radius:8px;padding:6px 10px;margin:6px 0;font-size:8pt;break-inside:avoid}
+.c-amber{background:#FEF4E2;border-left:4px solid var(--amber)}
+.c-teal{background:#E3F6F5;border-left:4px solid var(--teal)}
+.map{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:6px}
+.camp{border-radius:9px;padding:7px 9px;color:#fff;font-size:7.7pt}
+.camp b{font-size:8.6pt;display:block}
+.side{border:2px dashed var(--mute);border-radius:9px;padding:7px 9px;font-size:7.7pt;color:#2B3245}
+.check li{list-style:none;margin-left:-14px;padding-left:18px;position:relative;margin-bottom:2px}
+.check li:before{content:"";position:absolute;left:0;top:1px;width:9px;height:9px;border:1.6px solid var(--teal);border-radius:3px}
+.note{font-size:7pt;color:var(--mute);margin-top:6px}
+</style></head><body>
+<!--
+  COMPONENT LIBRARY — copy the blocks you need, delete the rest. Order = the order a person does the work.
+  Colours: --navy #16213E, --blue #2D7FF9, --teal #0E9F9A, --violet #6C5CE7, --amber #F2A93B, --coral #EE5D50, --green #1FA86B
+  Give each step one colour and reuse it for that step's heading badge, roadmap chip and cards.
+  Page breaks: add class="pb" to an <h2> to start a new page. Keep blocks break-inside:avoid (already set).
+-->
+
+<!-- 1. HEADER -->
+<div class="top">
+  <h1>{{TITLE}}</h1>
+  <p>{{ONE-SENTENCE PROMISE: what the reader can do after following this}}</p>
+</div>
+
+<!-- 2. ROADMAP: one chip per step (4–9 chips) -->
+<div class="road">
+  <div style="background:#6C5CE7"><b>0 Step name</b>2–3 word gist</div>
+  <div style="background:#2D7FF9"><b>1 Step name</b>2–3 word gist</div>
+  <div style="background:#1FA86B"><b>2 Step name</b>2–3 word gist</div>
+</div>
+
+<!-- 3. STEP HEADING -->
+<h2><span class="n" style="background:#2D7FF9">1</span>Step title as an action</h2>
+
+<!-- 4. TWO BOXES side by side (branches: "if X… / if Y…", or "what / why") -->
+<div class="grid2">
+  <div class="box" style="border-top:4px solid #2D7FF9"><h4>Branch A</h4><ul><li>Concrete action</li></ul></div>
+  <div class="box" style="border-top:4px solid #0E9F9A"><h4>Branch B</h4><ul><li>Concrete action</li></ul></div>
+</div>
+
+<!-- 5. CHECKLIST box -->
+<div class="box"><h4>Checklist</h4><ul class="check"><li>Item</li><li>Item</li></ul></div>
+
+<!-- 6. RECIPE CARD: exact settings / configuration for one thing to build -->
+<div class="recipe">
+  <div class="hd" style="background:#2D7FF9">Name of thing to build <span>goal in a few words</span></div>
+  <table>
+    <tr><td>Setting group</td><td>Exact values, <b>bold the ones that matter</b></td></tr>
+    <tr><td>Rule / how long</td><td>Formula or stop condition with a worked example</td></tr>
+  </table>
+</div>
+
+<!-- 7. GATES: ordered pass/fail checks (3–6 arrows) -->
+<div class="gate">
+  <div style="background:#16213E"><b>Check 1</b>threshold</div>
+  <div style="background:#2D7FF9"><b>Check 2</b>threshold</div>
+  <div style="background:#1FA86B"><b>Check 3</b>threshold</div>
+</div>
+
+<!-- 8. THREE CARDS (e.g. good / bad / where it goes) -->
+<div class="grid3">
+  <div class="box"><h4>✅ Good</h4>…</div>
+  <div class="box"><h4>⚠️ Bad</h4>…</div>
+  <div class="box"><h4>📦 Next</h4>…</div>
+</div>
+
+<!-- 9. CALLOUT -->
+<div class="callout c-amber">The one rule people get wrong.</div>
+
+<!-- 10. TROUBLESHOOTING TREE: question → symptom → fix, top-down -->
+<div class="tree">
+  <div class="row"><div class="q"><b>1</b> Question with threshold?</div><div class="arrow">no →</div><div class="no">What it means</div><div class="arrow">→</div><div class="fix">Concrete fix</div></div>
+  <div class="down">All "yes" → go to step N ↓</div>
+</div>
+
+<!-- 11. MAP of the finished system -->
+<div class="map">
+  <div><div class="camp" style="background:#2D7FF9;margin-bottom:5px"><b>Main part · share</b>what it contains</div></div>
+  <div class="side"><b>Side part</b><br>…</div>
+  <div class="side"><b>Optional later</b><br>…</div>
+</div>
+
+<!-- 12. SOURCE NOTE (always) -->
+<div class="note">Built from N videos by {{CREATOR}}, {{MONTH YEAR}}. {{Which numbers are the creator's examples, which are derived by you.}}</div>
+</body></html>
