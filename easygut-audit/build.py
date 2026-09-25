@@ -148,4 +148,5 @@ def fill(template, **kw):
                                      ads=chart_ads(), age=chart_age()))
 if (OUT / "concepts.tpl.html").exists():
     (OUT / "concepts.html").write_text((OUT / "concepts.tpl.html").read_text())
+(OUT / "plan.html").write_text((OUT / "plan.tpl.html").read_text())
 print("built")

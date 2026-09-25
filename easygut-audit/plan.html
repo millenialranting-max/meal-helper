@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EasyGut Campaign Blueprint</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f1a2e; --ink2:#4d475c; --muted:#847e92; --bg:#fbf8f3; --card:#ffffff; --line:#e9e3da;
+    --plum:#5b3fa0; --plum-soft:#efeaf8; --teal:#2e8f6a; --teal-soft:#e3f2ea; --amber:#a86f00; --amber-bar:#c98500; --amber-soft:#fbf1dc;
+    --crit:#c0392b; --good:#2f7d4a;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);font-size:8.2pt;line-height:1.34;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:0 12mm 10mm;background:var(--bg);page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-size:7.2pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+  .hero{margin:0 -12mm;height:40mm;background:url(img/hero_plan.jpg) right 60%/cover no-repeat;position:relative}
+  .hero .txt{position:absolute;left:12mm;top:8mm;width:105mm}
+  .hero h1{font-size:26pt;line-height:1.02;margin:4px 0 5px}
+  .hero p{font-size:9.3pt;color:var(--ink2)}
+  h2{font-size:12.5pt;margin:8px 0 5px;display:flex;align-items:baseline;gap:8px}
+  h2 small{font-family:Inter;font-size:7.4pt;color:var(--muted);font-weight:500}
+  /* budget bar */
+  .budget{display:flex;gap:2px;height:22px;border-radius:6px;overflow:hidden;margin-top:6px}
+  .budget div{display:flex;align-items:center;padding:0 9px;color:#fff;font-size:7.8pt;font-weight:700;white-space:nowrap}
+  .budget .p{flex:60;background:var(--plum)} .budget .t{flex:25;background:var(--amber-bar)} .budget .r{flex:15;background:var(--teal)}
+  /* blueprint */
+  .bp{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:7px;margin-top:7px;align-items:start}
+  .camp{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .camp .hd{padding:8px 10px 7px;color:#fff}
+  .camp.p .hd{background:var(--plum)} .camp.t .hd{background:var(--amber-bar)} .camp.r .hd{background:var(--teal)}
+  .camp .hd .k{font-size:6.8pt;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.9}
+  .camp .hd h3{font-size:11pt;margin:1px 0 2px;color:#fff}
+  .camp .hd code{font-family:Inter;font-size:6.9pt;background:rgba(255,255,255,.18);border-radius:4px;padding:1px 5px}
+  .camp .set{padding:6px 10px 5px}
+  .camp .set dl{display:grid;grid-template-columns:52px 1fr;gap:2px 6px}
+  .camp .set dt{font-size:6.6pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;padding-top:1px}
+  .camp .set dd{font-size:7.6pt;color:var(--ink2)}
+  .camp .set dd b{color:var(--ink)}
+  .as{margin:0 8px 7px;border:1px dashed #d9d1e6;border-radius:8px;padding:6px 8px;background:#fcfbfe}
+  .camp.t .as{border-color:#ecd9a8;background:#fffcf4} .camp.r .as{border-color:#b9dccb;background:#f8fcfa}
+  .as .n{display:flex;justify-content:space-between;font-weight:800;font-size:8pt;margin-bottom:3px}
+  .as .n span{font-weight:700;color:var(--muted);font-size:7.4pt}
+  .as dl{display:grid;grid-template-columns:44px 1fr;gap:1px 5px}
+  .as dt{font-size:6.4pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding-top:1.5px}
+  .as dd{font-size:7.4pt;color:var(--ink2);line-height:1.3}
+  .ids{display:inline-flex;flex-wrap:wrap;gap:3px}
+  .id{display:inline-block;font-size:6.8pt;font-weight:800;border-radius:4px;padding:0 4px;background:var(--plum-soft);color:var(--plum)}
+  .id.t{background:var(--amber-soft);color:var(--amber)} .id.r{background:var(--teal-soft);color:#1f6b4e}
+  /* boxes */
+  .two{display:grid;grid-template-columns:1.35fr 1fr;gap:7px;margin-top:7px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .box h3{font-size:10.5pt;margin-bottom:3px}
+  .ans{display:inline-block;background:var(--plum);color:#fff;border-radius:6px;padding:2px 8px;font-weight:800;font-size:8pt;margin:2px 0 5px}
+  .box ul{padding-left:11px} .box li{font-size:7.6pt;color:var(--ink2);margin-bottom:2.5px} .box li b{color:var(--ink)}
+  .mini{font-size:7.3pt;color:var(--ink2);background:#f7f3ec;border-radius:7px;padding:5px 8px;margin-top:5px}
+  .mini b{color:var(--ink)}
+  /* page 2 */
+  .p2head{display:flex;justify-content:space-between;align-items:flex-end;padding-top:9mm;border-bottom:1px solid var(--line);padding-bottom:5px}
+  .p2head h1{font-size:19pt}
+  table.ads{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:6px}
+  table.ads th{font-size:6.5pt;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);text-align:left;padding:5px 6px;background:#f7f3ec;font-weight:700}
+  table.ads td{padding:4px 6px;border-top:1px solid var(--line);vertical-align:middle;font-size:7.4pt;color:var(--ink2);line-height:1.28}
+  table.ads td b{color:var(--ink)}
+  table.ads tr.grp td{background:#faf7f2;font-size:6.8pt;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:3px 6px}
+  .th{width:30px;height:37px;border-radius:5px;background-size:cover;background-position:center 25%;display:block}
+  .th.x{background:#f1ece4;display:grid;place-items:center;font-size:6pt;color:var(--muted);font-weight:700;text-align:center;line-height:1.1}
+  .hk{font-weight:600;color:var(--ink)}
+  .rules{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:7px}
+  .rule{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 9px;border-top:3px solid var(--plum)}
+  .rule.t{border-top-color:var(--amber-bar)} .rule.r{border-top-color:var(--teal)} .rule.k{border-top-color:var(--crit)}
+  .rule b{display:block;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+  .rule.p b{color:var(--plum)} .rule.t b{color:var(--amber)} .rule.r b{color:var(--teal)} .rule.k b{color:var(--crit)}
+  .rule ul{padding-left:10px} .rule li{font-size:7.3pt;color:var(--ink2);margin-bottom:2px}
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:7px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .tl div{padding:7px 9px;border-left:1px solid var(--line)} .tl div:first-child{border-left:0}
+  .tl b{display:block;font-family:Fraunces,serif;font-size:9.5pt;margin-bottom:2px}
+  .tl span{font-size:7.3pt;color:var(--ink2);display:block}
+  .foot{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:6.6pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <div class="hero">
+    <div class="txt">
+      <div class="eyebrow">EasyGut · Action plan</div>
+      <h1>Campaign blueprint</h1>
+      <p>3 campaigns, 5 ad sets, 19 ads (13 new, 6 reused). What to build, where each ad goes, and when.</p>
+    </div>
+  </div>
+
+  <div class="budget"><div class="p">Winners · €24/day · 60%</div><div class="t">Test · €10/day · 25%</div><div class="r">Retarget · €6 · 15%</div></div>
+
+  <div class="bp">
+    <!-- C1 -->
+    <div class="camp p">
+      <div class="hd"><div class="k">Campaign 1 · always on</div><h3>Winners</h3><code>EG_PROS_Winners_ASC</code></div>
+      <div class="set"><dl>
+        <dt>Type</dt><dd><b>Advantage+ Sales</b>, Purchase, highest volume</dd>
+        <dt>Budget</dt><dd><b>€24/day</b> at campaign level</dd>
+        <dt>Rule</dt><dd>Only proven ads. Max 6 live. Edit once a week at most.</dd>
+      </dl></div>
+      <div class="as">
+        <div class="n">Ad set · Broad Serbia <span>1 of 1</span></div>
+        <dl>
+          <dt>Who</dt><dd>Serbia, 18–65+, Advantage+ audience, <b>no interests</b></dd>
+          <dt>Exclude</dt><dd>Buyers, last 30 days</dd>
+          <dt>Where</dt><dd>All placements except Audience Network</dd>
+          <dt>Page</dt><dd>Product pages (Combo for Combo ads)</dd>
+          <dt>Ads</dt><dd><span class="ids"><span class="id">W1</span><span class="id">W2</span><span class="id">W3</span></span> + test winners</dd>
+        </dl>
+      </div>
+    </div>
+    <!-- C2 -->
+    <div class="camp t">
+      <div class="hd"><div class="k">Campaign 2 · always on</div><h3>Creative test</h3><code>EG_TEST_Creative_CBO</code></div>
+      <div class="set"><dl>
+        <dt>Type</dt><dd><b>Sales</b>, Purchase, CBO</dd>
+        <dt>Budget</dt><dd><b>€10/day</b>, 5 ads per round (~5 days)</dd>
+        <dt>Rule</dt><dd>Auto-rule: ad off at <b>1,000 impressions</b></dd>
+      </dl></div>
+      <div class="as">
+        <div class="n">Ad set · Broad Serbia <span>1 of 1</span></div>
+        <dl>
+          <dt>Who</dt><dd>Serbia, 18–65+, Advantage+ audience</dd>
+          <dt>Exclude</dt><dd>Buyers, last 30 days</dd>
+          <dt>Where</dt><dd>All placements except Audience Network</dd>
+          <dt>Ads</dt><dd><b>Round 1:</b> <span class="ids"><span class="id t">T1</span><span class="id t">T2</span><span class="id t">T3</span><span class="id t">T4</span><span class="id t">T5</span></span><br><b>Round 2:</b> <span class="ids"><span class="id t">T6</span><span class="id t">T7</span><span class="id t">T8a/b</span><span class="id t">T9</span></span></dd>
+        </dl>
+      </div>
+    </div>
+    <!-- C3 -->
+    <div class="camp r">
+      <div class="hd"><div class="k">Campaign 3 · always on</div><h3>Retargeting</h3><code>EG_RT_ABO</code></div>
+      <div class="set"><dl>
+        <dt>Type</dt><dd><b>Sales</b>, Purchase, budget per ad set</dd>
+        <dt>Budget</dt><dd><b>€6/day</b> = €3 warm · €2 hot · €1 refill</dd>
+      </dl></div>
+      <div class="as">
+        <div class="n">Warm <span>€3/day</span></div>
+        <dl><dt>Who</dt><dd>IG + FB engagers 365d, 50% video viewers 60d</dd>
+          <dt>Exclude</dt><dd>Site visitors 30d, buyers 180d</dd>
+          <dt>Ads</dt><dd><span class="ids"><span class="id r">R1</span><span class="id r">R2</span><span class="id t">T6</span></span> expert, testimonial, routine</dd></dl>
+      </div>
+      <div class="as">
+        <div class="n">Hot <span>€2/day</span></div>
+        <dl><dt>Who</dt><dd>Site visitors 30d, add to cart / checkout 14d</dd>
+          <dt>Exclude</dt><dd>Buyers, last 30 days</dd>
+          <dt>Ads</dt><dd><span class="ids"><span class="id r">R3</span><span class="id r">R4</span><span class="id r">R5</span></span> reviews, Combo saving, unboxing</dd></dl>
+      </div>
+      <div class="as">
+        <div class="n">Refill <span>€1/day</span></div>
+        <dl><dt>Who</dt><dd>Bought 25–45 days ago (buyers 45d minus buyers 25d)</dd>
+          <dt>Ads</dt><dd><span class="ids"><span class="id r">R6</span></span> “time for a new box” + Combo upgrade</dd></dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="box">
+      <h3>Older buyers (55+): separate campaign or separate creative?</h3>
+      <span class="ans">Separate creative, same campaigns</span>
+      <ul>
+        <li><b>Too little data for a campaign.</b> The signal is 5 purchases on €111. A 55+ campaign would split €40/day into pieces too small to leave learning.</li>
+        <li><b>Creative is the targeting now.</b> With a broad audience, Meta shows each ad to the people who react to it. An ad with a 60-year-old in a slava kitchen finds 55+ buyers on its own.</li>
+        <li><b>What to do:</b> make <b>T9</b> (grandma at slava) and use 50–65 creators for T3 and T4. Test them in Campaign 2. Winners move into Campaign 1, where Meta keeps sending them to 55+.</li>
+      </ul>
+      <div class="mini"><b>Only if you want proof:</b> in week 3–4, run a Meta A/B test (Experiments) with the same 3 ads: broad vs age 45–65+, €5/day each, 14 days. Build a separate 45+ campaign only if its CPA is ≥30% lower after 10+ purchases.</div>
+    </div>
+    <div class="box">
+      <h3>Launch day checklist</h3>
+      <ul>
+        <li><b>Create audiences:</b> 50% video viewers 60d, site visitors 30d, buyers 25d / 30d / 45d. Engagers, cart 14d and buyers 180d already exist.</li>
+        <li><b>Reuse existing posts</b> for W1–W3 and R2 (use the post ID) so they keep their likes and comments.</li>
+        <li><b>Pause both current campaigns</b> the day C1–C3 go live, so nothing bids against itself.</li>
+        <li><b>Turn off Audience Network</b> in account-level placement controls.</li>
+        <li><b>Name everything</b> like <code style="font-size:7pt">T04_Day_Otkopcano_UGC_v1</code> so results are easy to read.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Rules to run it by <small>target CPA ≈ €25 (break-even on a Combo order at ~60% margin, confirm margin)</small></h2>
+  <div class="rules">
+    <div class="rule t"><b>Test → Winners</b><ul><li>After 1,000 impressions: CTR ≥ 2% and link CTR ≥ 1%</li><li>and cost per add-to-cart ≤ €10, or at least 1 sale</li><li>Move it in using the same post ID</li></ul></div>
+    <div class="rule k"><b>Kill</b><ul><li>€50 spent with 0 sales</li><li>CPA above €35 after €100 spent</li><li>Weekly frequency above 3 with falling CTR: refresh the hook</li></ul></div>
+    <div class="rule p"><b>Scale</b><ul><li>+20% on Winners (≈ +€5/day) every 3–4 days while CPA is on target</li><li>Never double the budget in one go</li><li>Keep Test at €10–15 and Retarget at ~15%</li></ul></div>
+    <div class="rule r"><b>Retargeting</b><ul><li>Judge Warm on cost per add-to-cart</li><li>Judge Hot and Refill on sales</li><li>If Refill has &lt;200 people, pause it and let Hot run</li></ul></div>
+  </div>
+
+  <div class="foot"><span>Budget based on the current ~€40/day. When scaling, add to Winners first; keep Test ≈ €10–15 and Retarget ≈ 15%.</span><span>1 / 2</span></div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <div class="p2head">
+    <div><div class="eyebrow">EasyGut · Campaign blueprint</div><h1>Ads to build</h1></div>
+    <div style="font-size:7.3pt;color:var(--muted);text-align:right">Frames generated with Higgsfield as direction for the shoot<br>Hooks in Serbian: the first line on screen or the first spoken line</div>
+  </div>
+
+  <table class="ads">
+    <colgroup><col style="width:38px"><col style="width:40px"><col style="width:112px"><col style="width:70px"><col style="width:110px"><col><col style="width:78px"></colgroup>
+    <tr><th>ID</th><th></th><th>Ad</th><th>Product</th><th>Format</th><th>Hook</th><th>Goes to</th></tr>
+
+    <tr class="grp"><td colspan="7">Reuse now (existing posts, the only ads with sales)</td></tr>
+    <tr><td><span class="id">W1</span></td><td><span class="th x">post</span></td><td><b>Tamara testimonial</b><br>€15 CPA, ROAS 2.08</td><td>Night</td><td>Existing video post</td><td class="hk">“Kasna večera nije problem…”</td><td>Winners</td></tr>
+    <tr><td><span class="id">W2</span></td><td><span class="th x">post</span></td><td><b>Day pinned testimonial</b><br>10 sales, ROAS 0.87</td><td>Day</td><td>Existing video post</td><td class="hk">“Kada je telu dala pravu podršku…”</td><td>Winners + Warm (R2)</td></tr>
+    <tr><td><span class="id">W3</span></td><td><span class="th x">post</span></td><td><b>Teodora</b><br>2 sales at €24</td><td>Day</td><td>Existing video post</td><td class="hk">“Jedna kapsula ujutru…”</td><td>Winners</td></tr>
+
+    <tr class="grp"><td colspan="7">Test round 1 · week 1–2 · 5 new ads</td></tr>
+    <tr><td><span class="id t">T1</span></td><td><span class="th" style="background-image:url(img/c_night.jpg)"></span></td><td><b>2 posle ponoći</b><br>extends the best angle</td><td>Night</td><td>POV 9:16, 15s, text on screen</td><td class="hk">“Večeraš kasno pa se prevrćeš do 2? Nije do jastuka.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T2</span></td><td><span class="th x">re-<br>edit</span></td><td><b>Tamara remix</b><br>same video, new first 3s</td><td>Night → Combo</td><td>Re-edit: new hook + Combo end card</td><td class="hk">“Kasno večeraš i loše spavaš? Tamara je rešila oba.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T3</span></td><td><span class="th" style="background-image:url(img/c_slava.jpg)"></span></td><td><b>Slava sezona</b><br>live by 20 Oct</td><td>Forte · Combo</td><td>10s Reel + 4-card carousel</td><td class="hk">“Tri slave u novembru. Stomak ne mora da pati.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T4</span></td><td><span class="th" style="background-image:url(img/c_dinner.jpg)"></span></td><td><b>Otkopčano dugme</b><br>creator 45–60</td><td>Day</td><td>UGC selfie 9:16, 15–20s</td><td class="hk">“Ako posle ručka otkopčavaš farmerke, ovo je za tebe.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T5</span></td><td><span class="th" style="background-image:url(img/c_pharma.jpg)"></span></td><td><b>Farmaceutkinja</b><br>real pharmacist</td><td>Forte</td><td>Expert talking head, 30–40s</td><td class="hk">“Enzimi rade samo ako ih uzmeš UZ obrok. Evo zašto.”</td><td>Test → Warm (R1)</td></tr>
+
+    <tr class="grp"><td colspan="7">Test round 2 · week 3–4 · 5 new ads</td></tr>
+    <tr><td><span class="id t">T6</span></td><td><span class="th" style="background-image:url(img/t_routine.jpg)"></span></td><td><b>Dan → Noć rutina</b><br>sells the Combo</td><td>Combo</td><td>Demo 9:16, 20s</td><td class="hk">“Jedna ujutru, jedna uveče. To je cela rutina.”</td><td>Test → Warm</td></tr>
+    <tr><td><span class="id t">T7</span></td><td><span class="th" style="background-image:url(img/c_street.jpg)"></span></td><td><b>Ulična anketa</b><br>made for Reels</td><td>Day · Combo</td><td>Vox-pop Reel, 25s</td><td class="hk">“Šta tebe naduva?”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T8</span></td><td><span class="th" style="background-image:url(img/c_split.jpg)"></span></td><td><b>Pizza bez “posle”</b><br>a = static, b = 6s video</td><td>Forte</td><td>Same angle, 2 formats</td><td class="hk">“Pizza, sir i kafa s mlekom. Bez onog ‘posle’.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T9</span></td><td><span class="th" style="background-image:url(img/t_baka.jpg)"></span></td><td><b>Baka posle slave</b><br>the 55+ creative</td><td>Forte · Night</td><td>Selfie testimonial, 20s</td><td class="hk">“Spremila sam slavu za 30 ljudi, a posle ručka nisam morala da legnem.”</td><td>Test</td></tr>
+
+    <tr class="grp"><td colspan="7">Retargeting · launch week 1</td></tr>
+    <tr><td><span class="id r">R1</span></td><td><span class="th" style="background-image:url(img/c_pharma.jpg)"></span></td><td><b>Farmaceutkinja</b> (= T5)</td><td>Forte</td><td>Expert video</td><td class="hk">Explains how and when to take it</td><td>Warm</td></tr>
+    <tr><td><span class="id r">R3</span></td><td><span class="th x">real<br>reviews</span></td><td><b>Review collage</b></td><td>Combo</td><td>Static, real review screenshots</td><td class="hk">“Šta kažu oni koji su probali.”</td><td>Hot</td></tr>
+    <tr><td><span class="id r">R4</span></td><td><span class="th x">reuse</span></td><td><b>Combo saving</b> (existing static)</td><td>Combo</td><td>Static + free delivery, 14-day returns</td><td class="hk">“Day + Night za 4.699 umesto 5.348 din.”</td><td>Hot</td></tr>
+    <tr><td><span class="id r">R5</span></td><td><span class="th x">phone<br>video</span></td><td><b>Unboxing + how to take</b></td><td>Combo</td><td>15s phone video</td><td class="hk">“Stiglo je. Evo kako ga pijem.”</td><td>Hot</td></tr>
+    <tr><td><span class="id r">R6</span></td><td><span class="th" style="background-image:url(img/r_refill.jpg)"></span></td><td><b>Refill reminder</b></td><td>Day / Night → Combo</td><td>Static</td><td class="hk">“30 dana kasnije: vreme je za novu kutiju.”</td><td>Refill</td></tr>
+  </table>
+
+
+  <div class="tl">
+    <div><b>This week</b><span>Build audiences, shoot T1–T5 and R3–R6, launch C1–C3, pause the old campaigns.</span></div>
+    <div><b>Week 2</b><span>Read round 1 and move 1–2 winners to Winners. T3 (slava) live by 20 Oct.</span></div>
+    <div><b>Week 3–4</b><span>Round 2 (T6–T9). Optional A/B test: broad vs 45–65+.</span></div>
+    <div><b>Slava dates</b><span>Petkovdan 27 Oct · Mitrovdan 8 Nov · Aranđelovdan 21 Nov · Nikoljdan 19 Dec</span></div>
+  </div>
+
+  <div class="foot"><span>Companion to the EasyGut Meta Ads Audit and Creative Plan · W = winners, T = test, R = retargeting</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>
