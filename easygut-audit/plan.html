@@ -81,8 +81,13 @@
   .tl b{display:block;font-family:Fraunces,serif;font-size:9.5pt;margin-bottom:2px}
   .tl span{font-size:7.3pt;color:var(--ink2);display:block}
   .foot{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:6.6pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
-  .warn{margin-top:6px;background:#fbf1dc;border-radius:8px;padding:6px 10px;font-size:7.4pt;color:#5c4a1c}
+  .warn{margin-top:7px;background:#fbf1dc;border-radius:8px;padding:6px 10px;font-size:7.4pt;color:#5c4a1c}
   .warn b{color:#8a5a00}
+  .fm{display:inline-block;font-size:6pt;font-weight:800;letter-spacing:.06em;border-radius:4px;padding:0 4px;margin-bottom:1px}
+  .fm.s{background:#e8f0fb;color:#2b5aa0} .fm.v{background:#fbe9e7;color:#a8352b} .fm.e{background:#eeeae4;color:#5f594f}
+  .slots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .slots div{font-size:7.6pt;color:var(--ink2);line-height:1.65}
+  .slots b{display:block;font-size:7.8pt;color:var(--ink);margin-bottom:1px}
 </style>
 </head>
 <body>
@@ -133,7 +138,7 @@
           <dt>Who</dt><dd>Serbia, 18–65+, Advantage+ audience</dd>
           <dt>Exclude</dt><dd>Buyers, last 30 days</dd>
           <dt>Where</dt><dd>All placements except Audience Network</dd>
-          <dt>Ads</dt><dd><b>Round 1:</b> <span class="ids"><span class="id t">T1</span><span class="id t">T2</span><span class="id t">T3</span><span class="id t">T4</span><span class="id t">T5</span></span><br><b>Round 2:</b> <span class="ids"><span class="id t">T6</span><span class="id t">T7</span><span class="id t">T8</span><span class="id t">T9</span><span class="id t">T10</span></span><br>2 video re-edits + 3 statics per round</dd>
+          <dt>Ads</dt><dd><b>Round 1:</b> <span class="ids"><span class="id t">T1</span><span class="id t">T2</span><span class="id t">T3</span><span class="id t">T4</span><span class="id t">T5</span></span><br><b>Round 2:</b> <span class="ids"><span class="id t">T6</span><span class="id t">T7</span><span class="id t">T8</span><span class="id t">T9</span><span class="id t">T10</span></span><br>3 statics + 2 video re-edits per round</dd>
         </dl>
       </div>
     </div>
@@ -166,14 +171,13 @@
 
   <div class="two">
     <div class="box">
-      <h3>Older buyers (55+): separate campaign or separate creative?</h3>
-      <span class="ans">Separate creative, same campaigns</span>
-      <ul>
-        <li><b>Too little data for a campaign.</b> The signal is 5 purchases on €111. A 55+ campaign would split €40/day into pieces too small to leave learning.</li>
-        <li><b>Creative is the targeting now.</b> With a broad audience, Meta shows each ad to the people who react to it. An ad with a 60-year-old in a slava kitchen finds 55+ buyers on its own.</li>
-        <li><b>What to do:</b> the existing video creators are mostly young or fitness types, so fix the age gap in the statics. Make <b>T9</b> (a 55–65 host at slava) and use 45–65 faces in T4, T6 and T8. Winners move into Campaign 1, where Meta keeps sending them to 55+.</li>
-      </ul>
-      <div class="mini"><b>Only if you want proof:</b> in week 3–4, run a Meta A/B test (Experiments) with the same 3 statics: broad vs age 45–65+, €5/day each, 14 days. Build a separate 45+ campaign only if its CPA is ≥30% lower after 10+ purchases.</div>
+      <h3>What each test round contains</h3>
+      <span class="ans">5 ads per round: 3 statics + 2 video re-edits</span>
+      <div class="slots">
+        <div><b>Round 1 · week 1–2</b><span class="fm s">CAROUSEL</span> T1 Slava sezona<br><span class="fm s">STATIC</span> T2 Otkopčano dugme<br><span class="fm s">STATIC</span> T3 Notes app list<br><span class="fm v">VIDEO RE-EDIT</span> T4 Tamara → Combo<br><span class="fm v">VIDEO RE-EDIT</span> T5 Kajra (never run)</div>
+        <div><b>Round 2 · week 3–4</b><span class="fm s">CAROUSEL</span> T6 Dan → Noć rutina<br><span class="fm s">STATIC</span> T7 Pizza bez “posle”<br><span class="fm s">STATIC</span> T8 Domaćica slave<br><span class="fm v">VIDEO RE-EDIT</span> T9 Miloš, 15s<br><span class="fm v">VIDEO RE-EDIT</span> T10 Teodora, 15s</div>
+      </div>
+      <div class="mini"><b>Why mix them:</b> statics are new, while the re-edits start from footage that already sold. In the same round they get equal exposure (1,000 impressions each), so you learn which format wins without filming anything.</div>
     </div>
     <div class="box">
       <h3>Launch day checklist</h3>
@@ -181,11 +185,12 @@
         <li><b>Create audiences:</b> 50% video viewers 60d, site visitors 30d, buyers 25d / 30d / 45d. Engagers, cart 14d and buyers 180d already exist.</li>
         <li><b>Reuse existing posts</b> for W1, W2 and R1 (use the post ID) so they keep their likes and comments.</li><li><b>Download the 6 videos</b> from the ad library for the re-edits. Kajra has never run as an ad.</li>
         <li><b>Pause both current campaigns</b> the day C1–C3 go live, so nothing bids against itself.</li>
-                <li><b>Name everything</b> like <code style="font-size:7pt">T04_Day_Otkopcano_Static_v1</code> so results are easy to read.</li>
+                <li><b>Name everything</b> like <code style="font-size:7pt">T02_Day_Otkopcano_Static_v1</code> so results are easy to read.</li>
       </ul>
     </div>
   </div>
 
+  <div class="warn"><b>Statics have lost here so far</b> (3 statics, €109, 0 sales, link CTR 0.6–1.0%). This time they should look native (notes app, real reviews, carousels that tell a story), not like banners. Keep one angle per static. The videos stay in Winners until a static beats them.</div>
   <h2>Rules to run it by <small>target CPA ≈ €25 (break-even on a Combo order at ~60% margin, confirm margin)</small></h2>
   <div class="rules">
     <div class="rule t"><b>Test → Winners</b><ul><li>After 1,000 impressions: CTR ≥ 2% and link CTR ≥ 1%</li><li>and cost per add-to-cart ≤ €10, or at least 1 sale</li><li>Move it in using the same post ID</li></ul></div>
@@ -205,37 +210,37 @@
   </div>
 
   <table class="ads">
-    <colgroup><col style="width:38px"><col style="width:40px"><col style="width:118px"><col style="width:66px"><col style="width:112px"><col><col style="width:70px"></colgroup>
-    <tr><th>ID</th><th></th><th>Ad</th><th>Product</th><th>What to do</th><th>Hook</th><th>Goes to</th></tr>
-    <tr class="grp"><td colspan="7">A · Existing ads, use as they are · 0 production</td></tr>
-    <tr><td><span class="id">W1</span></td><td><span class="th" style="background-image:url(img/v_tamara.jpg)"></span></td><td><b>Tamara testimonial</b><br>€15 CPA, ROAS 2.08</td><td>Night</td><td>Existing post, as is</td><td class="hk">“Kasna večera nije problem…”</td><td>Winners</td></tr>
-    <tr><td><span class="id">W2</span></td><td><span class="th" style="background-image:url(img/v_teodora.jpg)"></span></td><td><b>Teodora (pinned post)</b><br>10 sales, ROAS 0.87</td><td>Day</td><td>Existing post, as is</td><td class="hk">“Kada je telu dala pravu podršku…”</td><td>Winners + Warm</td></tr>
-    <tr><td><span class="id r">R1</span></td><td><span class="th" style="background-image:url(img/v_natasa.jpg)"></span></td><td><b>Nataša</b><br>15 add-to-carts on €52</td><td>Day</td><td>Existing post, as is</td><td class="hk">“Dobar dan počinje dobrom rutinom.”</td><td>Warm</td></tr>
-    <tr><td><span class="id r">R5</span></td><td><span class="th x">reuse</span></td><td><b>Combo saving</b><br>existing static</td><td>Combo</td><td>As is + “free delivery, 14-day returns” in the copy</td><td class="hk">“Day + Night za 4.699 umesto 5.348 din.”</td><td>Hot</td></tr>
-    <tr class="grp"><td colspan="7">B · Re-edits of existing videos · editing only, no filming</td></tr>
-    <tr><td><span class="id t">T1</span></td><td><span class="th" style="background-image:url(img/v_tamara.jpg)"></span></td><td><b>Tamara → Combo</b><br>the best ad, sharper</td><td>Night → Combo</td><td>1s text hook on the first frame + Combo end card</td><td class="hk">“Večeraš kasno pa se prevrćeš do 2?”</td><td>Test · wk 1</td></tr>
-    <tr><td><span class="id t">T2</span></td><td><span class="th" style="background-image:url(img/v_kajra.jpg)"></span></td><td><b>Kajra</b><br>never run as an ad</td><td>Day</td><td>Burn in captions, put his strongest line on screen in the first 1s</td><td class="hk">His strongest line as on-screen text</td><td>Test · wk 1</td></tr>
-    <tr><td><span class="id t">T7</span></td><td><span class="th" style="background-image:url(img/v_milos.jpg)"></span></td><td><b>Miloš, 15s cut</b><br>best hold in the account</td><td>Forte</td><td>Keep his opening (31% watch to 25%), end on how to take it + price</td><td class="hk">“Nadutost posle ručka nije cena koju moraš da platiš.”</td><td>Test · wk 3</td></tr>
-    <tr><td><span class="id t">T10</span></td><td><span class="th" style="background-image:url(img/v_teodora.jpg)"></span></td><td><b>Teodora, 15s cut</b><br>55s is too long for Reels</td><td>Day</td><td>Cut the blurry opening, start on her result line</td><td class="hk">Her strongest result line, in the first 1s</td><td>Test · wk 3</td></tr>
-    <tr class="grp"><td colspan="7">C · New statics &amp; carousels · design only (4:5 feed + 9:16 stories/Reels version each)</td></tr>
-    <tr><td><span class="id t">T3</span></td><td><span class="th" style="background-image:url(img/c_slava.jpg)"></span></td><td><b>Slava sezona</b><br>live by 20 Oct</td><td>Forte · Combo</td><td>Carousel, 4 cards: table → problem → Forte uz obrok → Combo offer</td><td class="hk">“Tri slave u novembru. Stomak ne mora da pati.”</td><td>Test · wk 1</td></tr>
-    <tr><td><span class="id t">T4</span></td><td><span class="th" style="background-image:url(img/c_dinner.jpg)"></span></td><td><b>Otkopčano dugme</b><br>45–60 face</td><td>Day</td><td>Photo + one big line of text</td><td class="hk">“Ako posle ručka otkopčavaš farmerke, ovo je za tebe.”</td><td>Test · wk 1</td></tr>
-    <tr><td><span class="id t">T5</span></td><td><span class="th" style="background-image:url(img/s_notes.jpg);background-position:left top;background-size:250%"></span></td><td><b>Notes app list</b><br>looks native, cheap to make</td><td>Forte</td><td>Phone-note screenshot, no branding on the image</td><td class="hk">“Šta me naduva: pizza, sir, kafa s mlekom, slava kod tetke…”</td><td>Test · wk 1</td></tr>
-    <tr><td><span class="id t">T6</span></td><td><span class="th" style="background-image:url(img/t_routine.jpg)"></span></td><td><b>Dan → Noć rutina</b><br>sells the Combo</td><td>Combo</td><td>Carousel: morning card → evening card → Combo price</td><td class="hk">“Jedna ujutru, jedna uveče. To je cela rutina.”</td><td>Test · wk 3</td></tr>
-    <tr><td><span class="id t">T8</span></td><td><span class="th" style="background-image:url(img/c_split.jpg)"></span></td><td><b>Pizza bez “posle”</b><br>45–60 faces</td><td>Forte</td><td>Split-screen photo static</td><td class="hk">“Pizza, sir i kafa s mlekom. Bez onog ‘posle’.”</td><td>Test · wk 3</td></tr>
-    <tr><td><span class="id t">T9</span></td><td><span class="th" style="background-image:url(img/t_baka.jpg)"></span></td><td><b>Domaćica slave</b><br>the 55+ creative</td><td>Forte · Night</td><td>Photo of a 55–65 host + headline (no invented quotes)</td><td class="hk">“Slava za 30 ljudi? Forte uz najteži obrok.”</td><td>Test · wk 3</td></tr>
-    <tr><td><span class="id r">R3</span></td><td><span class="th x">carousel</span></td><td><b>Kako deluje</b><br>replaces an expert video</td><td>Day · Night · Forte</td><td>Carousel: what is inside each one and when to take it</td><td class="hk">“Day uz obrok · Night pre spavanja · Forte uz najteži obrok.”</td><td>Warm</td></tr>
-    <tr><td><span class="id r">R4</span></td><td><span class="th x">real<br>reviews</span></td><td><b>Review screenshots</b></td><td>Combo</td><td>Real customer reviews only, with permission</td><td class="hk">“Šta kažu oni koji su probali.”</td><td>Hot</td></tr>
-    <tr><td><span class="id r">R6</span></td><td><span class="th x">FAQ</span></td><td><b>FAQ carousel</b><br>replaces unboxing video</td><td>Combo</td><td>Delivery, returns, how to take, vegan</td><td class="hk">“Besplatna dostava za 2–3 dana. Povrat 14 dana.”</td><td>Hot</td></tr>
-    <tr><td><span class="id r">R7</span></td><td><span class="th" style="background-image:url(img/r_refill.jpg)"></span></td><td><b>Refill reminder</b></td><td>Day / Night → Combo</td><td>Static</td><td class="hk">“30 dana kasnije: vreme je za novu kutiju.”</td><td>Refill</td></tr>
+    <colgroup><col style="width:38px"><col style="width:40px"><col style="width:118px"><col style="width:66px"><col style="width:118px"><col><col style="width:64px"></colgroup>
+    <tr><th>ID</th><th></th><th>Ad</th><th>Product</th><th>Format · what to do</th><th>Hook</th><th>Goes to</th></tr>
+    <tr class="grp"><td colspan="7">Winners · from day 1 · the 2 videos that sold</td></tr>
+    <tr><td><span class="id">W1</span></td><td><span class="th" style="background-image:url(img/v_tamara.jpg)"></span></td><td><b>Tamara testimonial</b><br>€15 CPA, ROAS 2.08</td><td>Night</td><td><span class="fm e">EXISTING</span> Existing post, as is</td><td class="hk">“Kasna večera nije problem…”</td><td>Winners</td></tr>
+    <tr><td><span class="id">W2</span></td><td><span class="th" style="background-image:url(img/v_teodora.jpg)"></span></td><td><b>Teodora (pinned post)</b><br>10 sales, ROAS 0.87</td><td>Day</td><td><span class="fm e">EXISTING</span> Existing post, as is</td><td class="hk">“Kada je telu dala pravu podršku…”</td><td>Winners + Warm</td></tr>
+    <tr class="grp"><td colspan="7">Test round 1 · week 1–2 · 3 statics + 2 video re-edits</td></tr>
+    <tr><td><span class="id t">T1</span></td><td><span class="th" style="background-image:url(img/c_slava.jpg)"></span></td><td><b>Slava sezona</b><br>live by 20 Oct</td><td>Forte · Combo</td><td><span class="fm s">CAROUSEL</span> 4 cards: table → problem → Forte uz obrok → Combo offer</td><td class="hk">“Tri slave u novembru. Stomak ne mora da pati.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T2</span></td><td><span class="th" style="background-image:url(img/c_dinner.jpg)"></span></td><td><b>Otkopčano dugme</b></td><td>Day</td><td><span class="fm s">STATIC</span> Photo + one big line of text</td><td class="hk">“Ako posle ručka otkopčavaš farmerke, ovo je za tebe.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T3</span></td><td><span class="th" style="background-image:url(img/s_notes.jpg);background-position:left top;background-size:250%"></span></td><td><b>Notes app list</b><br>looks native, cheap to make</td><td>Forte</td><td><span class="fm s">STATIC</span> Phone-note screenshot, no branding on the image</td><td class="hk">“Šta me naduva: pizza, sir, kafa s mlekom, slava kod tetke…”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T4</span></td><td><span class="th" style="background-image:url(img/v_tamara.jpg)"></span></td><td><b>Tamara → Combo</b><br>the best ad, sharper</td><td>Night → Combo</td><td><span class="fm v">VIDEO RE-EDIT</span> 1s text hook on the first frame + Combo end card</td><td class="hk">“Večeraš kasno pa se prevrćeš do 2?”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T5</span></td><td><span class="th" style="background-image:url(img/v_kajra.jpg)"></span></td><td><b>Kajra</b><br>never run as an ad</td><td>Day</td><td><span class="fm v">VIDEO RE-EDIT</span> Burn in captions, put his strongest line on screen in the first 1s</td><td class="hk">His strongest line as on-screen text</td><td>Test</td></tr>
+    <tr class="grp"><td colspan="7">Test round 2 · week 3–4 · 3 statics + 2 video re-edits</td></tr>
+    <tr><td><span class="id t">T6</span></td><td><span class="th" style="background-image:url(img/t_routine.jpg)"></span></td><td><b>Dan → Noć rutina</b><br>sells the Combo</td><td>Combo</td><td><span class="fm s">CAROUSEL</span> Morning card → evening card → Combo price</td><td class="hk">“Jedna ujutru, jedna uveče. To je cela rutina.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T7</span></td><td><span class="th" style="background-image:url(img/c_split.jpg)"></span></td><td><b>Pizza bez “posle”</b></td><td>Forte</td><td><span class="fm s">STATIC</span> Split-screen photo</td><td class="hk">“Pizza, sir i kafa s mlekom. Bez onog ‘posle’.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T8</span></td><td><span class="th" style="background-image:url(img/t_baka.jpg)"></span></td><td><b>Domaćica slave</b></td><td>Forte · Night</td><td><span class="fm s">STATIC</span> Real host photo + headline (no invented quotes)</td><td class="hk">“Slava za 30 ljudi? Forte uz najteži obrok.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T9</span></td><td><span class="th" style="background-image:url(img/v_milos.jpg)"></span></td><td><b>Miloš, 15s cut</b><br>best hold in the account</td><td>Forte</td><td><span class="fm v">VIDEO RE-EDIT</span> Keep his opening (31% watch to 25%), end on how to take it + price</td><td class="hk">“Nadutost posle ručka nije cena koju moraš da platiš.”</td><td>Test</td></tr>
+    <tr><td><span class="id t">T10</span></td><td><span class="th" style="background-image:url(img/v_teodora.jpg)"></span></td><td><b>Teodora, 15s cut</b><br>55s is too long for Reels</td><td>Day</td><td><span class="fm v">VIDEO RE-EDIT</span> Cut the blurry opening, start on her result line</td><td class="hk">Her strongest result line, in the first 1s</td><td>Test</td></tr>
+    <tr class="grp"><td colspan="7">Retargeting · from day 1 · R2 = the W2 post</td></tr>
+    <tr><td><span class="id r">R1</span></td><td><span class="th" style="background-image:url(img/v_natasa.jpg)"></span></td><td><b>Nataša</b><br>15 add-to-carts on €52</td><td>Day</td><td><span class="fm e">EXISTING</span> Existing post, as is</td><td class="hk">“Dobar dan počinje dobrom rutinom.”</td><td>Warm</td></tr>
+    <tr><td><span class="id r">R3</span></td><td><span class="th x">carousel</span></td><td><b>Kako deluje</b></td><td>Day · Night · Forte</td><td><span class="fm s">CAROUSEL</span> What is inside each one and when to take it</td><td class="hk">“Day uz obrok · Night pre spavanja · Forte uz najteži obrok.”</td><td>Warm</td></tr>
+    <tr><td><span class="id r">R4</span></td><td><span class="th x">real<br>reviews</span></td><td><b>Review screenshots</b></td><td>Combo</td><td><span class="fm s">STATIC</span> Real customer reviews only, with permission</td><td class="hk">“Šta kažu oni koji su probali.”</td><td>Hot</td></tr>
+    <tr><td><span class="id r">R5</span></td><td><span class="th x">reuse</span></td><td><b>Combo saving</b></td><td>Combo</td><td><span class="fm e">EXISTING</span> Existing static + “free delivery, 14-day returns” in the copy</td><td class="hk">“Day + Night za 4.699 umesto 5.348 din.”</td><td>Hot</td></tr>
+    <tr><td><span class="id r">R6</span></td><td><span class="th x">FAQ</span></td><td><b>FAQ carousel</b></td><td>Combo</td><td><span class="fm s">CAROUSEL</span> Delivery, returns, how to take, vegan</td><td class="hk">“Besplatna dostava za 2–3 dana. Povrat 14 dana.”</td><td>Hot</td></tr>
+    <tr><td><span class="id r">R7</span></td><td><span class="th" style="background-image:url(img/r_refill.jpg)"></span></td><td><b>Refill reminder</b></td><td>Day / Night → Combo</td><td><span class="fm s">STATIC</span> Photo + one line of text</td><td class="hk">“30 dana kasnije: vreme je za novu kutiju.”</td><td>Refill</td></tr>
   </table>
 
 
-  <div class="warn"><b>Statics have lost here so far</b> (3 statics, €109, 0 sales, link CTR 0.6–1.0%). This time they should look native (notes app, real reviews, carousels that tell a story), not like banners. Keep one angle per static. The videos stay in Winners until a static beats them.</div>
   <div class="tl">
-    <div><b>This week</b><span>Re-edit T1–T2, design T3–T5 and R3–R7, launch C1–C3, pause the old campaigns.</span></div>
-    <div><b>Week 2</b><span>Read round 1 and move 1–2 winners to Winners. T3 (slava) live by 20 Oct.</span></div>
-    <div><b>Week 3–4</b><span>Round 2 (T6–T10). Optional A/B test: broad vs 45–65+.</span></div>
+    <div><b>This week</b><span>Design T1–T3 and R3–R7, re-edit T4–T5, launch C1–C3, pause the old campaigns.</span></div>
+    <div><b>Week 2</b><span>Read round 1 and move 1–2 winners to Winners. T1 (slava) live by 20 Oct.</span></div>
+    <div><b>Week 3–4</b><span>Round 2 (T6–T10). Cut the weakest ads and brief round 3 from what won.</span></div>
     <div><b>Slava dates</b><span>Petkovdan 27 Oct · Mitrovdan 8 Nov · Aranđelovdan 21 Nov · Nikoljdan 19 Dec</span></div>
   </div>
 
