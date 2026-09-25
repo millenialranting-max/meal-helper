@@ -131,7 +131,7 @@
 
   <h2>30-day fix plan <small>fix in this order</small></h2>
   <div class="plan">
-    <div class="wk"><b>Week 1 · Plumbing</b><ul><li>Consent Mode + email/phone in CAPI</li><li>Confirm margin and set target CPA</li><li>Check that website audiences fill up</li></ul></div>
+    <div class="wk"><b>Week 1 · Plumbing</b><ul><li>Advanced Matching: email/phone in CAPI</li><li>Confirm margin and set target CPA</li><li>Check that website audiences fill up</li></ul></div>
     <div class="wk"><b>Week 1 · Rebuild</b><ul><li>1 prospecting campaign with the best 3–4 ads</li><li>Launch retargeting (warm / hot / refill)</li><li>Exclude buyers from prospecting</li></ul></div>
     <div class="wk"><b>Week 2–3 · Test</b><ul><li>Creative test round of 5–6 new concepts</li><li>Rule: turn each ad off at 1,000 impressions</li><li>Landing page test with the Combo offer</li></ul></div>
     <div class="wk"><b>Week 4 · Scale</b><ul><li>Move winners into prospecting</li><li>Add +€10/day per step while ROAS holds</li><li>Weekly check: fix the first funnel step that fails</li></ul></div>
@@ -152,7 +152,7 @@
     <tr><th>Severity</th><th>Area</th><th>Finding (evidence)</th><th>Fix</th><th>Est. impact</th></tr>
     <tr><td><span class="sev c">● CRIT</span></td><td class="a">Tracking</td>
       <td>CAPI is live but thin: events carry only IP, browser and cookie IDs, no email or phone (match quality <b>6.1/10</b>). The browser pixel records ~30% of CAPI events, so page views and website audiences are undercounted.</td>
-      <td>Add hashed email, phone and external_id to existing CAPI events. Consent Mode on CookieYes. Check event_id dedup.</td><td class="i">−10–20% CPA</td></tr>
+      <td>Turn on Advanced Matching in Facebook for WooCommerce (email, phone, name, city, external_id). Make the cookie banner’s Accept clearer.</td><td class="i">−10–20% CPA</td></tr>
     <tr><td><span class="sev c">● CRIT</span></td><td class="a">Economics</td>
       <td>Cost per purchase <b>€43.5</b> vs average order <b>€30.7</b>. Single packs are ≈€22–24, so the first order never pays back the ad.</td>
       <td>Combo (≈€40) as the hero offer. Refill flow. Target CPA from real margin.</td><td class="i">AOV +25–30%</td></tr>
