@@ -76,7 +76,7 @@ def chart_funnel():
             s.append(t(356, yy + 15, f"{rate} {mark}", 9.5, col, "end", 700))
     # leak annotation
     s.append(f'<rect x="{bx+80}" y="{y0+rh+2}" width="124" height="19" rx="4" fill="#fbe9e7"/>')
-    s.append(t(bx + 142, y0 + rh + 15, "← first leak: 77% never load", 8.2, CRIT, "middle", 700))
+    s.append(t(bx + 142, y0 + rh + 15, "← first leak: 77% not recorded", 8.2, CRIT, "middle", 700))
     return f'<svg viewBox="0 0 360 172" role="img" aria-label="Funnel 1627 clicks, 382 page views, 48 add to cart, 25 checkout, 18 purchases">{"".join(s)}</svg>'
 
 
