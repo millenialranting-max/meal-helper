@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EasyGut Creative Plan</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f1a2e; --ink2:#4d475c; --muted:#847e92; --bg:#fbf8f3; --card:#ffffff; --line:#e9e3da;
+    --plum:#5b3fa0; --plum-soft:#efeaf8; --teal:#2e8f6a; --teal-soft:#e3f2ea; --amber:#a86f00; --amber-soft:#fbf1dc;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);font-size:8.4pt;line-height:1.36;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:0 12mm 10mm;background:var(--bg)}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-size:7.2pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+  .hero{margin:0 -12mm;height:38mm;background:url(img/hero_concepts.jpg) right 40%/cover no-repeat;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(251,248,243,.96) 0%,rgba(251,248,243,.9) 45%,rgba(251,248,243,0) 64%)}
+  .hero .txt{position:absolute;left:12mm;top:7mm;width:84mm}
+  .hero h1{font-size:25pt;line-height:1.02;margin:4px 0 5px}
+  .hero p{font-size:9.4pt;color:var(--ink2)}
+  h2{font-size:13pt;margin:8px 0 5px;display:flex;align-items:baseline;gap:8px}
+  h2 small{font-family:Inter;font-size:7.6pt;color:var(--muted);font-weight:500}
+  /* structure */
+  .struct{display:grid;grid-template-columns:1.25fr 1fr 1.25fr;gap:7px;align-items:stretch}
+  .blk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px 8px;position:relative}
+  .blk .tag{display:flex;justify-content:space-between;align-items:baseline}
+  .blk .tag b{font-size:7.2pt;letter-spacing:.1em;text-transform:uppercase}
+  .blk .tag span{font-family:Fraunces,serif;font-size:15pt;font-weight:600}
+  .blk h3{font-size:10.5pt;margin:1px 0 3px}
+  .blk .bar{height:6px;border-radius:3px;background:#eee8df;margin:3px 0 6px;overflow:hidden}
+  .blk .bar i{display:block;height:100%;border-radius:3px}
+  .blk ul{padding-left:11px} .blk li{font-size:7.7pt;color:var(--ink2);margin-bottom:2px}
+  .blk li b{color:var(--ink)}
+  .p .tag b,.p .tag span{color:var(--plum)} .p .bar i{background:var(--plum);width:60%}
+  .t .tag b,.t .tag span{color:var(--amber)} .t .bar i{background:#c98500;width:25%}
+  .r .tag b,.r .tag span{color:var(--teal)} .r .bar i{background:var(--teal);width:15%}
+  .flow{margin-top:5px;display:flex;gap:5px;flex-wrap:nowrap;white-space:nowrap}
+  .flow span{font-size:6.9pt;background:var(--plum-soft);color:var(--plum);border-radius:20px;padding:2px 8px;font-weight:600}
+  .flow span.s{background:var(--amber-soft);color:var(--amber)}
+  /* concepts */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .c{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .c .im{height:27mm;background-size:cover;background-position:center 22%;position:relative}
+  .c .im em{position:absolute;left:6px;top:6px;font-style:normal;background:rgba(31,26,46,.82);color:#fff;font-size:6.8pt;font-weight:700;border-radius:5px;padding:2px 6px;letter-spacing:.03em}
+  .c .im i{position:absolute;right:6px;top:6px;font-style:normal;background:#fff;color:var(--plum);font-size:6.8pt;font-weight:800;border-radius:5px;padding:2px 6px}
+  .c .bd{padding:7px 9px 8px}
+  .c h3{font-size:10pt;margin-bottom:2px}
+  .c .hook{font-size:8pt;font-weight:700;color:var(--ink);line-height:1.3}
+  .c .gl{font-size:7pt;color:var(--muted);font-style:italic;margin:1px 0 3px}
+  .c .why{font-size:7.4pt;color:var(--ink2)}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chips span{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:3px 9px;font-size:7.5pt;color:var(--ink2)}
+  .chips span b{color:var(--ink)}
+  .rules{margin-top:7px;background:var(--plum);color:#fff;border-radius:10px;padding:7px 12px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .rules div{font-size:7.4pt;color:#ece6f8;line-height:1.3} .rules b{display:block;color:#fff;font-size:8pt;margin-bottom:1px}
+  .foot{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:6.6pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="hero">
+    <div class="txt">
+      <div class="eyebrow">EasyGut · Creative &amp; structure plan</div>
+      <h1>What to run next</h1>
+      <p>A simple 3-campaign setup, 6 concepts to test first, and more formats to rotate in.</p>
+    </div>
+  </div>
+
+  <h2>Proposed structure <small>at the current ~€40/day · Combo is the lead offer everywhere</small></h2>
+  <div class="struct">
+    <div class="blk p">
+      <div class="tag"><b>Prospecting · “Winners”</b><span>60%</span></div>
+      <div class="bar"><i></i></div>
+      <h3>€24/day · Advantage+ Sales</h3>
+      <ul>
+        <li>Broad Serbia, 18–65+. Optimise for Purchase. Exclude buyers from the last 30 days.</li>
+        <li><b>Only proven ads (3–5):</b> Night testimonial, Day pinned testimonial, then test winners.</li>
+        <li>Always-on. Add ads to it, never relaunch it.</li>
+      </ul>
+    </div>
+    <div class="blk t">
+      <div class="tag"><b>Creative test</b><span>25%</span></div>
+      <div class="bar"><i></i></div>
+      <h3>€10/day · CBO, broad</h3>
+      <ul>
+        <li><b>4–6 new ads per round</b>, one angle each.</li>
+        <li>Rule: turn an ad off at 1,000 impressions.</li>
+        <li>Read in order: CTR → link CTR → cart → sale.</li>
+      </ul>
+    </div>
+    <div class="blk r">
+      <div class="tag"><b>Retargeting</b><span>15%</span></div>
+      <div class="bar"><i></i></div>
+      <h3>€6/day · CBO, 3 ad sets</h3>
+      <ul>
+        <li><b>Warm:</b> IG/FB engagers 365d + 50% video viewers → expert, education, testimonials.</li>
+        <li><b>Hot:</b> cart/checkout 14d + visitors 30d → reviews, Combo saving, free delivery, 14-day returns.</li>
+        <li><b>Refill:</b> buyers from day 25 to 45 → “time for a new box”, upgrade to the Combo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="flow"><span>Test winners → Winners</span><span>Video viewers → Warm</span><span>Cart adds → Hot</span><span>Buyers → Refill</span><span class="s">Oct–Jan: +€10/day Forte burst for slava season</span></div>
+
+  <h2>6 concepts to test first <small>concept frames generated with Higgsfield · hooks in Serbian, gist in English</small></h2>
+  <div class="grid">
+    <div class="c"><div class="im" style="background-image:url(img/c_dinner.jpg)"><em>UGC selfie · 9:16 · 15–20s</em><i>DAY</i></div>
+      <div class="bd"><h3>Otkopčano dugme</h3>
+        <div class="hook">“Ako posle ručka otkopčavaš farmerke, ovo je za tebe.”</div>
+        <div class="gl">If you unbutton your jeans after lunch, this is for you.</div>
+        <div class="why">This line is already in the current copy, buried in the text. Make it the first frame.</div></div></div>
+    <div class="c"><div class="im" style="background-image:url(img/c_slava.jpg)"><em>Carousel + 10s Reel</em><i>FORTE · COMBO</i></div>
+      <div class="bd"><h3>Slava sezona</h3>
+        <div class="hook">“Tri slave u novembru. Stomak ne mora da pati.”</div>
+        <div class="gl">Three slavas in November. Your stomach doesn’t have to suffer.</div>
+        <div class="why">Local and timely: from Oct to Jan the whole market eats heavy meals.</div></div></div>
+    <div class="c"><div class="im" style="background-image:url(img/c_pharma.jpg)"><em>Expert talking head · 30–40s</em><i>FORTE</i></div>
+      <div class="bd"><h3>Farmaceutkinja objašnjava</h3>
+        <div class="hook">“Enzimi rade samo ako ih uzmeš UZ obrok. Evo zašto.”</div>
+        <div class="gl">Enzymes only work if you take them WITH the meal. Here’s why.</div>
+        <div class="why">Builds trust and shows how to use the product. Also works for warm retargeting.</div></div></div>
+    <div class="c"><div class="im" style="background-image:url(img/c_night.jpg)"><em>POV + text on screen · 9:16</em><i>NIGHT</i></div>
+      <div class="bd"><h3>2 posle ponoći</h3>
+        <div class="hook">“Večeraš kasno pa se prevrćeš do 2? Nije do jastuka.”</div>
+        <div class="gl">Late dinner, then tossing and turning until 2? It’s not the pillow.</div>
+        <div class="why">Builds on the only ad with ROAS above 2 (late dinner → sleep).</div></div></div>
+    <div class="c"><div class="im" style="background-image:url(img/c_street.jpg)"><em>Vox-pop Reel · 20–30s</em><i>DAY · COMBO</i></div>
+      <div class="bd"><h3>Ulična anketa</h3>
+        <div class="hook">“Šta tebe naduva?”</div>
+        <div class="gl">What makes you bloated? Real answers, fast cuts, product at the end.</div>
+        <div class="why">Made for Reels, where 28% of spend currently performs worst.</div></div></div>
+    <div class="c"><div class="im" style="background-image:url(img/c_split.jpg)"><em>Split-screen static + 6s video</em><i>FORTE</i></div>
+      <div class="bd"><h3>Pre / posle obroka</h3>
+        <div class="hook">“Pizza, sir i kafa s mlekom. Bez onog ‘posle’.”</div>
+        <div class="gl">Pizza, cheese and a latte, without the “after”.</div>
+        <div class="why">Same angle as a static and as a video, one change: shows which format wins.</div></div></div>
+  </div>
+
+  <h2>More formats to rotate in <small>one angle per ad</small></h2>
+  <div class="chips">
+    <span><b>Founder story</b> · why EasyGut exists</span>
+    <span><b>Review collage</b> · screenshots (hot RT)</span>
+    <span><b>Day → Night routine</b> · Combo demo</span>
+    <span><b>Enzymes vs probiotic vs tea</b> · comparison static</span>
+    <span><b>Unboxing + how to take</b> (hot RT)</span>
+    <span><b>Creator ads</b> · women 45–60 as partnership ads</span>
+    <span><b>Combo saving</b> static · “uštedi do 848 din”</span>
+    <span><b>Refill reminder</b> · “30 dana kasnije”</span>
+  </div>
+
+  <div class="rules">
+    <div><b>One problem per ad</b>One-sentence angle. Every shot proves it.</div>
+    <div><b>Hook in 1 second</b>Pain or face first. Logo comes later.</div>
+    <div><b>Show, don’t claim</b>Keep health claims to the approved product wording.</div>
+    <div><b>Change one thing</b>Same angle. New hook, format or creator.</div>
+    <div><b>Weekly loop</b>Cut the worst ad. Move winners up.</div>
+  </div>
+
+  <div class="foot"><span>Budget split assumes the current ~€40/day. Scale Winners by +€10/day at a time while ROAS stays above target.</span><span>Companion to the EasyGut Meta Ads Audit</span></div>
+</section>
+</body>
+</html>

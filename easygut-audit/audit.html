@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EasyGut Meta Audit</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f1a2e; --ink2:#4d475c; --muted:#847e92; --bg:#fbf8f3; --card:#ffffff; --line:#e9e3da;
+    --plum:#5b3fa0; --plum-soft:#efeaf8; --teal:#2e8f6a; --teal-soft:#e3f2ea;
+    --crit:#c0392b; --crit-soft:#fbe9e7; --warn:#a86f00; --warn-soft:#fbf1dc; --good:#2f7d4a; --good-soft:#e5f3ea;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);font-size:8.6pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:0 12mm 10mm;background:var(--bg);page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-size:7.2pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+  .hero{margin:0 -12mm;height:66mm;background:url(img/hero_audit.jpg) right center/cover no-repeat;position:relative}
+  .hero .txt{position:absolute;left:12mm;top:13mm;width:92mm}
+  .hero h1{font-size:34pt;line-height:1;margin:5px 0 7px;color:var(--ink)}
+  .hero p{font-size:10.5pt;color:var(--ink2);line-height:1.35}
+  .hero .meta{margin-top:9px;font-size:7.6pt;color:var(--muted)}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:-9mm;position:relative}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px 7px}
+  .kpi .l{font-size:7pt;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+  .kpi .v{font-family:Fraunces,serif;font-size:19pt;font-weight:600;line-height:1.15;margin-top:1px}
+  .kpi .s{font-size:7.3pt;color:var(--ink2)}
+  .kpi.bad .v{color:var(--crit)} .kpi.ok .v{color:var(--good)}
+  .verdict{margin-top:8px;background:var(--plum);color:#fff;border-radius:10px;padding:9px 13px;display:flex;gap:11px;align-items:center}
+  .verdict b{font-family:Fraunces,serif;font-size:11pt;font-weight:600;white-space:nowrap}
+  .verdict span{font-size:8.9pt;line-height:1.4;color:#f1edfa}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 11px 8px}
+  .card h3{font-size:10.5pt;margin-bottom:1px}
+  .card .sub{font-size:7.6pt;color:var(--muted);margin-bottom:4px}
+  .card svg{width:100%;height:auto;display:block;font-family:Inter,sans-serif}
+  .note{font-size:7.4pt;color:var(--ink2);margin-top:3px;line-height:1.35}
+  .note b{color:var(--ink)}
+  h2{font-size:14pt;margin:11px 0 6px;display:flex;align-items:baseline;gap:8px}
+  h2 small{font-family:Inter;font-size:7.6pt;color:var(--muted);font-weight:500}
+  .fixes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .fix{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 11px;position:relative}
+  .fix .num{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--plum);color:#fff;font-size:8pt;font-weight:800;margin-right:6px;vertical-align:1px}
+  .fix h4{font-size:9.4pt;font-weight:700;margin-bottom:5px;line-height:1.25}
+  .fix p{font-size:7.9pt;color:var(--ink2)}
+  .fix .imp{margin-top:6px;display:inline-block;background:var(--teal-soft);color:#1f6b4e;font-weight:700;font-size:7.6pt;border-radius:6px;padding:2px 7px}
+  .foot{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:6.6pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+  /* page 2 */
+  .p2head{display:flex;justify-content:space-between;align-items:flex-end;padding-top:10mm;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .p2head h1{font-size:19pt}
+  table.f{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px}
+  table.f th{font-size:6.8pt;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);text-align:left;padding:6px 8px;background:#f7f3ec;font-weight:700}
+  table.f td{padding:5px 8px;border-top:1px solid var(--line);vertical-align:top;font-size:7.8pt;color:var(--ink2);line-height:1.34}
+  table.f td b{color:var(--ink)}
+  table.f td.a{font-weight:700;color:var(--ink);white-space:nowrap;font-size:8pt}
+  table.f td.i{font-weight:700;color:#1f6b4e;font-size:7.6pt}
+  .sev{display:inline-flex;align-items:center;gap:4px;font-size:6.8pt;font-weight:800;letter-spacing:.04em;border-radius:5px;padding:1.5px 6px;white-space:nowrap}
+  .sev.c{background:var(--crit-soft);color:var(--crit)} .sev.w{background:var(--warn-soft);color:var(--warn)} .sev.g{background:var(--good-soft);color:var(--good)}
+  .plan{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:0}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;border-top:3px solid var(--plum)}
+  .wk b{display:block;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:var(--plum);margin-bottom:3px}
+  .wk ul{padding-left:11px} .wk li{font-size:7.6pt;color:var(--ink2);margin-bottom:2px}
+  .pl{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:4px}
+  .pl div{background:#faf7f2;border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;gap:1px}
+  .pl b{font-size:8pt} .pl span{font-size:7.2pt;color:var(--muted)}
+  .pl em{font-style:normal;font-weight:800;font-size:8.6pt;color:var(--ink2)} .pl em.g{color:var(--good)} .pl em.r{color:var(--crit)}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <div class="hero">
+    <div class="txt">
+      <div class="eyebrow">Meta Ads Audit · GenoMAX / EasyGut</div>
+      <h1>EasyGut</h1>
+      <p>People stop and click. The money is lost after the click.</p>
+      <div class="meta">Full history · 28 Aug – 25 Sep 2026 · Meta Ads data, EUR</div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Spend</div><div class="v">€783</div><div class="s">4 campaigns · 12 ads</div></div>
+    <div class="kpi"><div class="l">Purchases</div><div class="v">18</div><div class="s">≈ 0.6 a day</div></div>
+    <div class="kpi bad"><div class="l">ROAS</div><div class="v">0.71</div><div class="s">break-even ≈ 1.7*</div></div>
+    <div class="kpi bad"><div class="l">Cost / purchase</div><div class="v">€43.5</div><div class="s">avg order only €30.7</div></div>
+    <div class="kpi ok"><div class="l">Link CTR</div><div class="v">1.78%</div><div class="s">CPM €8.5: attention is cheap</div></div>
+  </div>
+
+  <div class="verdict">
+    <b>Verdict</b>
+    <span>The ads get attention: CTR, link CTR and CPM are all healthy. Revenue is lost after the click. Tracking misses most of the journey, nothing brings back warm visitors, a single pack sells for less than it costs to get a sale, and 1 ad took half the budget. <b style="font-family:Inter;font-size:8.9pt">Fix these before adding budget.</b></span>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <h3>ROAS by week: more spend, fewer sales</h3>
+      <div class="sub">ROAS per week (bars) vs break-even line</div>
+      <svg viewBox="0 0 360 180" role="img" aria-label="Weekly ROAS: 1.00, 1.16, 0.77, 0.31 against break-even 1.7"><line x1="34" x2="352" y1="150.0" y2="150.0" stroke="#ece7df" stroke-width="1"/><text x="28" y="153.0" font-size="8" fill="#847e92" text-anchor="end" font-weight="400" >0.0</text><line x1="34" x2="352" y1="118.0" y2="118.0" stroke="#ece7df" stroke-width="1"/><text x="28" y="121.0" font-size="8" fill="#847e92" text-anchor="end" font-weight="400" >0.5</text><line x1="34" x2="352" y1="86.0" y2="86.0" stroke="#ece7df" stroke-width="1"/><text x="28" y="89.0" font-size="8" fill="#847e92" text-anchor="end" font-weight="400" >1.0</text><line x1="34" x2="352" y1="54.0" y2="54.0" stroke="#ece7df" stroke-width="1"/><text x="28" y="57.0" font-size="8" fill="#847e92" text-anchor="end" font-weight="400" >1.5</text><line x1="34" x2="352" y1="22.0" y2="22.0" stroke="#ece7df" stroke-width="1"/><text x="28" y="25.0" font-size="8" fill="#847e92" text-anchor="end" font-weight="400" >2.0</text><path d="M55.75,150.0 L55.75,90.0 Q55.75,86.0 59.75,86.0 L87.75,86.0 Q91.75,86.0 91.75,90.0 L91.75,150.0 Z" fill="#5b3fa0"/><text x="73.75" y="81.0" font-size="10" fill="#1f1a2e" text-anchor="middle" font-weight="700" >1.00</text><text x="73.75" y="163" font-size="8.5" fill="#4d475c" text-anchor="middle" font-weight="600" >W1 · 28 Aug</text><text x="73.75" y="175" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >€146 · 5 sales</text><path d="M135.25,150.0 L135.25,79.76 Q135.25,75.76 139.25,75.76 L167.25,75.76 Q171.25,75.76 171.25,79.76 L171.25,150.0 Z" fill="#5b3fa0"/><text x="153.25" y="70.76" font-size="10" fill="#1f1a2e" text-anchor="middle" font-weight="700" >1.16</text><text x="153.25" y="163" font-size="8.5" fill="#4d475c" text-anchor="middle" font-weight="600" >W2 · 4 Sep</text><text x="153.25" y="175" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >€153 · 5 sales</text><path d="M214.75,150.0 L214.75,104.72 Q214.75,100.72 218.75,100.72 L246.75,100.72 Q250.75,100.72 250.75,104.72 L250.75,150.0 Z" fill="#5b3fa0"/><text x="232.75" y="95.72" font-size="10" fill="#1f1a2e" text-anchor="middle" font-weight="700" >0.77</text><text x="232.75" y="163" font-size="8.5" fill="#4d475c" text-anchor="middle" font-weight="600" >W3 · 11 Sep</text><text x="232.75" y="175" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >€184 · 4 sales</text><path d="M294.25,150.0 L294.25,134.16 Q294.25,130.16 298.25,130.16 L326.25,130.16 Q330.25,130.16 330.25,134.16 L330.25,150.0 Z" fill="#5b3fa0"/><text x="312.25" y="125.16" font-size="10" fill="#1f1a2e" text-anchor="middle" font-weight="700" >0.31</text><text x="312.25" y="163" font-size="8.5" fill="#4d475c" text-anchor="middle" font-weight="600" >W4 · 18 Sep</text><text x="312.25" y="175" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >€282 · 4 sales</text><line x1="34" x2="352" y1="43.120000000000005" y2="43.120000000000005" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/><text x="352" y="38.120000000000005" font-size="8.5" fill="#c0392b" text-anchor="end" font-weight="600" >break-even ≈ 1.7*</text><line x1="34" x2="352" y1="150" y2="150" stroke="#847e92" stroke-width="1"/></svg>
+      <div class="note">Spend went up <b>+93%</b> from W1 to W4 while purchases fell <b>−20%</b>. Cost per purchase rose from <b>€29 → €70</b>. Even the best weeks only broke even on ad spend, before product cost.</div>
+    </div>
+    <div class="card">
+      <h3>Funnel: where the drop happens</h3>
+      <div class="sub">All campaigns, 28 Aug – 25 Sep · benchmarks from our Meta playbook</div>
+      <svg viewBox="0 0 360 172" role="img" aria-label="Funnel 1627 clicks, 382 page views, 48 add to cart, 25 checkout, 18 purchases"><text x="356" y="8" font-size="8" fill="#847e92" text-anchor="end" font-weight="400" >step rate</text><text x="78" y="30" font-size="9" fill="#4d475c" text-anchor="end" font-weight="500" >Link clicks</text><path d="M84,19 L256.0,19 Q260.0,19 260.0,23 L260.0,31 Q260.0,35 256.0,35 L84,35 Z" fill="#5b3fa0"/><text x="265.0" y="31" font-size="9.5" fill="#1f1a2e" text-anchor="start" font-weight="700" >1,627</text><text x="78" y="61" font-size="9" fill="#4d475c" text-anchor="end" font-weight="500" >Page views</text><path d="M84,50 L121.32267977873386,50 Q125.32267977873386,50 125.32267977873386,54 L125.32267977873386,62 Q125.32267977873386,66 121.32267977873386,66 L84,66 Z" fill="#5b3fa0"/><text x="130.32267977873386" y="62" font-size="9.5" fill="#1f1a2e" text-anchor="start" font-weight="700" >382</text><text x="356" y="62" font-size="9.5" fill="#c0392b" text-anchor="end" font-weight="700" >23% ✗</text><text x="78" y="92" font-size="9" fill="#4d475c" text-anchor="end" font-weight="500" >Add to cart</text><path d="M84,81 L85.19237861094038,81 Q89.19237861094038,81 89.19237861094038,85 L89.19237861094038,93 Q89.19237861094038,97 85.19237861094038,97 L84,97 Z" fill="#5b3fa0"/><text x="94.19237861094038" y="93" font-size="9.5" fill="#1f1a2e" text-anchor="start" font-weight="700" >48</text><text x="356" y="93" font-size="9.5" fill="#2f7d4a" text-anchor="end" font-weight="700" >12.6% ✓</text><text x="78" y="123" font-size="9" fill="#4d475c" text-anchor="end" font-weight="500" >Checkout</text><path d="M84,112 L84.0,112 Q86.70436385986478,112 86.70436385986478,114.70436385986478 L86.70436385986478,125.29563614013522 Q86.70436385986478,128 84.0,128 L84,128 Z" fill="#5b3fa0"/><text x="91.70436385986478" y="124" font-size="9.5" fill="#1f1a2e" text-anchor="start" font-weight="700" >25</text><text x="356" y="124" font-size="9.5" fill="#2f7d4a" text-anchor="end" font-weight="700" >52% ✓</text><text x="78" y="154" font-size="9" fill="#4d475c" text-anchor="end" font-weight="500" >Purchase</text><path d="M84,143 L84,143 Q86,143 86,145 L86,157 Q86,159 84,159 L84,159 Z" fill="#5b3fa0"/><text x="91" y="155" font-size="9.5" fill="#1f1a2e" text-anchor="start" font-weight="700" >18</text><text x="356" y="155" font-size="9.5" fill="#2f7d4a" text-anchor="end" font-weight="700" >72% ✓</text><rect x="164" y="49" width="124" height="19" rx="4" fill="#fbe9e7"/><text x="226" y="62" font-size="8.2" fill="#c0392b" text-anchor="middle" font-weight="700" >← first leak: 77% never load</text></svg>
+      <div class="note">Top of funnel passes: <b>CTR 2.45%</b> (≥2% ✓), link CTR is 73% of CTR ✓. Most clicks never show up as a page view. Part of that is real (slow load, accidental taps). Part is tracking (see fix #1). Every step after the page view passes the benchmarks.</div>
+    </div>
+  </div>
+
+  <h2>Top 3 fixes <small>ranked by impact · estimates assume ~€40/day spend</small></h2>
+  <div class="fixes">
+    <div class="fix">
+      <h4><span class="num">1</span>Fix the measurement</h4>
+      <p>The browser pixel records only <b>~30%</b> of what the server (CAPI) records (PageView 959 vs 3,000, Purchase 11 vs 36, last 27 days). The CookieYes banner probably blocks the pixel until visitors accept. Send Purchase via CAPI with hashed email, phone and external_id, and deduplicate with event_id.</p>
+      <span class="imp">est. −10–20% CPA · fills retargeting pools</span>
+    </div>
+    <div class="fix">
+      <h4><span class="num">2</span>Turn on retargeting + refill</h4>
+      <p>0% of budget goes to warm people today. That leaves <b>~125 abandoned carts</b> a month, 3k+ IG/FB engagers and 70k+ video plays unused. Put 15–20% of budget on warm, hot and refill ad sets. Buyers of a 30-day pack come back around day 25–40.</p>
+      <span class="imp">est. +8–12 orders / month</span>
+    </div>
+    <div class="fix">
+      <h4><span class="num">3</span>Sell the Combo, focus the account</h4>
+      <p>A single pack is 2,549–2,799 RSD (≈€23), less than the €43.5 it costs to get a sale. Lead with <b>Combo Day+Night 4,699 RSD</b>. Run one always-on prospecting campaign and one test campaign, and stop relaunching.</p>
+      <span class="imp">est. AOV +25–30% · ROAS 0.71 → ~0.9+</span>
+    </div>
+  </div>
+
+  <h2>30-day fix plan <small>fix in this order</small></h2>
+  <div class="plan">
+    <div class="wk"><b>Week 1 · Plumbing</b><ul><li>Consent Mode + CAPI with customer data</li><li>Confirm margin and set target CPA</li><li>Check that website audiences fill up</li></ul></div>
+    <div class="wk"><b>Week 1 · Rebuild</b><ul><li>1 prospecting campaign with the best 3–4 ads</li><li>Launch retargeting (warm / hot / refill)</li><li>Exclude buyers from prospecting</li></ul></div>
+    <div class="wk"><b>Week 2–3 · Test</b><ul><li>Creative test round of 5–6 new concepts</li><li>Rule: turn each ad off at 1,000 impressions</li><li>Landing page test with the Combo offer</li></ul></div>
+    <div class="wk"><b>Week 4 · Scale</b><ul><li>Move winners into prospecting</li><li>Add +€10/day per step while ROAS holds</li><li>Weekly check: fix the first funnel step that fails</li></ul></div>
+  </div>
+
+  <div class="foot"><span>*Break-even assumes ~60% gross margin (break-even CPA ≈ €18, ROAS ≈ 1.7). Confirm real margin with the client.</span><span>1 / 2</span></div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <div class="p2head">
+    <div><div class="eyebrow">EasyGut · Meta Ads Audit</div><h1>Full findings</h1></div>
+    <div style="font-size:7.4pt;color:var(--muted);text-align:right">Severity: <span class="sev c">● CRITICAL</span> <span class="sev w">▲ IMPROVE</span> <span class="sev g">✓ FINE</span></div>
+  </div>
+
+  <table class="f">
+    <colgroup><col style="width:60px"><col style="width:74px"><col style="width:292px"><col style="width:190px"><col style="width:87px"></colgroup>
+    <tr><th>Severity</th><th>Area</th><th>Finding (evidence)</th><th>Fix</th><th>Est. impact</th></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Tracking</td>
+      <td>Browser pixel records ~30% of server events, so page views and website audiences are undercounted. Match quality <b>6.1/10</b>. Purchase and Checkout have no score.</td>
+      <td>Consent Mode on CookieYes. CAPI Purchase + Checkout with email, phone, external_id and event_id dedup.</td><td class="i">−10–20% CPA</td></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Economics</td>
+      <td>Cost per purchase <b>€43.5</b> vs average order <b>€30.7</b>. Single packs are ≈€22–24, so the first order never pays back the ad.</td>
+      <td>Combo (≈€40) as the hero offer. Refill flow. Target CPA from real margin.</td><td class="i">AOV +25–30%</td></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Retargeting</td>
+      <td>No retargeting and no refill. <b>~125 site cart adds a month</b> end without a purchase, and 3k+ engagers never see an ad again.</td>
+      <td>Retargeting CBO at 15–20% of budget with 3 ad sets: warm, hot, refill.</td><td class="i">+8–12 orders/mo</td></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Structure</td>
+      <td><b>4 campaigns in 4 weeks</b>, and 2 ads never delivered. 18 purchases in total vs ~50 a week needed to exit learning. The 2 live campaigns target the same audience with no buyer exclusion, so they bid against each other.</td>
+      <td>1 always-on prospecting + 1 test campaign. Exclude buyers from the last 30 days. Add new ads to these campaigns instead of relaunching.</td><td class="i">steadier CPA</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Creative</td>
+      <td>3 ads live. One ad took <b>50%</b> of spend (ROAS 0.87). The best ad (Night testimonial, <b>€15 CPA, ROAS 2.08</b>) got 8%. 3 statics spent €109 for 0 sales. All 7 videos are the same testimonial style, and most keep only 6–13% of viewers to the 25% mark.</td>
+      <td>4–6 new ads a week in new formats (see concept sheet). More ads on the Night / late-dinner angle.</td><td class="i">biggest long-term lever</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Placements</td>
+      <td>Reels take <b>28%</b> of spend at ROAS 0.34–0.40, vs FB Feed 1.28 and IG Stories 1.22. Audience Network: 278 clicks → 22 page views.</td>
+      <td>Reels-native cuts: 9:16, sound on, hook in the first second. Keep Audience Network off.</td><td class="i">≈ +€250 rev/mo</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Audience</td>
+      <td>55+ get 14% of spend but 28% of purchases (ROAS 1.47). Women 55–64 click at a <b>6% CTR</b>. The sample is small, so treat this as a direction, not proof.</td>
+      <td>Keep targeting broad. Steer with creative: 45–65 faces, their meals, their problems.</td><td class="i">cheaper buyers</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Landing</td>
+      <td>Copy sends people to the “<b>GenoMAX</b> site”, a second brand to remember. The homepage loads 47 scripts, and the server took ~1–1.5 s to respond in our test.</td>
+      <td>Test /easygut/ vs product page vs Combo page. Check mobile PageSpeed.</td><td class="i">more page views per click</td></tr>
+    <tr><td><span class="sev g">✓ FINE</span></td><td class="a">Working</td>
+      <td colspan="3">Attention and delivery are healthy: CTR 2.45%, CPM €8.5, checkout→purchase 72%. Purchase optimisation with a broad Advantage+ audience is the right setup, and running ads on the existing post keeps its social proof.</td></tr>
+  </table>
+
+  <div class="row">
+    <div class="card">
+      <h3>Spend by ad: 1 ad took half the budget</h3>
+      <div class="sub">Full history · V = video, S = static · highlighted = ads with signal</div>
+      <svg viewBox="0 0 360 176" role="img" aria-label="Spend by ad"><text x="118" y="15" font-size="8.3" fill="#1f1a2e" text-anchor="end" font-weight="600" >Day · pinned testimonial</text><rect x="121" y="6" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="14.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,6 L221.0,6 Q224.0,6 224.0,9 L224.0,15 Q224.0,18 221.0,18 L136,18 Z" fill="#5b3fa0"/><text x="228.0" y="15" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€393</text><text x="358" y="15" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="600" >10 sales · ROAS 0.87</text><text x="118" y="32" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Forte · Miloš</text><rect x="121" y="23" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="31.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,23 L147.91130408210037,23 Q150.91130408210037,23 150.91130408210037,26 L150.91130408210037,32 Q150.91130408210037,35 147.91130408210037,35 L136,35 Z" fill="#d6d0de"/><text x="154.91130408210037" y="32" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€67</text><text x="358" y="32" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >0 sales</text><text x="118" y="49" font-size="8.3" fill="#1f1a2e" text-anchor="end" font-weight="600" >Night · Tamara testimonial</text><rect x="121" y="40" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="48.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,40 L146.4793348442792,40 Q149.4793348442792,40 149.4793348442792,43 L149.4793348442792,49 Q149.4793348442792,52 146.4793348442792,52 L136,52 Z" fill="#5b3fa0"/><text x="153.4793348442792" y="49" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€60</text><text x="358" y="49" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="600" >4 sales · ROAS 2.08</text><text x="118" y="66" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Day · Nataša</text><rect x="121" y="57" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="65.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,57 L144.65071685044182,57 Q147.65071685044182,57 147.65071685044182,60 L147.65071685044182,66 Q147.65071685044182,69 144.65071685044182,69 L136,69 Z" fill="#d6d0de"/><text x="151.65071685044182" y="66" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€52</text><text x="358" y="66" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >1 sale · 0.42</text><text x="118" y="83" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Day · Teodora</text><rect x="121" y="74" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="82.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,74 L143.83052789732358,74 Q146.83052789732358,74 146.83052789732358,77 L146.83052789732358,83 Q146.83052789732358,86 143.83052789732358,86 L136,86 Z" fill="#d6d0de"/><text x="150.83052789732358" y="83" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€48</text><text x="358" y="83" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >2 sales · 0.90</text><text x="118" y="100" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Day · “nadutost”</text><rect x="121" y="91" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="99.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,91 L143.0260256181721,91 Q146.0260256181721,91 146.0260256181721,94 L146.0260256181721,100 Q146.0260256181721,103 143.0260256181721,103 L136,103 Z" fill="#d6d0de"/><text x="150.0260256181721" y="100" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€45</text><text x="358" y="100" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >1 sale · 0.46</text><text x="118" y="117" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Forte · pizza</text><rect x="121" y="108" width="12" height="11" rx="2.5" fill="#f3efe8"/><text x="127" y="116.5" font-size="7" fill="#4d475c" text-anchor="middle" font-weight="700" >S</text><path d="M136,108 L142.952074155186,108 Q145.952074155186,108 145.952074155186,111 L145.952074155186,117 Q145.952074155186,120 142.952074155186,120 L136,120 Z" fill="#d6d0de"/><text x="149.952074155186" y="117" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€44</text><text x="358" y="117" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >0 sales</text><text x="118" y="134" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Night · kasna večera</text><rect x="121" y="125" width="12" height="11" rx="2.5" fill="#f3efe8"/><text x="127" y="133.5" font-size="7" fill="#4d475c" text-anchor="middle" font-weight="700" >S</text><path d="M136,125 L141.60750210089384,125 Q144.60750210089384,125 144.60750210089384,128 L144.60750210089384,134 Q144.60750210089384,137 141.60750210089384,137 L136,137 Z" fill="#d6d0de"/><text x="148.60750210089384" y="134" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€38</text><text x="358" y="134" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >0 sales</text><text x="118" y="151" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Combo Day+Night</text><rect x="121" y="142" width="12" height="11" rx="2.5" fill="#f3efe8"/><text x="127" y="150.5" font-size="7" fill="#4d475c" text-anchor="middle" font-weight="700" >S</text><path d="M136,142 L138.90267131834273,142 Q141.90267131834273,142 141.90267131834273,145 L141.90267131834273,151 Q141.90267131834273,154 138.90267131834273,154 L136,154 Z" fill="#d6d0de"/><text x="145.90267131834273" y="151" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€26</text><text x="358" y="151" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >0 sales</text><text x="118" y="168" font-size="8.3" fill="#4d475c" text-anchor="end" font-weight="400" >Night · Tamara relaunch</text><rect x="121" y="159" width="12" height="11" rx="2.5" fill="#ece6f7"/><text x="127" y="167.5" font-size="7" fill="#5b3fa0" text-anchor="middle" font-weight="700" >V</text><path d="M136,159 L136.0,159 Q138.01461712801446,159 138.01461712801446,161.01461712801446 L138.01461712801446,168.98538287198554 Q138.01461712801446,171 136.0,171 L136,171 Z" fill="#d6d0de"/><text x="142.01461712801446" y="168" font-size="8.3" fill="#1f1a2e" text-anchor="start" font-weight="600" >€9</text><text x="358" y="168" font-size="8.2" fill="#847e92" text-anchor="end" font-weight="400" >0 sales</text></svg>
+    </div>
+    <div class="card">
+      <h3>Who buys: 55+ convert best</h3>
+      <div class="sub">Share of spend vs share of purchases, by age</div>
+      <svg viewBox="0 0 360 156" role="img" aria-label="Spend share vs purchase share by age"><line x1="26" x2="356" y1="128.0" y2="128.0" stroke="#ece7df"/><text x="21" y="131.0" font-size="7.5" fill="#847e92" text-anchor="end" font-weight="400" >0%</text><line x1="26" x2="356" y1="77.0" y2="77.0" stroke="#ece7df"/><text x="21" y="80.0" font-size="7.5" fill="#847e92" text-anchor="end" font-weight="400" >20%</text><line x1="26" x2="356" y1="26.0" y2="26.0" stroke="#ece7df"/><text x="21" y="29.0" font-size="7.5" fill="#847e92" text-anchor="end" font-weight="400" >40%</text><rect x="26" y="2" width="9" height="9" rx="2" fill="#5b3fa0"/><text x="39" y="10" font-size="8.3" fill="#4d475c" text-anchor="start" font-weight="400" >share of spend</text><rect x="118" y="2" width="9" height="9" rx="2" fill="#2e8f6a"/><text x="131" y="10" font-size="8.3" fill="#4d475c" text-anchor="start" font-weight="400" >share of purchases</text><path d="M40.25,128.0 L40.25,95.78999999999999 Q40.25,91.78999999999999 44.25,91.78999999999999 L62.25,91.78999999999999 Q66.25,91.78999999999999 66.25,95.78999999999999 L66.25,128.0 Z" fill="#5b3fa0"/><path d="M68.25,128.0 L68.25,89.41499999999999 Q68.25,85.41499999999999 72.25,85.41499999999999 L90.25,85.41499999999999 Q94.25,85.41499999999999 94.25,89.41499999999999 L94.25,128.0 Z" fill="#2e8f6a"/><text x="53.25" y="87.78999999999999" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >14%</text><text x="81.25" y="81.41499999999999" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >17%</text><text x="67.25" y="140" font-size="8.8" fill="#1f1a2e" text-anchor="middle" font-weight="700" >18–34</text><text x="67.25" y="151" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >ROAS 0.92</text><path d="M122.75,128.0 L122.75,43.769999999999996 Q122.75,39.769999999999996 126.75,39.769999999999996 L144.75,39.769999999999996 Q148.75,39.769999999999996 148.75,43.769999999999996 L148.75,128.0 Z" fill="#5b3fa0"/><path d="M150.75,128.0 L150.75,61.11 Q150.75,57.11 154.75,57.11 L172.75,57.11 Q176.75,57.11 176.75,61.11 L176.75,128.0 Z" fill="#2e8f6a"/><text x="135.75" y="35.769999999999996" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >35%</text><text x="163.75" y="53.11" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >28%</text><text x="149.75" y="140" font-size="8.8" fill="#1f1a2e" text-anchor="middle" font-weight="700" >35–44</text><text x="149.75" y="151" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >ROAS 0.40</text><path d="M205.25,128.0 L205.25,37.64999999999999 Q205.25,33.64999999999999 209.25,33.64999999999999 L227.25,33.64999999999999 Q231.25,33.64999999999999 231.25,37.64999999999999 L231.25,128.0 Z" fill="#5b3fa0"/><path d="M233.25,128.0 L233.25,61.11 Q233.25,57.11 237.25,57.11 L255.25,57.11 Q259.25,57.11 259.25,61.11 L259.25,128.0 Z" fill="#2e8f6a"/><text x="218.25" y="29.64999999999999" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >37%</text><text x="246.25" y="53.11" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >28%</text><text x="232.25" y="140" font-size="8.8" fill="#1f1a2e" text-anchor="middle" font-weight="700" >45–54</text><text x="232.25" y="151" font-size="8" fill="#847e92" text-anchor="middle" font-weight="400" >ROAS 0.62</text><path d="M287.75,128.0 L287.75,95.78999999999999 Q287.75,91.78999999999999 291.75,91.78999999999999 L309.75,91.78999999999999 Q313.75,91.78999999999999 313.75,95.78999999999999 L313.75,128.0 Z" fill="#5b3fa0"/><path d="M315.75,128.0 L315.75,61.11 Q315.75,57.11 319.75,57.11 L337.75,57.11 Q341.75,57.11 341.75,61.11 L341.75,128.0 Z" fill="#2e8f6a"/><text x="300.75" y="87.78999999999999" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >14%</text><text x="328.75" y="53.11" font-size="8" fill="#1f1a2e" text-anchor="middle" font-weight="600" >28%</text><text x="314.75" y="140" font-size="8.8" fill="#1f1a2e" text-anchor="middle" font-weight="700" >55+</text><text x="314.75" y="151" font-size="8" fill="#2f7d4a" text-anchor="middle" font-weight="700" >ROAS 1.47</text><line x1="26" x2="356" y1="128" y2="128" stroke="#847e92"/></svg>
+      <div class="note">35–54 get <b>72%</b> of spend and convert worst. 55+ bring the same number of purchases (5) as each of those bands for less than half the spend.</div>
+    </div>
+  </div>
+
+
+
+  <div class="card" style="margin-top:8px">
+    <h3>Placements: Reels spend the money, Feed and Stories sell</h3>
+    <div class="sub">Share of spend · ROAS · full history</div>
+    <div class="pl">
+      <div><b>FB Feed</b><span>13% of spend</span><em class="g">ROAS 1.28</em></div>
+      <div><b>IG Stories</b><span>17% of spend</span><em class="g">ROAS 1.22</em></div>
+      <div><b>IG Feed</b><span>38% of spend</span><em>ROAS 0.62</em></div>
+      <div><b>IG Reels</b><span>20% of spend</span><em class="r">ROAS 0.40</em></div>
+      <div><b>FB Reels</b><span>8% of spend</span><em class="r">ROAS 0.34</em></div>
+      <div><b>Audience Network</b><span>2% of spend</span><em class="r">278 clicks → 22 views</em></div>
+    </div>
+  </div>
+  <div class="foot"><span>Sources: Meta Ads account, Meta pixel and CAPI stats (last 27 days), genomax.rs product pages. Estimates are directional, based on 18 purchases.</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>

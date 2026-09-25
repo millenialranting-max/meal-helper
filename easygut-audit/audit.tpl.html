@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EasyGut Meta Audit</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1f1a2e; --ink2:#4d475c; --muted:#847e92; --bg:#fbf8f3; --card:#ffffff; --line:#e9e3da;
+    --plum:#5b3fa0; --plum-soft:#efeaf8; --teal:#2e8f6a; --teal-soft:#e3f2ea;
+    --crit:#c0392b; --crit-soft:#fbe9e7; --warn:#a86f00; --warn-soft:#fbf1dc; --good:#2f7d4a; --good-soft:#e5f3ea;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);font-size:8.6pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:0 12mm 10mm;background:var(--bg);page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-size:7.2pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+  .hero{margin:0 -12mm;height:66mm;background:url(img/hero_audit.jpg) right center/cover no-repeat;position:relative}
+  .hero .txt{position:absolute;left:12mm;top:13mm;width:92mm}
+  .hero h1{font-size:34pt;line-height:1;margin:5px 0 7px;color:var(--ink)}
+  .hero p{font-size:10.5pt;color:var(--ink2);line-height:1.35}
+  .hero .meta{margin-top:9px;font-size:7.6pt;color:var(--muted)}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:-9mm;position:relative}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px 7px}
+  .kpi .l{font-size:7pt;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+  .kpi .v{font-family:Fraunces,serif;font-size:19pt;font-weight:600;line-height:1.15;margin-top:1px}
+  .kpi .s{font-size:7.3pt;color:var(--ink2)}
+  .kpi.bad .v{color:var(--crit)} .kpi.ok .v{color:var(--good)}
+  .verdict{margin-top:8px;background:var(--plum);color:#fff;border-radius:10px;padding:9px 13px;display:flex;gap:11px;align-items:center}
+  .verdict b{font-family:Fraunces,serif;font-size:11pt;font-weight:600;white-space:nowrap}
+  .verdict span{font-size:8.9pt;line-height:1.4;color:#f1edfa}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 11px 8px}
+  .card h3{font-size:10.5pt;margin-bottom:1px}
+  .card .sub{font-size:7.6pt;color:var(--muted);margin-bottom:4px}
+  .card svg{width:100%;height:auto;display:block;font-family:Inter,sans-serif}
+  .note{font-size:7.4pt;color:var(--ink2);margin-top:3px;line-height:1.35}
+  .note b{color:var(--ink)}
+  h2{font-size:14pt;margin:11px 0 6px;display:flex;align-items:baseline;gap:8px}
+  h2 small{font-family:Inter;font-size:7.6pt;color:var(--muted);font-weight:500}
+  .fixes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .fix{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 11px;position:relative}
+  .fix .num{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--plum);color:#fff;font-size:8pt;font-weight:800;margin-right:6px;vertical-align:1px}
+  .fix h4{font-size:9.4pt;font-weight:700;margin-bottom:5px;line-height:1.25}
+  .fix p{font-size:7.9pt;color:var(--ink2)}
+  .fix .imp{margin-top:6px;display:inline-block;background:var(--teal-soft);color:#1f6b4e;font-weight:700;font-size:7.6pt;border-radius:6px;padding:2px 7px}
+  .foot{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:6.6pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+  /* page 2 */
+  .p2head{display:flex;justify-content:space-between;align-items:flex-end;padding-top:10mm;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .p2head h1{font-size:19pt}
+  table.f{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px}
+  table.f th{font-size:6.8pt;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);text-align:left;padding:6px 8px;background:#f7f3ec;font-weight:700}
+  table.f td{padding:5px 8px;border-top:1px solid var(--line);vertical-align:top;font-size:7.8pt;color:var(--ink2);line-height:1.34}
+  table.f td b{color:var(--ink)}
+  table.f td.a{font-weight:700;color:var(--ink);white-space:nowrap;font-size:8pt}
+  table.f td.i{font-weight:700;color:#1f6b4e;font-size:7.6pt}
+  .sev{display:inline-flex;align-items:center;gap:4px;font-size:6.8pt;font-weight:800;letter-spacing:.04em;border-radius:5px;padding:1.5px 6px;white-space:nowrap}
+  .sev.c{background:var(--crit-soft);color:var(--crit)} .sev.w{background:var(--warn-soft);color:var(--warn)} .sev.g{background:var(--good-soft);color:var(--good)}
+  .plan{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:0}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;border-top:3px solid var(--plum)}
+  .wk b{display:block;font-size:7pt;letter-spacing:.1em;text-transform:uppercase;color:var(--plum);margin-bottom:3px}
+  .wk ul{padding-left:11px} .wk li{font-size:7.6pt;color:var(--ink2);margin-bottom:2px}
+  .pl{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:4px}
+  .pl div{background:#faf7f2;border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;gap:1px}
+  .pl b{font-size:8pt} .pl span{font-size:7.2pt;color:var(--muted)}
+  .pl em{font-style:normal;font-weight:800;font-size:8.6pt;color:var(--ink2)} .pl em.g{color:var(--good)} .pl em.r{color:var(--crit)}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page">
+  <div class="hero">
+    <div class="txt">
+      <div class="eyebrow">Meta Ads Audit · GenoMAX / EasyGut</div>
+      <h1>EasyGut</h1>
+      <p>People stop and click. The money is lost after the click.</p>
+      <div class="meta">Full history · 28 Aug – 25 Sep 2026 · Meta Ads data, EUR</div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">Spend</div><div class="v">€783</div><div class="s">4 campaigns · 12 ads</div></div>
+    <div class="kpi"><div class="l">Purchases</div><div class="v">18</div><div class="s">≈ 0.6 a day</div></div>
+    <div class="kpi bad"><div class="l">ROAS</div><div class="v">0.71</div><div class="s">break-even ≈ 1.7*</div></div>
+    <div class="kpi bad"><div class="l">Cost / purchase</div><div class="v">€43.5</div><div class="s">avg order only €30.7</div></div>
+    <div class="kpi ok"><div class="l">Link CTR</div><div class="v">1.78%</div><div class="s">CPM €8.5: attention is cheap</div></div>
+  </div>
+
+  <div class="verdict">
+    <b>Verdict</b>
+    <span>The ads get attention: CTR, link CTR and CPM are all healthy. Revenue is lost after the click. Tracking misses most of the journey, nothing brings back warm visitors, a single pack sells for less than it costs to get a sale, and 1 ad took half the budget. <b style="font-family:Inter;font-size:8.9pt">Fix these before adding budget.</b></span>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <h3>ROAS by week: more spend, fewer sales</h3>
+      <div class="sub">ROAS per week (bars) vs break-even line</div>
+      {{weekly}}
+      <div class="note">Spend went up <b>+93%</b> from W1 to W4 while purchases fell <b>−20%</b>. Cost per purchase rose from <b>€29 → €70</b>. Even the best weeks only broke even on ad spend, before product cost.</div>
+    </div>
+    <div class="card">
+      <h3>Funnel: where the drop happens</h3>
+      <div class="sub">All campaigns, 28 Aug – 25 Sep · benchmarks from our Meta playbook</div>
+      {{funnel}}
+      <div class="note">Top of funnel passes: <b>CTR 2.45%</b> (≥2% ✓), link CTR is 73% of CTR ✓. Most clicks never show up as a page view. Part of that is real (slow load, accidental taps). Part is tracking (see fix #1). Every step after the page view passes the benchmarks.</div>
+    </div>
+  </div>
+
+  <h2>Top 3 fixes <small>ranked by impact · estimates assume ~€40/day spend</small></h2>
+  <div class="fixes">
+    <div class="fix">
+      <h4><span class="num">1</span>Fix the measurement</h4>
+      <p>The browser pixel records only <b>~30%</b> of what the server (CAPI) records (PageView 959 vs 3,000, Purchase 11 vs 36, last 27 days). The CookieYes banner probably blocks the pixel until visitors accept. Send Purchase via CAPI with hashed email, phone and external_id, and deduplicate with event_id.</p>
+      <span class="imp">est. −10–20% CPA · fills retargeting pools</span>
+    </div>
+    <div class="fix">
+      <h4><span class="num">2</span>Turn on retargeting + refill</h4>
+      <p>0% of budget goes to warm people today. That leaves <b>~125 abandoned carts</b> a month, 3k+ IG/FB engagers and 70k+ video plays unused. Put 15–20% of budget on warm, hot and refill ad sets. Buyers of a 30-day pack come back around day 25–40.</p>
+      <span class="imp">est. +8–12 orders / month</span>
+    </div>
+    <div class="fix">
+      <h4><span class="num">3</span>Sell the Combo, focus the account</h4>
+      <p>A single pack is 2,549–2,799 RSD (≈€23), less than the €43.5 it costs to get a sale. Lead with <b>Combo Day+Night 4,699 RSD</b>. Run one always-on prospecting campaign and one test campaign, and stop relaunching.</p>
+      <span class="imp">est. AOV +25–30% · ROAS 0.71 → ~0.9+</span>
+    </div>
+  </div>
+
+  <h2>30-day fix plan <small>fix in this order</small></h2>
+  <div class="plan">
+    <div class="wk"><b>Week 1 · Plumbing</b><ul><li>Consent Mode + CAPI with customer data</li><li>Confirm margin and set target CPA</li><li>Check that website audiences fill up</li></ul></div>
+    <div class="wk"><b>Week 1 · Rebuild</b><ul><li>1 prospecting campaign with the best 3–4 ads</li><li>Launch retargeting (warm / hot / refill)</li><li>Exclude buyers from prospecting</li></ul></div>
+    <div class="wk"><b>Week 2–3 · Test</b><ul><li>Creative test round of 5–6 new concepts</li><li>Rule: turn each ad off at 1,000 impressions</li><li>Landing page test with the Combo offer</li></ul></div>
+    <div class="wk"><b>Week 4 · Scale</b><ul><li>Move winners into prospecting</li><li>Add +€10/day per step while ROAS holds</li><li>Weekly check: fix the first funnel step that fails</li></ul></div>
+  </div>
+
+  <div class="foot"><span>*Break-even assumes ~60% gross margin (break-even CPA ≈ €18, ROAS ≈ 1.7). Confirm real margin with the client.</span><span>1 / 2</span></div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <div class="p2head">
+    <div><div class="eyebrow">EasyGut · Meta Ads Audit</div><h1>Full findings</h1></div>
+    <div style="font-size:7.4pt;color:var(--muted);text-align:right">Severity: <span class="sev c">● CRITICAL</span> <span class="sev w">▲ IMPROVE</span> <span class="sev g">✓ FINE</span></div>
+  </div>
+
+  <table class="f">
+    <colgroup><col style="width:60px"><col style="width:74px"><col style="width:292px"><col style="width:190px"><col style="width:87px"></colgroup>
+    <tr><th>Severity</th><th>Area</th><th>Finding (evidence)</th><th>Fix</th><th>Est. impact</th></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Tracking</td>
+      <td>Browser pixel records ~30% of server events, so page views and website audiences are undercounted. Match quality <b>6.1/10</b>. Purchase and Checkout have no score.</td>
+      <td>Consent Mode on CookieYes. CAPI Purchase + Checkout with email, phone, external_id and event_id dedup.</td><td class="i">−10–20% CPA</td></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Economics</td>
+      <td>Cost per purchase <b>€43.5</b> vs average order <b>€30.7</b>. Single packs are ≈€22–24, so the first order never pays back the ad.</td>
+      <td>Combo (≈€40) as the hero offer. Refill flow. Target CPA from real margin.</td><td class="i">AOV +25–30%</td></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Retargeting</td>
+      <td>No retargeting and no refill. <b>~125 site cart adds a month</b> end without a purchase, and 3k+ engagers never see an ad again.</td>
+      <td>Retargeting CBO at 15–20% of budget with 3 ad sets: warm, hot, refill.</td><td class="i">+8–12 orders/mo</td></tr>
+    <tr><td><span class="sev c">● CRIT</span></td><td class="a">Structure</td>
+      <td><b>4 campaigns in 4 weeks</b>, and 2 ads never delivered. 18 purchases in total vs ~50 a week needed to exit learning. The 2 live campaigns target the same audience with no buyer exclusion, so they bid against each other.</td>
+      <td>1 always-on prospecting + 1 test campaign. Exclude buyers from the last 30 days. Add new ads to these campaigns instead of relaunching.</td><td class="i">steadier CPA</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Creative</td>
+      <td>3 ads live. One ad took <b>50%</b> of spend (ROAS 0.87). The best ad (Night testimonial, <b>€15 CPA, ROAS 2.08</b>) got 8%. 3 statics spent €109 for 0 sales. All 7 videos are the same testimonial style, and most keep only 6–13% of viewers to the 25% mark.</td>
+      <td>4–6 new ads a week in new formats (see concept sheet). More ads on the Night / late-dinner angle.</td><td class="i">biggest long-term lever</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Placements</td>
+      <td>Reels take <b>28%</b> of spend at ROAS 0.34–0.40, vs FB Feed 1.28 and IG Stories 1.22. Audience Network: 278 clicks → 22 page views.</td>
+      <td>Reels-native cuts: 9:16, sound on, hook in the first second. Keep Audience Network off.</td><td class="i">≈ +€250 rev/mo</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Audience</td>
+      <td>55+ get 14% of spend but 28% of purchases (ROAS 1.47). Women 55–64 click at a <b>6% CTR</b>. The sample is small, so treat this as a direction, not proof.</td>
+      <td>Keep targeting broad. Steer with creative: 45–65 faces, their meals, their problems.</td><td class="i">cheaper buyers</td></tr>
+    <tr><td><span class="sev w">▲ IMPR</span></td><td class="a">Landing</td>
+      <td>Copy sends people to the “<b>GenoMAX</b> site”, a second brand to remember. The homepage loads 47 scripts, and the server took ~1–1.5 s to respond in our test.</td>
+      <td>Test /easygut/ vs product page vs Combo page. Check mobile PageSpeed.</td><td class="i">more page views per click</td></tr>
+    <tr><td><span class="sev g">✓ FINE</span></td><td class="a">Working</td>
+      <td colspan="3">Attention and delivery are healthy: CTR 2.45%, CPM €8.5, checkout→purchase 72%. Purchase optimisation with a broad Advantage+ audience is the right setup, and running ads on the existing post keeps its social proof.</td></tr>
+  </table>
+
+  <div class="row">
+    <div class="card">
+      <h3>Spend by ad: 1 ad took half the budget</h3>
+      <div class="sub">Full history · V = video, S = static · highlighted = ads with signal</div>
+      {{ads}}
+    </div>
+    <div class="card">
+      <h3>Who buys: 55+ convert best</h3>
+      <div class="sub">Share of spend vs share of purchases, by age</div>
+      {{age}}
+      <div class="note">35–54 get <b>72%</b> of spend and convert worst. 55+ bring the same number of purchases (5) as each of those bands for less than half the spend.</div>
+    </div>
+  </div>
+
+
+
+  <div class="card" style="margin-top:8px">
+    <h3>Placements: Reels spend the money, Feed and Stories sell</h3>
+    <div class="sub">Share of spend · ROAS · full history</div>
+    <div class="pl">
+      <div><b>FB Feed</b><span>13% of spend</span><em class="g">ROAS 1.28</em></div>
+      <div><b>IG Stories</b><span>17% of spend</span><em class="g">ROAS 1.22</em></div>
+      <div><b>IG Feed</b><span>38% of spend</span><em>ROAS 0.62</em></div>
+      <div><b>IG Reels</b><span>20% of spend</span><em class="r">ROAS 0.40</em></div>
+      <div><b>FB Reels</b><span>8% of spend</span><em class="r">ROAS 0.34</em></div>
+      <div><b>Audience Network</b><span>2% of spend</span><em class="r">278 clicks → 22 views</em></div>
+    </div>
+  </div>
+  <div class="foot"><span>Sources: Meta Ads account, Meta pixel and CAPI stats (last 27 days), genomax.rs product pages. Estimates are directional, based on 18 purchases.</span><span>2 / 2</span></div>
+</section>
+</body>
+</html>
