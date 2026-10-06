@@ -60,12 +60,56 @@
   .ico { flex:none; width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
   .rowi b { display:block; font-size:15.5px; }
   .rowi small { color:var(--slate); font-size:13.5px; font-weight:500; }
-  .proof { margin-top:14px; font-size:14px; color:var(--slate); }
-  .proof b { color:var(--navy); }
-  .levels { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
-  .lvl { border-radius:14px; padding:10px 12px; background:var(--light); border:1px solid var(--line); }
-  .lvl b { display:block; font-size:16px; }
-  .lvl small { color:var(--slate); font-size:12.5px; font-weight:600; }
+  .sec-sub { margin-top:8px; max-width:640px; }
+  .tint { background:var(--light); }
+  /* class timeline */
+  .tl { display:flex; height:16px; border-radius:999px; overflow:hidden; margin-top:20px; gap:3px; }
+  .tl span { display:block; height:100%; }
+  .legend { display:grid; grid-template-columns:1fr 1fr; gap:10px 14px; margin-top:12px; }
+  .legend div { font-size:12.5px; color:var(--slate); line-height:1.35; padding-left:14px; position:relative; }
+  .legend div::before { content:''; position:absolute; left:0; top:4px; width:8px; height:8px; border-radius:50%; background:var(--c); }
+  .legend b { display:block; color:var(--navy); font-size:13.5px; }
+  .legend i { font-style:normal; font-weight:700; color:#94A3B8; }
+  .legend .hi b { color:var(--blue); }
+  .tl-note { font-size:12.5px; color:#94A3B8; margin-top:10px; }
+  /* grade picker */
+  .grades { display:flex; gap:7px; margin-top:16px; flex-wrap:wrap; }
+  .grades { gap:6px !important; flex-wrap:nowrap !important; }
+  .grades button { flex:1; max-width:46px; height:40px; border-radius:12px; border:1.5px solid #CBD5E1; background:#fff; font:inherit; font-weight:800; font-size:15px; color:var(--navy); cursor:pointer; }
+  .grades button.on { background:var(--grad); color:#fff; border-color:transparent; box-shadow:0 6px 14px rgba(0,123,255,.25); }
+  .lvlcard { background:#fff; border:1px solid var(--line); border-radius:20px; padding:18px; margin-top:14px; display:grid; gap:12px; }
+  .lvl-top { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .lvl-top b { font-size:26px; font-weight:800; }
+  .lvl-top span { font-size:13px; font-weight:700; color:var(--slate); }
+  .lvlcard p { font-size:15px; }
+  .screen-lab { display:flex; justify-content:space-between; font-size:13px; font-weight:700; color:var(--slate); margin-bottom:6px; }
+  .screen-lab b { color:var(--navy); }
+  .bar { height:10px; background:#E2E8F0; border-radius:999px; overflow:hidden; }
+  .bar i { display:block; height:100%; background:var(--grad); border-radius:999px; transition:width .3s; }
+  .screen small { display:block; font-size:12.5px; color:var(--slate); margin-top:6px; }
+  .lvlcard .btn { justify-self:start; }
+  .note { font-size:13px; color:var(--slate); margin-top:12px; }
+  /* parents */
+  .parents { display:grid; gap:14px; margin-top:18px; }
+  .pf { background:var(--navy); border-radius:20px; padding:16px; color:#fff; }
+  .pf-h { font-size:12px; font-weight:800; letter-spacing:.1em; color:#8FB8FF; margin-bottom:10px; }
+  .pf-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .pf-grid div { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:10px; }
+  .pf-grid em { color:#0F172A; display:block; height:46px; border-radius:10px; margin-bottom:8px; font-style:normal; font-size:20px; display:flex; align-items:center; justify-content:center; }
+  .pf-grid small { display:block; font-size:11px; color:#94A3B8; font-weight:700; }
+  .pf-grid b { font-size:13px; }
+  .parents .rows { grid-template-columns:1fr !important; align-content:start; }
+  .legend div span { display:none; }
+  .space { border-radius:20px; min-height:150px; gap:4px; padding:18px; display:flex; flex-direction:column; justify-content:flex-end; color:#fff;
+           background:linear-gradient(160deg, rgba(15,23,42,.15), rgba(15,23,42,.85)), repeating-linear-gradient(135deg,#334155 0 14px,#3B4A60 14px 28px); position:relative; }
+  .space .ph { align-self:flex-start; margin-bottom:auto; font-size:11px; font-weight:800; letter-spacing:.08em; background:rgba(255,255,255,.9); color:var(--navy); border-radius:999px; padding:4px 10px; }
+  .space .ph + b { margin-top:36px; }
+  .space b { font-size:16px; }
+  /* angle pillars: compact 3-up tiles on mobile */
+  .pillars { grid-template-columns:repeat(3,1fr) !important; gap:8px !important; }
+  .pillars .rowi { flex-direction:column; gap:8px; padding:12px 10px; }
+  .pillars .rowi b { font-size:13.5px; line-height:1.25; }
+  .pillars .rowi small { display:none; } .space small { font-size:13px; color:#CBD5E1; }
   .cta-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:18px; }
   .cta-row small { font-size:13px; color:var(--slate); font-weight:600; }
 
@@ -113,7 +157,14 @@
     .hero .wrap { grid-template-columns:1.15fr 1fr; align-items:center; gap:56px; }
     .formcard { padding:28px; }
     .rows { grid-template-columns:repeat(3,1fr); }
-    .levels { grid-template-columns:repeat(4,1fr); }
+    .legend { grid-template-columns:repeat(6,1fr); }
+    .legend div span { display:inline; }
+    .space { min-height:100%; }
+    .grades button { height:46px; }
+    .pillars .rowi { flex-direction:row; gap:13px; padding:13px 14px; } .pillars .rowi b { font-size:15.5px; } .pillars .rowi small { display:block; }
+    .lvlcard { grid-template-columns:1.1fr 1fr; align-items:center; padding:26px; column-gap:36px; }
+    .lvlcard .lvl-top, .lvlcard p { grid-column:1; } .lvlcard .screen { grid-column:2; grid-row:1 / span 2; } .lvlcard .btn { grid-column:1; }
+    .parents { grid-template-columns:1fr 1fr 1fr; align-items:stretch; }
     .offer { grid-template-columns:1fr 1.1fr; align-items:center; padding:34px; }
     .offer .urgent { grid-column:1 / -1; display:flex; justify-content:space-between; align-items:center; gap:20px; }
     .sticky { display:none; } footer { padding-bottom:24px; }
@@ -147,7 +198,7 @@
         <label>Ime i prezime roditelja *</label><input type="text" autocomplete="name">
         <div class="row2">
           <div><label>Telefon *</label><input type="tel" autocomplete="tel"></div>
-          <div><label>Razred deteta *</label><select><option>Izaberite</option><option>1. razred</option><option>2. razred</option><option>3. razred</option><option>4. razred</option><option>5. razred</option><option>6. razred</option><option>7. razred</option><option>8. razred</option></select></div>
+          <div><label>Razred deteta *</label><select id="grade"><option>Izaberite</option><option>1. razred</option><option>2. razred</option><option>3. razred</option><option>4. razred</option><option>5. razred</option><option>6. razred</option><option>7. razred</option><option>8. razred</option></select></div>
         </div>
         <label>Email *</label><input type="email" autocomplete="email">
         <!-- hidden: utm_source, utm_campaign, utm_content, angle -->
@@ -159,24 +210,68 @@
   </div>
 </section>
 
-<!-- 2 · WHAT THE CHILD GETS + LEVELS -->
+<!-- 2 · HOW ONE CLASS LOOKS (site: 60-min structure) -->
 <section>
   <div class="wrap">
-    <div class="kicker">Šta dete radi kod nas</div>
+    <div class="kicker">Kako izgleda jedan čas</div>
     <h2>Manje skrolovanja. <span class="g">Više stvaranja.</span></h2>
-    <div class="rows">
-      <div class="rowi"><div class="ico" style="background:#FFEDF3;color:#E5487A">✎</div><div><b>Svaki čas — nešto napravljeno</b><small>Crtež, video, igra, sajt ili prezentacija koju dete pokaže.</small></div></div>
-      <div class="rowi"><div class="ico" style="background:#E8F2FF;color:#007BFF">EN</div><div><b>Engleski bez straha</b><small>Kroz projekte, u skladu sa nivoom grupe; kad treba, srpski.</small></div></div>
-      <div class="rowi"><div class="ico" style="background:#F0EDFF;color:#7A5CFF">AI</div><div><b>AI uz pravilo</b><small>Pitaj · Proveri · Poboljšaj · Ti odluči.</small></div></div>
+    <p class="sub sec-sub">Nijedno objašnjavanje ne traje duže od 10–15 minuta. Deca dolaze da rade — i svaki čas završava nečim što mogu da pokažu.</p>
+    <div class="tl" aria-hidden="true"><span style="flex:7;background:#94A3B8"></span><span style="flex:8;background:#7DB4FF"></span><span style="flex:23;background:var(--grad)"></span><span style="flex:12;background:#A78BFA"></span><span style="flex:7;background:#F472B6"></span><span style="flex:3;background:#0F172A"></span></div>
+    <div class="legend">
+      <div style="--c:#94A3B8"><i>0–7 min</i><b>Izazov</b><span>pitanje ili problem koji pokreće čas</span></div>
+      <div style="--c:#7DB4FF"><i>7–15</i><b>Kratak demo</b><span>samo koliko treba da se počne</span></div>
+      <div class="hi" style="--c:#007BFF"><i>15–38</i><b>Pravljenje</b><span>glavni deo — sami ili u paru</span></div>
+      <div style="--c:#A78BFA"><i>38–50</i><b>Test i dorada</b><span>pokažu drugaru, poprave bar jednu stvar</span></div>
+      <div style="--c:#F472B6"><i>50–57</i><b>Show &amp; Tell</b><span>predstave šta su napravila</span></div>
+      <div style="--c:#0F172A"><i>57–60</i><b>Portfolio</b><span>rad ide u portfolio + NXT Mission</span></div>
     </div>
-    <p class="proof">Napredak vidite: <b>My NXT Portfolio</b> · <b>Future Skills Passport</b> · <b>NXT Showcase</b> pred roditeljima u 24. nedelji.</p>
-    <div class="levels">
-      <div class="lvl"><b class="g">Explore</b><small>1–2. razred · 60 min</small></div>
-      <div class="lvl"><b class="g">Create</b><small>3–4. razred · 60 min</small></div>
-      <div class="lvl"><b class="g">Build</b><small>5–6. razred · 90 min</small></div>
-      <div class="lvl"><b class="g">Lead</b><small>7–8. razred · 90 min</small></div>
+    <p class="tl-note">Primer za 1–4. razred (60 min). Za 5–8. razred čas traje 90 minuta, sa više vremena za timski rad i doradu.</p>
+    <div class="rows pillars">
+      <div class="rowi"><div class="ico" style="background:#FFEDF3;color:#E5487A">✎</div><div><b>Pravi prave stvari</b><small>Igra, sajt, video, poster ili maketa.</small></div></div>
+      <div class="rowi"><div class="ico" style="background:#E8F2FF;color:#007BFF">EN</div><div><b>Engleski bez straha</b><small>Pitaju i predstavljaju na engleskom, u skladu sa nivoom grupe.</small></div></div>
+      <div class="rowi"><div class="ico" style="background:#F0EDFF;color:#7A5CFF">AI</div><div><b>AI uz pravilo</b><small>Pitaj · Proveri · Poboljšaj · Ti odluči. Primer nedelje: „Outsmart the AI“.</small></div></div>
     </div>
-    <div class="cta-row"><a class="btn btn-main" href="#prijava">Prijavi dete →</a><small>Razred birate u prijavi</small></div>
+  </div>
+</section>
+
+<!-- 3 · GRADE PICKER: personal answer + CTA that pre-fills the form -->
+<section class="tint">
+  <div class="wrap">
+    <div class="kicker">Program raste zajedno sa detetom</div>
+    <h2>U koji razred ide vaše dete?</h2>
+    <div class="grades" id="grades"><button data-g="1">1.</button><button data-g="2">2.</button><button data-g="3" class="on">3.</button><button data-g="4">4.</button><button data-g="5">5.</button><button data-g="6">6.</button><button data-g="7">7.</button><button data-g="8">8.</button></div>
+    <div class="lvlcard">
+      <div class="lvl-top"><b class="g" id="lv-name">Create</b><span id="lv-meta">3–4. razred · čas 60 min · 24 nedelje</span></div>
+      <p id="lv-desc">Od ideje do postera, priče, igre i prve stranice.</p>
+      <div class="screen"><div class="screen-lab"><span>Vreme za računarom</span><b id="lv-pc">oko 50% časa</b></div><div class="bar"><i id="lv-bar" style="width:50%"></i></div><small>Ostatak: papir, karton, makete i timski rad. Računar uvek služi pravljenju.</small></div>
+      <a class="btn btn-main" id="lv-cta" href="#prijava" data-g="3">Prijavi dete za Create →</a>
+    </div>
+    <p class="note">Prethodni nivo nije uslov. Sadržaj, tempo i nivo engleskog prilagođavaju se uzrastu i grupi.</p>
+  </div>
+</section>
+
+<!-- 4 · WHAT PARENTS SEE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Za roditelje</div>
+    <h2>Ne „danas smo radili kreativnost“ — <span class="g">nego konkretni radovi.</span></h2>
+    <div class="parents">
+      <div class="pf">
+        <div class="pf-h">MY NXT PORTFOLIO · PRIMER</div>
+        <div class="pf-grid">
+          <div><em style="background:#E8F2FF">🔎</em><small>Nedelje 1–4</small><b>Ask Better Questions</b></div>
+          <div><em style="background:#FFEDF3">✎</em><small>Nedelje 5–8</small><b>Design Is a Decision</b></div>
+          <div><em style="background:#F0EDFF">🎮</em><small>Nedelje 13–16</small><b>Game Logic</b></div>
+          <div><em style="background:#FEF3C7">🎤</em><small>Nedelja 24</small><b>NXT Showcase</b></div>
+        </div>
+        <p style="font-size:12.5px;color:#CBD5E1;margin-top:10px">Svaki rad se čuva — vidite šta je dete napravilo 3, 8. i 24. nedelje.</p>
+      </div>
+      <div class="rows" style="margin-top:0">
+        <div class="rowi"><div class="ico" style="background:#F0EDFF;color:#7A5CFF">★</div><div><b>Future Skills Passport</b><small>9 veština, 4 nivoa, bez ocena i rangiranja — početak, polovina i kraj.</small></div></div>
+        <div class="rowi"><div class="ico" style="background:#FFEDF3;color:#E5487A">🎤</div><div><b>NXT Showcase</b><small>U 24. nedelji dete predstavlja svoj projekat pred roditeljima.</small></div></div>
+      </div>
+      <div class="space"><span class="ph">FOTO · prostor (stiže)</span><b>Cara Dušana 49 — kreativni studio, ne računarska učionica</b><small>Stolovi za timski rad, prostor za prezentovanje, materijali za rad rukama i računar za svako dete.</small></div>
+    </div>
   </div>
 </section>
 
@@ -241,6 +336,25 @@
     document.getElementById('hero-title').innerHTML = a.h;
     document.getElementById('hero-sub').textContent = a.s;
   }
+  // Grade picker: personal level info + CTA that pre-fills the grade in the form
+  var LV = { 1: ['Explore', '1–2. razred · čas 60 min · 24 nedelje', 'Radoznalost, prvi alati, rad rukama i u grupi.', '30–40% časa', 35],
+             3: ['Create', '3–4. razred · čas 60 min · 24 nedelje', 'Od ideje do postera, priče, igre i prve stranice.', 'oko 50% časa', 50],
+             5: ['Build', '5–6. razred · čas 90 min · 24 nedelje', 'Istraživanje, plan, sajt ili igra i nova verzija posle feedbacka.', 'oko 65% časa', 65],
+             7: ['Lead', '7–8. razred · čas 90 min · 24 nedelje', 'Mali kreativni i digitalni studio: sopstveni projekti i nastupi.', '70–75% časa', 72] };
+  document.getElementById('grades').addEventListener('click', function (e) {
+    var g = e.target.getAttribute('data-g'); if (!g) return;
+    var l = LV[g % 2 ? g : g - 1];
+    [].forEach.call(this.children, function (b) { b.classList.toggle('on', b === e.target); });
+    document.getElementById('lv-name').textContent = l[0];
+    document.getElementById('lv-meta').textContent = l[1];
+    document.getElementById('lv-desc').textContent = l[2];
+    document.getElementById('lv-pc').textContent = l[3];
+    document.getElementById('lv-bar').style.width = l[4] + '%';
+    var c = document.getElementById('lv-cta'); c.textContent = 'Prijavi dete za ' + l[0] + ' →'; c.setAttribute('data-g', g);
+  });
+  document.getElementById('lv-cta').addEventListener('click', function () {
+    document.getElementById('grade').value = this.getAttribute('data-g') + '. razred';
+  });
   // Sticky bar hides while the form is on screen
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (e) { document.getElementById('sticky').classList.toggle('hide', e[0].isIntersecting); })
