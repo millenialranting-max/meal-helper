@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prijava · NXT School Novi Sad</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0F172A; --blue:#007BFF; --purple:#7A5CFF; --light:#F8FAFC; --slate:#475569; --line:#E2E8F0;
+          --grad:linear-gradient(100deg,#007BFF 0%,#7A5CFF 100%); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Manrope, Arial, sans-serif; color:var(--navy); background:#fff; line-height:1.5; }
+  a { color:inherit; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  .g { background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .kicker { font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); }
+  h1 { font-size:36px; line-height:1.08; font-weight:800; letter-spacing:-.02em; }
+  h2 { font-size:26px; line-height:1.15; font-weight:800; letter-spacing:-.01em; }
+  .sub { font-size:17px; color:var(--slate); font-weight:500; }
+  .btn { display:inline-block; text-decoration:none; font-weight:800; border-radius:999px; padding:15px 26px; font-size:16px; text-align:center; }
+  .btn-main { background:var(--grad); color:#fff; box-shadow:0 10px 24px rgba(0,123,255,.25); }
+  .btn-ghost { border:2px solid var(--line); color:var(--navy); background:#fff; }
+  section { padding:44px 0; }
+  /* header */
+  header { position:sticky; top:0; z-index:5; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  header .wrap { display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo b { font-size:28px; font-weight:800; letter-spacing:-.04em; }
+  .logo span { font-size:12px; font-weight:700; color:var(--slate); line-height:1.1; }
+  header .btn { padding:10px 18px; font-size:14px; }
+  /* hero */
+  .hero { background:var(--light); padding:36px 0 40px; position:relative; overflow:hidden; }
+  .hero .wrap { display:grid; gap:28px; position:relative; z-index:1; }
+  .hero h1 { margin:14px 0 14px; }
+  .hero .ctas { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+  .facts { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+  .facts span { background:#fff; border:1px solid var(--line); border-radius:999px; padding:7px 12px; font-size:13px; font-weight:700; }
+  .hero-card { background:#fff; border:1px solid var(--line); border-radius:24px; padding:22px; box-shadow:0 20px 40px rgba(15,23,42,.06); }
+  .hero-card .row { display:flex; gap:14px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); }
+  .hero-card .row:last-child { border-bottom:0; }
+  .dot { flex:none; width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; background:var(--grad); }
+  .hero-card b { display:block; font-size:15px; }
+  .hero-card small { color:var(--slate); font-size:13px; }
+  .wave { position:absolute; right:-120px; bottom:-60px; width:420px; opacity:.25; }
+  /* cards */
+  .grid3 { display:grid; gap:14px; margin-top:22px; }
+  .card { border:1px solid var(--line); border-radius:20px; padding:20px; background:#fff; }
+  .card h3 { font-size:17px; margin:10px 0 6px; }
+  .card p { font-size:14px; color:var(--slate); }
+  .ico { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:800; }
+  .note { margin-top:16px; font-size:14px; color:var(--slate); }
+  .note b { color:var(--navy); }
+  /* levels */
+  .levels { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px; }
+  .lvl { border-radius:16px; padding:14px; background:var(--light); border:1px solid var(--line); }
+  .lvl b { display:block; font-size:18px; }
+  .lvl small { color:var(--slate); font-size:13px; font-weight:600; }
+  /* parents */
+  .split { display:grid; gap:18px; margin-top:20px; }
+  .team { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+  .team div { text-align:center; font-size:12px; font-weight:700; width:62px; }
+  .team i { display:block; width:54px; height:54px; margin:0 auto 6px; border-radius:50%; background:repeating-linear-gradient(135deg,#E2E8F0 0 8px,#EDF1F6 8px 16px); border:2px dashed #94A3B8; }
+  /* price */
+  .price { background:var(--navy); color:#fff; border-radius:24px; padding:26px; margin-top:20px; display:grid; gap:18px; }
+  .price .big { font-size:44px; font-weight:800; letter-spacing:-.02em; }
+  .price ul { list-style:none; display:grid; gap:8px; font-size:15px; }
+  .price li::before { content:'✓  '; color:#8FB8FF; font-weight:800; }
+  .price .old { color:#94A3B8; font-size:14px; }
+  .openday { margin-top:14px; border:2px dashed var(--line); border-radius:18px; padding:16px 18px; display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  /* form */
+  .formbox { background:var(--light); border:1px solid var(--line); border-radius:24px; padding:22px; margin-top:20px; display:grid; gap:22px; }
+  label { display:block; font-size:13px; font-weight:700; margin:12px 0 6px; }
+  input, select, textarea { width:100%; border:1px solid #CBD5E1; border-radius:12px; padding:13px 14px; font:inherit; font-size:15px; background:#fff; }
+  .consent { display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--slate); margin:14px 0; }
+  .consent input { width:auto; margin-top:3px; }
+  .steps { display:grid; gap:12px; }
+  .step { display:flex; gap:12px; }
+  .step span { flex:none; width:30px; height:30px; border-radius:50%; background:var(--grad); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .step p { font-size:14px; color:var(--slate); }
+  .step b { color:var(--navy); }
+  /* faq */
+  details { border-bottom:1px solid var(--line); padding:14px 0; }
+  summary { font-weight:800; cursor:pointer; list-style:none; }
+  summary::after { content:'+'; float:right; color:var(--blue); }
+  details p { color:var(--slate); font-size:14px; margin-top:8px; }
+  footer { padding:28px 0 90px; font-size:12px; color:var(--slate); border-top:1px solid var(--line); }
+  /* sticky mobile CTA */
+  .sticky { position:fixed; left:0; right:0; bottom:0; z-index:6; background:#fff; border-top:1px solid var(--line); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .sticky small { font-size:12px; color:var(--slate); font-weight:700; }
+  .sticky .btn { padding:12px 20px; font-size:15px; }
+  /* mobile: keep the form close — hero card repeats block 2, so it shows on desktop only; compact cards */
+  @media (max-width: 859px) {
+    .hero-card { display:none; } .wave { width:300px; right:-150px; bottom:-90px; opacity:.15; }
+    .card { display:grid; grid-template-columns:42px 1fr; column-gap:14px; padding:16px; }
+    .card h3 { margin:0 0 4px; } .card .ico { grid-row:span 2; }
+    .split .card { display:block; }
+    section { padding:34px 0; }
+    .team div { width:50px; } .team i { width:44px; height:44px; }
+  }
+  @media (min-width: 860px) {
+    h1 { font-size:54px; } h2 { font-size:34px; }
+    .hero { padding:64px 0; }
+    .hero .wrap { grid-template-columns:1.25fr 1fr; align-items:center; gap:48px; }
+    .grid3 { grid-template-columns:repeat(3,1fr); }
+    .levels { grid-template-columns:repeat(4,1fr); }
+    .split { grid-template-columns:1fr 1fr; }
+    .price { grid-template-columns:1fr 1.2fr; align-items:center; }
+    .formbox { grid-template-columns:1.3fr 1fr; padding:32px; }
+    .sticky { display:none; } footer { padding-bottom:28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><b class="g">NXT</b><span>NXT School<br>Future Skills School</span></a>
+    <a class="btn btn-main" href="#prijava">Prijavi dete</a>
+  </div>
+</header>
+
+<!-- 1. HERO — headline changes with ?angle= (hero | scroll | english | ai | offer) -->
+<section class="hero">
+  <svg class="wave" viewBox="0 0 400 300"><defs><linearGradient id="w" x1="0" x2="1"><stop offset="0" stop-color="#007BFF"/><stop offset="1" stop-color="#7A5CFF"/></linearGradient></defs><path d="M10 280 C 90 120, 160 40, 230 120 S 330 260, 390 30" fill="none" stroke="url(#w)" stroke-width="44" stroke-linecap="round"/></svg>
+  <div class="wrap">
+    <div>
+      <div class="kicker" id="hero-kicker">Future Skills School · Novi Sad · 1–8. razred</div>
+      <h1 id="hero-title">Veštine za svet u kojem će <span class="g">odrastati.</span></h1>
+      <p class="sub" id="hero-sub">Engleski, AI, digitalne veštine, kreativnost i komunikacija — kroz prave projekte, u grupama do 10 dece.</p>
+      <div class="ctas">
+        <a class="btn btn-main" href="#prijava">Prijavi dete</a>
+        <a class="btn btn-ghost" href="#open-day">Dođi na Open Day</a>
+      </div>
+      <div class="facts"><span>Početak 9. novembra</span><span>Grupe do 10 dece</span><span>od 5.900 RSD mesečno</span><span>Cara Dušana 49</span></div>
+    </div>
+    <div class="hero-card" aria-label="Šta dete dobija">
+      <div class="row"><div class="dot">1</div><div><b>Svaki čas — nešto napravljeno</b><small>crtež, video, igra, prezentacija ili maketa</small></div></div>
+      <div class="row"><div class="dot">2</div><div><b>Engleski kao jezik rada</b><small>raste sa samopouzdanjem grupe</small></div></div>
+      <div class="row"><div class="dot">3</div><div><b>AI uz pravilo</b><small>Pitaj · Proveri · Poboljšaj · Ti odluči</small></div></div>
+      <div class="row"><div class="dot">4</div><div><b>Vidite napredak</b><small>My NXT Portfolio + Showcase pred roditeljima</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WHAT THE KID DOES -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Šta dete radi kod nas</div>
+    <h2>Manje skrolovanja. <span class="g">Više stvaranja.</span></h2>
+    <div class="grid3">
+      <div class="card"><div class="ico" style="background:#FFEDF3;color:#E5487A">✎</div><h3>Prave prave stvari</h3><p>Svaki čas se završava nečim opipljivim — od papirnog prototipa do sajta. Ekran je alat, ne dadilja.</p></div>
+      <div class="card"><div class="ico" style="background:#E8F2FF;color:#007BFF">EN</div><h3>Engleski koji se koristi</h3><p>Deca pitaju, istražuju i predstavljaju na engleskom. Kad treba objasniti nešto složeno, pređemo na srpski.</p></div>
+      <div class="card"><div class="ico" style="background:#F0EDFF;color:#7A5CFF">AI</div><h3>Razmišljaju uz AI</h3><p>AI je asistent, ne autoritet: pitaj, proveri, poboljšaj — a odluku donosi dete.</p></div>
+    </div>
+    <p class="note"><b>Nije škola programiranja</b> (coding je ~10–15%) · <b>nije kurs engleskog</b> · <b>nije sedenje pred ekranom.</b></p>
+  </div>
+</section>
+
+<!-- 3. LEVELS -->
+<section id="nivoi" style="background:var(--light)">
+  <div class="wrap">
+    <div class="kicker">Isti pristup, prilagođen uzrastu</div>
+    <h2>Koji nivo je za vaše dete?</h2>
+    <div class="levels">
+      <div class="lvl"><b class="g">Explore</b><small>1–2. razred · 60 min</small></div>
+      <div class="lvl"><b class="g">Create</b><small>3–4. razred · 60 min</small></div>
+      <div class="lvl"><b class="g">Build</b><small>5–6. razred · 90 min</small></div>
+      <div class="lvl"><b class="g">Lead</b><small>7–8. razred · 90 min</small></div>
+    </div>
+    <p class="note">24 nedelje, jednom nedeljno · prethodni nivo nije uslov · <a href="/program/">ceo program →</a></p>
+  </div>
+</section>
+
+<!-- 4. PARENTS SEE PROGRESS + PEOPLE -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Za roditelje</div>
+    <h2>Ne „danas smo radili kreativnost“ — <span class="g">nego konkretni radovi.</span></h2>
+    <div class="split">
+      <div class="card"><h3>My NXT Portfolio</h3><p>Sve što dete napravi čuva se na jednom mestu. Vidite šta je napravilo treće, osme i dvadeset četvrte nedelje.</p></div>
+      <div class="card"><h3>NXT Showcase</h3><p>U 24. nedelji svako dete predstavlja svoj projekat pred roditeljima.</p>
+        <div class="team" aria-label="Ljudi iza NXT-a"><div><i></i>Mladen</div><div><i></i>Anita</div><div><i></i>Ana</div><div><i></i>Igor</div><div><i></i>Nikola</div></div>
+        <p class="note">Ljudi iza NXT-a — <a href="/ljudi-iza-nxt-a/">upoznajte tim →</a></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PRICE + OPEN DAY -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="kicker">Upis je otvoren</div>
+    <h2>Prva generacija počinje 9. novembra.</h2>
+    <div class="price">
+      <div><div style="font-size:13px;font-weight:800;letter-spacing:.1em;color:#8FB8FF">FOUNDING CENA</div><div class="big">5.900 RSD</div><div>mesečno · 6 mesečnih uplata, za ceo program</div><div class="old">regularna cena 7.200 RSD</div></div>
+      <ul><li>1–8. razred, 4 nivoa</li><li>Grupe do 10 dece</li><li>24 nedelje, 1× nedeljno (60 ili 90 min)</li><li>Sve je uključeno: oprema, materijali, portfolio</li><li>Cara Dušana 49, Novi Sad</li></ul>
+    </div>
+    <div class="openday" id="open-day">
+      <div><b>Niste sigurni? Dođite na Open Day.</b><br><span class="sub" style="font-size:14px">Ponedeljak, 26. oktobar, 18–20 h · deca rade mini challenge, vi upoznajete program</span></div>
+      <a class="btn btn-ghost" href="/open-day/">Prijavi se za Open Day</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FORM -->
+<section id="prijava" style="padding-top:8px">
+  <div class="wrap">
+    <div class="kicker">Prijava</div>
+    <h2>Prijavite dete — traje minut.</h2>
+    <div class="formbox">
+      <form onsubmit="return false">
+        <label>Ime i prezime roditelja *</label><input type="text" autocomplete="name">
+        <label>Telefon *</label><input type="tel" autocomplete="tel">
+        <label>Email *</label><input type="email" autocomplete="email">
+        <label>Razred deteta (2026/27) *</label>
+        <select><option>Izaberite razred</option><option>1. razred</option><option>2. razred</option><option>3. razred</option><option>4. razred</option><option>5. razred</option><option>6. razred</option><option>7. razred</option><option>8. razred</option></select>
+        <label>Napomena (opciono)</label><textarea rows="2"></textarea>
+        <!-- hidden: utm_source, utm_campaign, utm_content, angle — filled from the URL (replaces "Kako ste čuli") -->
+        <div class="consent"><input type="checkbox"><span>Saglasan/na sam da Udruženje Play Media, organizator programa NXT School, obrađuje unete podatke radi odgovora na prijavu, u skladu sa Politikom privatnosti.</span></div>
+        <button class="btn btn-main" style="width:100%;border:0;cursor:pointer">Pošalji prijavu</button>
+      </form>
+      <div>
+        <h3 style="font-size:17px;margin-bottom:12px">Šta se dešava posle prijave?</h3>
+        <div class="steps">
+          <div class="step"><span>1</span><p><b>Javljamo vam se</b> [u roku od 24 h] sa informacijama o grupi i terminu.</p></div>
+          <div class="step"><span>2</span><p><b>Kratko upoznavanje</b> — odgovaramo na pitanja. <b>Nije prijemni test.</b></p></div>
+          <div class="step"><span>3</span><p><b>Potvrda grupe</b> — upis je završen prvom uplatom, prvi čas je 9. novembra.</p></div>
+        </div>
+        <p class="note">Prijava vas ne obavezuje na upis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section id="pitanja" style="padding-top:8px">
+  <div class="wrap">
+    <h2 style="margin-bottom:8px">Česta pitanja</h2>
+    <details><summary>Mora li dete dobro da zna engleski?</summary><p>Ne. Engleski koristimo kao jezik rada, u skladu sa nivoom grupe. Kada treba objasniti nešto složeno, prelazimo na srpski.</p></details>
+    <details><summary>Da li je NXT škola programiranja?</summary><p>Ne. Programiranje je oko 10–15% programa. Cilj je da dete razume kako tehnologija radi i koristi je da nešto napravi.</p></details>
+    <details><summary>Da li je potreban laptop?</summary><p>Ne. Računar i oprema obezbeđeni su za svako dete.</p></details>
+    <details><summary>Šta ako dete propusti čas?</summary><p>[Odgovor da potvrdi tim — npr. materijali i misija za taj čas stižu u portfolio.]</p></details>
+    <p class="note"><a href="/faq/">Sva pitanja →</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">NXT School · program Udruženja Play Media · Cara Dušana 49, Novi Sad · info@nxtschool.edu.rs · <a href="/politika-privatnosti/">Politika privatnosti</a> · <a href="/uslovi-upisa/">Uslovi upisa</a></div>
+</footer>
+
+<div class="sticky"><small>Početak 9. novembra<br>od 5.900 RSD mesečno</small><a class="btn btn-main" href="#prijava">Prijavi dete</a></div>
+
+<script>
+  // Message match: the hero changes with ?angle= so each ad lands on its own promise.
+  var ANGLES = {
+    scroll:  { k: 'Za decu 1–8. razreda · Novi Sad', h: 'Less scrolling. <span class="g">More creating.</span>', s: 'Svaki čas se završava nečim što je dete samo napravilo — ekran je alat, ne dadilja.' },
+    english: { k: 'English in Practice · 1–8. razred', h: 'English is not a subject here. <span class="g">It’s the language we use.</span>', s: 'Deca pitaju, istražuju i predstavljaju na engleskom. Kad treba, pređemo na srpski.' },
+    ai:      { k: 'AI & digital literacy · 1–8. razred', h: 'Ovde deca uče da <span class="g">razmišljaju uz AI.</span>', s: 'Pitaj. Proveri. Poboljšaj. Ti odluči. AI je asistent, ne autoritet.' },
+    offer:   { k: 'Founding generacija · Novi Sad', h: 'Upisujemo prvu generaciju. <span class="g">Početak 9. novembra.</span>', s: 'Founding cena 5.900 RSD mesečno — 6 uplata, sve uključeno. Grupe do 10 dece.' }
+  };
+  var a = ANGLES[new URLSearchParams(location.search).get('angle')];
+  if (a) {
+    document.getElementById('hero-kicker').textContent = a.k;
+    document.getElementById('hero-title').innerHTML = a.h;
+    document.getElementById('hero-sub').textContent = a.s;
+  }
+</script>
+</body>
+</html>
