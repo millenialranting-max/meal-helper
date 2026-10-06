@@ -73,7 +73,18 @@
   .offer { background:var(--navy); color:#fff; border-radius:24px; padding:24px; display:grid; gap:16px; }
   .offer .tag { font-size:12px; font-weight:800; letter-spacing:.1em; color:#8FB8FF; }
   .offer .big { font-size:44px; font-weight:800; letter-spacing:-.02em; line-height:1.05; margin-top:4px; }
-  .offer .old { color:#94A3B8; font-size:14px; margin-top:4px; }
+  .compare { display:flex; align-items:flex-end; gap:22px; margin-top:12px; flex-wrap:wrap; }
+  .compare small { display:block; font-size:12px; font-weight:700; letter-spacing:.04em; margin-bottom:2px; }
+  .was small { color:#94A3B8; }
+  .was s { font-size:26px; font-weight:800; color:#94A3B8; text-decoration-thickness:3px; text-decoration-color:#F472B6; }
+  .now small { color:#8FB8FF; }
+  .now b { font-size:46px; font-weight:800; letter-spacing:-.02em; line-height:1; }
+  .now span { font-size:15px; color:#CBD5E1; margin-left:6px; }
+  .pct { font-style:normal; display:inline-block; vertical-align:12px; margin-left:8px; background:#22C55E; color:#052e16; font-size:13px; font-weight:800; border-radius:999px; padding:3px 9px; }
+  .save { display:inline-block; margin-top:14px; background:rgba(34,197,94,.14); border:1px solid rgba(134,239,172,.45); color:#BBF7D0; border-radius:12px; padding:8px 12px; font-size:14px; font-weight:700; }
+  .save b { color:#fff; }
+  .pay { font-size:13.5px; color:#CBD5E1; margin-top:10px; }
+  .facts s, .sticky s { color:#94A3B8; font-weight:600; margin-right:5px; text-decoration-color:#E5487A; text-decoration-thickness:2px; }
   .offer ul { list-style:none; display:grid; gap:7px; font-size:15px; }
   .offer li::before { content:'✓  '; color:#8FB8FF; font-weight:800; }
   .urgent { font-size:14px; color:#CBD5E1; border-top:1px solid rgba(255,255,255,.15); padding-top:14px; }
@@ -125,7 +136,7 @@
       <div class="kicker" id="hero-kicker">Future Skills School · Novi Sad · 1–8. razred</div>
       <h1 id="hero-title">Veštine za svet u kojem će <span class="g">odrastati.</span></h1>
       <p class="sub" id="hero-sub">Engleski, AI, digitalne veštine, kreativnost, komunikacija i kritičko razmišljanje — kroz praktičan program za osnovce.</p>
-      <div class="facts"><span>Početak 9. novembra</span><span>Grupe do 10 dece</span><span>od 5.900 RSD mesečno</span><span>Cara Dušana 49</span></div>
+      <div class="facts"><span>Početak 9. novembra</span><span>Grupe do 10 dece</span><span><s>7.200</s>5.900 RSD mesečno</span><span>Cara Dušana 49</span></div>
       <a class="link od-link" href="#open-day">Prvo želite da vidite? Open Day, ponedeljak 26. 10. u 18 h →</a>
     </div>
 
@@ -173,9 +184,17 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="offer">
-      <div><div class="tag">FOUNDING CENA · PRVA GENERACIJA</div><div class="big">5.900 RSD</div><div>mesečno · 6 mesečnih uplata za ceo program</div><div class="old">regularna cena 7.200 RSD</div></div>
+      <div>
+        <div class="tag">FOUNDING CENA · SAMO ZA PRVU GENERACIJU</div>
+        <div class="compare">
+          <div class="was"><small>Regularna cena</small><s>7.200 RSD</s></div>
+          <div class="now"><small>Founding cena</small><b>5.900 RSD</b><span>mesečno</span><em class="pct">−18%</em></div>
+        </div>
+        <div class="save">Uštedite <b>1.300 RSD mesečno</b> · <b>7.800 RSD</b> za ceo program</div>
+        <div class="pay">6 mesečnih uplata za ceo program · cena važi za porodice koje upišu dete u prvu generaciju</div>
+      </div>
       <ul><li>Grupe do 10 dece</li><li>24 nedelje, 1× nedeljno</li><li>Sve je uključeno u cenu</li><li>Cara Dušana 49, Novi Sad</li></ul>
-      <div class="urgent"><span><b>Grupe kreću zajedno 9. novembra</b> — dete se ne može priključiti usred programa.</span><a class="btn btn-white" href="#prijava">Rezerviši mesto →</a></div>
+      <div class="urgent"><span><b>Grupe kreću zajedno 9. novembra</b> — dete se ne može priključiti usred programa.</span><a class="btn btn-white" href="#prijava">Rezerviši founding cenu →</a></div>
     </div>
   </div>
 </section>
@@ -206,7 +225,7 @@
   <div class="wrap">NXT School · program Udruženja Play Media · Cara Dušana 49, Novi Sad · info@nxtschool.edu.rs · <a href="/politika-privatnosti/">Politika privatnosti</a> · <a href="/uslovi-upisa/">Uslovi upisa</a></div>
 </footer>
 
-<div class="sticky" id="sticky"><small>Početak 9. novembra<br>od 5.900 RSD mesečno</small><a class="btn btn-main" href="#prijava">Prijavi dete</a></div>
+<div class="sticky" id="sticky"><small>Početak 9. novembra<br><s>7.200</s>5.900 RSD mesečno</small><a class="btn btn-main" href="#prijava">Prijavi dete</a></div>
 
 <script>
   // Hero changes with the ad: ?angle=scroll | english | ai | offer (no parameter = default)
@@ -214,7 +233,7 @@
     scroll:  { k: 'Za decu 1–8. razreda · Novi Sad', h: 'Less scrolling. <span class="g">More creating.</span>', s: 'Svaki čas se završava nečim što je dete samo napravilo — računar je alat, uz papir, karton i timski rad.' },
     english: { k: 'English in Practice · 1–8. razred', h: 'Engleski <span class="g">bez straha.</span>', s: 'Kroz projekte deca pitaju, istražuju i predstavljaju na engleskom — u skladu sa nivoom grupe. Kad treba, pređemo na srpski.' },
     ai:      { k: 'AI Literacy · 1–8. razred', h: 'Ovde deca uče da <span class="g">razmišljaju uz AI.</span>', s: 'Pitaj. Proveri. Poboljšaj. Ti odluči. AI je asistent, ne autoritet.' },
-    offer:   { k: 'Founding generacija · Novi Sad', h: 'Upisujemo prvu generaciju. <span class="g">Početak 9. novembra.</span>', s: 'Founding cena 5.900 RSD mesečno — 6 uplata za ceo program, sve uključeno. Grupe do 10 dece.' }
+    offer:   { k: 'Founding generacija · Novi Sad', h: 'Upisujemo prvu generaciju. <span class="g">Početak 9. novembra.</span>', s: 'Founding cena 5.900 RSD mesečno umesto 7.200 — 6 uplata za ceo program, sve uključeno. Grupe do 10 dece.' }
   };
   var a = ANGLES[new URLSearchParams(location.search).get('angle')];
   if (a) {
