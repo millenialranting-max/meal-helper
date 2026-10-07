@@ -85,6 +85,14 @@
   summary { font-weight:800; cursor:pointer; list-style:none; }
   summary::after { content:'+'; float:right; color:var(--blue); }
   details p { color:var(--slate); font-size:14px; margin-top:8px; }
+  .cta-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:20px; }
+  .cta-row small { font-size:13px; color:var(--slate); font-weight:600; }
+  .btn-white { background:#fff; color:var(--navy); }
+  .price-cta { grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.15); padding-top:16px; }
+  .price-cta span { font-size:14px; color:#CBD5E1; }
+  .final { background:var(--grad); color:#fff; border-radius:24px; padding:24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:26px; }
+  .final b { display:block; font-size:21px; line-height:1.2; } .final small { font-size:14px; opacity:.9; }
+  .sticky { transition:transform .2s; } .sticky.hide { transform:translateY(110%); }
   footer { padding:28px 0 90px; font-size:12px; color:var(--slate); border-top:1px solid var(--line); }
   /* sticky mobile CTA */
   .sticky { position:fixed; left:0; right:0; bottom:0; z-index:6; background:#fff; border-top:1px solid var(--line); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
@@ -177,6 +185,7 @@
       <div class="card"><div class="ico" style="background:#F0EDFF;color:#7A5CFF">AI</div><h3>Razmišljaju uz AI</h3><p>AI je asistent, ne autoritet: pitaj, proveri, poboljšaj — a odluku donosi dete.</p></div>
     </div>
     <p class="note"><b>Nije škola programiranja</b> (coding je ~10–15%) · <b>nije sedenje pred ekranom.</b></p>
+    <div class="cta-row"><a class="btn btn-main" href="#prijava">Prijavi dete →</a><small>Traje minut · početak 9. novembra</small></div>
   </div>
 </section>
 
@@ -205,6 +214,7 @@
       <div class="lvl"><b class="g">Lead</b><small>7–8. razred · 90 min<br>za računarom 70–75%</small></div>
     </div>
     <p class="note">24 nedelje, jednom nedeljno · prethodni nivo nije uslov · <a href="/program/">ceo program →</a></p>
+    <div class="cta-row"><a class="btn btn-main" href="#prijava">Prijavi dete →</a><small>Razred birate u prijavi</small></div>
   </div>
 </section>
 
@@ -215,9 +225,7 @@
     <h2>Ne „danas smo radili kreativnost“ — <span class="g">nego konkretni radovi.</span></h2>
     <div class="split">
       <div class="card"><h3>My NXT Portfolio</h3><p>Svaki rad deteta se čuva: crteži, video, igre, sajtovi, prezentacije. Vidite šta je napravilo treće, osme i dvadeset četvrte nedelje.</p><h3 style="margin-top:14px">Future Skills Passport</h3><p>Devet veština, četiri nivoa, bez ocena i rangiranja.</p></div>
-      <div class="card"><h3>NXT Showcase</h3><p>U 24. nedelji svako dete predstavlja svoj projekat pred roditeljima.</p>
-        <div class="team" aria-label="Ljudi iza NXT-a"><div><i></i>Mladen</div><div><i></i>Anita</div><div><i></i>Ana</div><div><i></i>Igor</div><div><i></i>Nikola</div></div>
-        <p class="note">Ljudi iza NXT-a — <a href="/ljudi-iza-nxt-a/">upoznajte tim →</a></p></div>
+      <div class="card"><h3>NXT Showcase</h3><p>U 24. nedelji svako dete predstavlja svoj projekat pred roditeljima.</p><p style="margin-top:8px">Na kraju školske godine sve generacije se okupljaju na NXT Stage-u.</p></div>
     </div>
   </div>
 </section>
@@ -230,8 +238,9 @@
     <div class="price">
       <div><div style="font-size:13px;font-weight:800;letter-spacing:.1em;color:#8FB8FF">FOUNDING CENA</div><div class="old" style="font-size:22px;font-weight:800;text-decoration:line-through;text-decoration-color:#F472B6;text-decoration-thickness:3px;margin-top:6px">7.200 RSD</div><div class="big">5.900 RSD <span style="font-size:13px;vertical-align:14px;background:#22C55E;color:#052e16;border-radius:999px;padding:3px 9px">−18%</span></div><div>mesečno · 6 mesečnih uplata, za ceo program</div><div style="margin-top:10px;display:inline-block;background:rgba(34,197,94,.14);border:1px solid rgba(134,239,172,.45);color:#BBF7D0;border-radius:12px;padding:7px 11px;font-size:14px;font-weight:700">Uštedite 1.300 RSD mesečno · 7.800 RSD za ceo program</div></div>
       <ul><li>1–8. razred, 4 nivoa</li><li>Grupe do 10 dece</li><li>24 nedelje, 1× nedeljno (60 ili 90 min)</li><li>Sve je uključeno u cenu</li><li>Cara Dušana 49, Novi Sad</li></ul>
+      <div class="price-cta"><span><b style="color:#fff">Grupe kreću zajedno 9. novembra</b> — broj mesta je ograničen.</span><a class="btn btn-white" href="#prijava">Rezerviši founding cenu →</a></div>
     </div>
-    <p class="note">Broj mesta je ograničen. Grupe kreću zajedno, pa se dete ne može priključiti usred programa.</p>
+    <p class="note">Grupe prolaze program od početka do kraja, pa se dete ne može priključiti usred programa.</p>
     <div class="openday" id="open-day">
       <div><b>Niste sigurni? Dođite na Open Day.</b><br><span class="sub" style="font-size:14px">Ponedeljak, 26. oktobar, 18–20 h · deca rade mini NXT challenge, vi upoznajete program · dođite sa detetom, potrebna je prijava</span></div>
       <a class="btn btn-ghost" href="/open-day/">Prijavi se za Open Day</a>
@@ -278,6 +287,7 @@
     <details><summary>Da li je potreban laptop?</summary><p>Ne. Računar i oprema obezbeđeni su za svako dete.</p></details>
     <details><summary>Koliko dece je u grupi?</summary><p>Grupe imaju 8–10 učenika, najviše 10, kako bi svako dete dobilo dovoljno pažnje.</p></details>
     <p class="note"><a href="/faq/">Sva pitanja →</a></p>
+    <div class="final"><div><b>Prva generacija počinje 9. novembra.</b><small>Grupe do 10 dece · founding cena 5.900 RSD mesečno umesto 7.200</small></div><a class="btn btn-white" href="#prijava">Prijavi dete →</a></div>
   </div>
 </section>
 
@@ -285,7 +295,7 @@
   <div class="wrap">NXT School · program Udruženja Play Media · Cara Dušana 49, Novi Sad · info@nxtschool.edu.rs · <a href="/politika-privatnosti/">Politika privatnosti</a> · <a href="/uslovi-upisa/">Uslovi upisa</a><p style="margin-top:8px;font-size:11px;color:#94A3B8">Placeholder fotografije — pre objave zameniti NXT fotografijama uz potpisanu saglasnost roditelja. Izvori: steveonjava (CC BY) · Arne Hendriks (CC BY) · flickingerbrad (CC BY).</p></div>
 </footer>
 
-<div class="sticky"><small>Početak 9. novembra<br><s style="color:#94A3B8;text-decoration-color:#E5487A;margin-right:4px">7.200</s>5.900 RSD mesečno</small><a class="btn btn-main" href="#prijava">Prijavi dete</a></div>
+<div class="sticky" id="sticky"><small>Početak 9. novembra<br><s style="color:#94A3B8;text-decoration-color:#E5487A;margin-right:4px">7.200</s>5.900 RSD mesečno</small><a class="btn btn-main" href="#prijava">Prijavi dete</a></div>
 
 <script>
   // Message match: the hero changes with ?angle= so each ad lands on its own promise.
@@ -300,6 +310,11 @@
     document.getElementById('hero-kicker').textContent = a.k;
     document.getElementById('hero-title').innerHTML = a.h;
     document.getElementById('hero-sub').textContent = a.s;
+  }
+  // Sticky bar hides while the form is on screen
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { document.getElementById('sticky').classList.toggle('hide', e[0].isIntersecting); })
+      .observe(document.querySelector('#prijava .formbox'));
   }
 </script>
 </body>
