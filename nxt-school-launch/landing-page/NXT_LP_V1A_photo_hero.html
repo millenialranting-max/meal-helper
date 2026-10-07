@@ -103,19 +103,6 @@
   .mbox { position:relative; background:#fff; width:100%; max-width:480px; max-height:92vh; overflow:auto; border-radius:22px 22px 0 0; padding:22px 20px 20px; }
   .mbox h3 { font-size:21px; margin:6px 0 4px; }
   .mclose { position:absolute; right:12px; top:10px; width:36px; height:36px; border-radius:50%; border:0; background:var(--light); font-size:22px; cursor:pointer; color:var(--navy); }
-  /* parents: portfolio visual */
-  .pf { background:var(--navy); border-radius:20px; padding:16px; color:#fff; }
-  .pf-h { font-size:12px; font-weight:800; letter-spacing:.1em; color:#8FB8FF; margin-bottom:10px; }
-  .pf-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .pf-grid div { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:10px; }
-  .pf-grid em { color:#0F172A; height:44px; border-radius:10px; margin-bottom:8px; font-style:normal; font-size:20px; display:flex; align-items:center; justify-content:center; }
-  .pf-grid small { display:block; font-size:11px; color:#94A3B8; font-weight:700; }
-  .pf-grid b { font-size:13px; }
-  .pf-cap { font-size:12.5px; color:#CBD5E1; margin-top:10px; }
-  .prows { display:grid; gap:10px; align-content:start; }
-  .prow { display:flex; gap:13px; align-items:flex-start; border:1px solid var(--line); border-radius:16px; padding:14px; }
-  .prow .ico { flex:none; width:40px; height:40px; }
-  .prow b { display:block; font-size:16px; } .prow small { color:var(--slate); font-size:14px; }
   @media (min-width: 860px) {
     .preform b { flex:0 0 auto; margin-right:8px; }
     .preform select, .preform .btn { flex:0 0 auto; }
@@ -235,20 +222,8 @@
     <div class="kicker">Za roditelje</div>
     <h2>Ne „danas smo bili kreativni“ — <span class="g">nego konkretni radovi.</span></h2>
     <div class="split">
-      <div class="pf">
-        <div class="pf-h">MY NXT PORTFOLIO · PRIMER</div>
-        <div class="pf-grid">
-          <div><em style="background:#E8F2FF">🔎</em><small>Nedelje 1–4</small><b>Ask Better Questions</b></div>
-          <div><em style="background:#FFEDF3">✎</em><small>Nedelje 5–8</small><b>Design Is a Decision</b></div>
-          <div><em style="background:#F0EDFF">🎮</em><small>Nedelje 13–16</small><b>Game Logic</b></div>
-          <div><em style="background:#FEF3C7">🎤</em><small>Nedelja 24</small><b>NXT Showcase</b></div>
-        </div>
-        <p class="pf-cap">Svaki rad deteta se čuva: crteži, video, igre, sajtovi, prezentacije. Vidite šta je napravilo treće, osme i dvadeset četvrte nedelje.</p>
-      </div>
-      <div class="prows">
-        <div class="prow"><div class="ico" style="background:#F0EDFF;color:#7A5CFF">★</div><div><b>Future Skills Passport</b><small>Devet veština, četiri nivoa, bez ocena i rangiranja. Napredak beležimo na početku, polovini i kraju programa.</small></div></div>
-        <div class="prow"><div class="ico" style="background:#FFEDF3;color:#E5487A">🎤</div><div><b>NXT Showcase</b><small>U 24. nedelji svako dete predstavlja svoj projekat pred roditeljima. Na kraju godine sve generacije se okupljaju na NXT Stage-u.</small></div></div>
-      </div>
+      <div class="card"><h3>My NXT Portfolio</h3><p>Svaki rad deteta se čuva: crteži, video, igre, sajtovi, prezentacije. Vidite šta je napravilo treće, osme i dvadeset četvrte nedelje.</p><h3 style="margin-top:14px">Future Skills Passport</h3><p>Devet veština, četiri nivoa, bez ocena i rangiranja.</p></div>
+      <div class="card"><h3>NXT Showcase</h3><p>U 24. nedelji svako dete predstavlja svoj projekat pred roditeljima.</p><p style="margin-top:8px">Na kraju školske godine sve generacije se okupljaju na NXT Stage-u.</p></div>
     </div>
   </div>
 </section>
