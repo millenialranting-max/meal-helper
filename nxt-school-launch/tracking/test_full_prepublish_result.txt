@@ -1,0 +1,6 @@
+D1 desktop /upis/ | banner ok, title="Da li prihvatate kolačiće?", Prihvatam 396x52 vs Samo neophodni 212x52, link=/politika-privatnosti/#kolacici | after accept: PageView | after form: PageView,Lead(eid) | now on /hvala/ | errors 0 | real POSTs blocked 0
+D2 desktop reject | Meta requests: none | visible footer link: Podešavanja kolačića | reopened: banner ok, title="Da li prihvatate kolačiće?", Pri | errors 0
+D3 desktop /open-day/ | Meta: PageView,PageView,CompleteRegistration(eid) | now on /hvala-open-day/ | errors 0
+D4 homepage | banner ok, title="Da li prihvatate kolač | Meta: PageView | errors 0
+D5 direct /hvala/ (consent=1) | Meta: PageView | errors 0
+M1 mobile /upis/ | banner ok, title="Da li prihvatate kolačiće?", Prihvatam 318x52 vs Samo neophodni 318x47, link=/politika-privatnosti/#kolacici | after accept: PageView | after form: PageView,Lead(eid) | footer link visible: true | errors 0

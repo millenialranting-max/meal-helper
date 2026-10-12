@@ -77,6 +77,17 @@ html body #nxt-cc .nxt-cc-yes:hover{filter:brightness(1.08);transform:translateY
   customize();
   if (window.MutationObserver) new MutationObserver(customize).observe(document.body, { childList: true });
 
+  // /upis/ uses a short footer without "Podešavanja kolačića": add the link next to "Politika privatnosti"
+  var pol = document.querySelector('.paid-footer a[href*="politika-privatnosti"]');
+  if (pol && !document.querySelector('.paid-footer a[href="#kolacici-podesavanja"]')) {
+    var cl = document.createElement('a'); cl.href = '#kolacici-podesavanja'; cl.textContent = 'Podešavanja kolačića';
+    pol.parentNode.insertBefore(cl, pol.nextSibling);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest && e.target.closest('.paid-footer a[href="#kolacici-podesavanja"]');
+    if (a && window.nxtConsent) { e.preventDefault(); window.nxtConsent.open(); }
+  });
+
   document.addEventListener('click', function (e) {
     var b = e.target && e.target.closest && e.target.closest('#nxt-cc [data-a]');
     if (b) setTimeout(function () { dl.push({ event: 'nxt_consent', nxt_consent: b.getAttribute('data-a') }); }, 0);
