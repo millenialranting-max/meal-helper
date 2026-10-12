@@ -1,6 +1,6 @@
 # NXT · Meta Pixel + Lead u GTM-u (GTM-5CDGJP32)
 
-Pixel: **1732336671184657** · Stranica: https://nxtschool.edu.rs/nxt-school-paid/
+Pixel: **1732336671184657** · Stranica: https://nxtschool.edu.rs/upis/
 
 **Šta se dobija:**
 - Pixel se pali tek kad posetilac klikne „Prihvatam“ u cookie banneru. Banner je već ugrađen u sajt, ali je trenutno uspavan; GTM ga budi.
@@ -102,7 +102,7 @@ fbq('track', 'PageView');
 
 ## 4. Test pre objave
 
-1. GTM → **Preview** → otvori `https://nxtschool.edu.rs/nxt-school-paid/`.
+1. GTM → **Preview** → otvori `https://nxtschool.edu.rs/upis/`.
 2. Treba da se pojavi cookie banner. Klikni **Prihvatam** → u Tag Assistant-u se pali `Meta Pixel - Base`. Chrome ekstenzija *Meta Pixel Helper* treba da prikaže PageView.
 3. Pošalji jednu test prijavu (u ime upiši „TEST“ i javi klijentu da je obriše) → pali se `Meta Pixel - Lead` (na /hvala, ako forma radi redirekciju).
 4. Uporedo otvori Events Manager → **Test events** da vidiš PageView i Lead uživo.

@@ -16,7 +16,7 @@ const EMU = `document.addEventListener('DOMContentLoaded', function () { setTime
   if (consent() === '1') base();   // trigger: Page View + consent = 1
   ${A}                              // trigger: DOM Ready
 }, 50); });`;
-const URL = 'https://nxtschool.edu.rs/nxt-school-paid/';
+const URL = 'https://nxtschool.edu.rs/upis/';
 async function run(name, { redirect, accept, direct }) {
   const b = await chromium.launch(); const HUA = (await (await b.newPage()).evaluate(() => navigator.userAgent)); const ctx = await b.newContext({ userAgent: HUA.replace('HeadlessChrome', 'Chrome') });
   await ctx.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false })); const fb = []; const blocked = [];
