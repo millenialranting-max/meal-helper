@@ -1,0 +1,23 @@
+NXT LP-C final — slike (placeholder)
+Pre objave zameniti NXT fotografijama uz potpisanu saglasnost roditelja.
+Licence traže navođenje autora (CC BY / BY-SA).
+
+01_hero.jpg — Hero (prvi ekran)
+  Autor: Rainer Stropek (CoderDojo Linz) · Licenca: CC BY 2.0
+  Izvor: https://www.flickr.com/photos/76164541@N06/19792185595
+
+02_vestine_za_buducnost.jpg — Stub: Veštine za budućnost
+  Autor: Rainer Stropek (CoderDojo Linz) · Licenca: CC BY 2.0
+  Izvor: https://www.flickr.com/photos/76164541@N06/21453702743
+
+03_kreativno_stvaranje.jpg — Stub: Kreativno stvaranje
+  Autor: flickingerbrad · Licenca: CC BY 2.0
+  Izvor: https://www.flickr.com/photos/56155476@N08/6660141777
+
+04_ai_kao_alat.jpg — Stub: AI kao alat
+  Autor: International Journalism Festival · Licenca: CC BY-SA 2.0
+  Izvor: https://www.flickr.com/photos/25911336@N06/33730380721
+
+05_engleski_kroz_projekte.jpg — Stub: Engleski kroz projekte
+  Autor: Rainer Stropek (CoderDojo Linz) · Licenca: CC BY 2.0
+  Izvor: https://www.flickr.com/photos/76164541@N06/20788433706
