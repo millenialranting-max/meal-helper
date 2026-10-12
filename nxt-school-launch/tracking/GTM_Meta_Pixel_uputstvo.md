@@ -36,6 +36,20 @@ Pixel: **1732336671184657** · Stranica: https://nxtschool.edu.rs/upis/
 - Advanced Settings → Tag firing options: **Once per page**
 
 ```html
+<style>
+/* NXT cookie banner: bigger and easier to notice (overrides the theme styles; text and buttons stay the site's own) */
+html body #nxt-cc{left:50%!important;right:auto!important;bottom:24px!important;transform:translateX(-50%);width:calc(100% - 32px);max-width:640px!important;margin:0!important;padding:26px 28px 24px!important;border-radius:22px!important;border:0!important;font-size:15.5px!important;
+  box-shadow:0 0 0 100vmax rgba(15,23,42,.28),0 30px 80px -20px rgba(15,23,42,.6)!important;animation:nxtccIn .45s cubic-bezier(.2,.9,.3,1.15) both}
+html body #nxt-cc::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-radius:22px 22px 0 0;background:linear-gradient(90deg,#007BFF,#7A5CFF)}
+html body #nxt-cc strong{font-size:20px!important;margin-bottom:6px!important}
+html body #nxt-cc strong::before{content:"\1F36A  "}
+html body #nxt-cc p{margin-bottom:18px!important}
+html body #nxt-cc div{gap:12px!important}
+html body #nxt-cc button{font-size:16px!important;font-weight:700!important;padding:14px 26px!important;min-width:170px}
+html body #nxt-cc .nxt-cc-yes{background:linear-gradient(90deg,#007BFF,#7A5CFF)!important;border:0!important;box-shadow:0 12px 26px -10px rgba(0,123,255,.7)}
+@keyframes nxtccIn{from{opacity:0;transform:translate(-50%,40px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (max-width:600px){html body #nxt-cc{bottom:12px!important;padding:22px 20px 18px!important}html body #nxt-cc div{flex-direction:column-reverse}html body #nxt-cc button{width:100%;min-width:0}}
+</style>
 <script>
 /* NXT | Consent + form listener (GTM Custom HTML, DOM Ready, all pages).
    1) shows the site's own cookie banner (it stays hidden while the site script has no pixel ID),
@@ -115,4 +129,4 @@ fbq('track', 'PageView');
 3. Business Settings → Brand safety → **Domains**: verifikuj `nxtschool.edu.rs` (preporuka).
 4. U kampanjama: optimizacija na **Lead**, na ovom pixelu.
 
-Napomena: posle objave cookie banner će se prikazivati na celom sajtu. To je ispravno; bez pristanka pixel se ne pali.
+Napomena: posle objave cookie banner (uvećan, centriran, sa blagim zatamnjenjem stranice; vidi `cookie_banner_preview.jpg`) će se prikazivati na celom sajtu. To je ispravno; bez pristanka pixel se ne pali.
