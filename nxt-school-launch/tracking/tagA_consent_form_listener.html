@@ -1,0 +1,33 @@
+<script>
+/* NXT | Consent + form listener (GTM Custom HTML, DOM Ready, all pages).
+   1) shows the site's own cookie banner (it stays hidden while the site script has no pixel ID),
+   2) pushes the visitor's choice to the dataLayer,
+   3) pushes nxt_lead when the Elementor form is sent: right away, or on the next page if the form redirects (thank-you page). */
+(function () {
+  var KEY = 'nxt_consent_v1', dl = window.dataLayer = window.dataLayer || [];
+  function get(k, store) { try { return (store || localStorage).getItem(k); } catch (e) { return null; } }
+
+  if (get(KEY) === null && window.nxtConsent && window.nxtConsent.open) window.nxtConsent.open();
+
+  document.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest && e.target.closest('#nxt-cc [data-a]');
+    if (b) setTimeout(function () { dl.push({ event: 'nxt_consent', nxt_consent: b.getAttribute('data-a') }); }, 0);
+  }, true);
+
+  var pending = get('nxt_lead_pending', sessionStorage);
+  if (pending) {
+    try { sessionStorage.removeItem('nxt_lead_pending'); } catch (e) {}
+    var p = pending.split('|');
+    dl.push({ event: 'nxt_lead', nxt_event_id: p[0], nxt_form_type: p[1] || 'prijava' });
+  }
+
+  if (window.jQuery) jQuery(document).on('submit_success', function (e, resp) {
+    var f = e.target, t = f && f.querySelector ? f.querySelector('[name="form_fields[form_type]"]') : null;
+    var type = (t && t.value) || 'prijava';
+    var id = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+    var redirect = resp && resp.data && resp.data.redirect_url;
+    if (redirect) { try { sessionStorage.setItem('nxt_lead_pending', id + '|' + type); return; } catch (x) {} }
+    dl.push({ event: 'nxt_lead', nxt_event_id: id, nxt_form_type: type });
+  });
+})();
+</script>
