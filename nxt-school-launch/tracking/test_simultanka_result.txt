@@ -1,0 +1,5 @@
+LIVE now  · simultanka (no redirect) | after form: Lead[prijava] | now on /nxt-experience-simultanka-sa-vladimirom | errors 0 | real POSTs blocked 0
+NEW · simultanka (no redirect)        | after form: CompleteRegistration[simultanka] | now on /nxt-experience-simultanka-sa-vladimirom | errors 0 | real POSTs blocked 0
+NEW · simultanka (redirect /hvala/)   | after form: PageView, CompleteRegistration[simultanka] | now on /hvala/ | errors 0 | real POSTs blocked 0
+NEW · /upis/ (redirect /hvala/)       | after form: PageView, Lead[prijava] | now on /hvala/ | errors 0 | real POSTs blocked 0
+NEW · /open-day/ (redirect)           | after form: PageView, CompleteRegistration[open_day] | now on /hvala-open-day/ | errors 0 | real POSTs blocked 0

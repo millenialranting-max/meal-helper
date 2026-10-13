@@ -102,7 +102,9 @@ html body #nxt-cc .nxt-cc-yes:hover{filter:brightness(1.08);transform:translateY
 
   if (window.jQuery) jQuery(document).on('submit_success', function (e, resp) {
     var f = e.target, t = f && f.querySelector ? f.querySelector('[name="form_fields[form_type]"]') : null;
-    var type = (t && t.value) || 'prijava';
+    var nm = ((f && f.getAttribute && f.getAttribute('name')) || '').toLowerCase();
+    // form_type hidden field wins; otherwise derive from the form name (e.g. "NXT Experience simultanka prijava" -> simultanka)
+    var type = (t && t.value) || (nm.indexOf('simultank') > -1 ? 'simultanka' : (nm.replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'prijava'));
     var id = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
     var redirect = resp && resp.data && resp.data.redirect_url;
     if (redirect) { try { sessionStorage.setItem('nxt_lead_pending', id + '|' + type); return; } catch (x) {} }
@@ -131,11 +133,11 @@ fbq('track', 'PageView');
 
 ```html
 <script>
-/* Meta Pixel | Lead (form "prijava") or CompleteRegistration (Open Day form). eventID is kept for CAPI deduplication later. */
+/* Meta Pixel | Lead = upis form ("prijava") only. Every other form (Open Day, events like simultanka) = CompleteRegistration, told apart by content_name. eventID kept for CAPI dedup. */
 (function () {
   if (!window.fbq) return;
   var type = {{dlv - nxt_form_type}} || 'prijava';
-  var name = type.indexOf('open') > -1 ? 'CompleteRegistration' : 'Lead';
+  var name = type === 'prijava' ? 'Lead' : 'CompleteRegistration';
   fbq('track', name, { content_name: type }, { eventID: {{dlv - nxt_event_id}} });
 })();
 </script>
@@ -157,3 +159,13 @@ fbq('track', 'PageView');
 4. U kampanjama: optimizacija na **Lead**, na ovom pixelu.
 
 Napomena: posle objave cookie banner (uvećan, centriran, blago zatamnjenje, novi tekst „Da li prihvatate kolačiće?“, „✓ Prihvatam“ kao glavno dugme; vidi `cookie_banner_preview.jpg`) će se prikazivati na celom sajtu. To je ispravno; bez pristanka pixel se ne pali.
+
+## Događaji po formi (od v3)
+
+| Forma | Meta događaj | content_name |
+|---|---|---|
+| Upis (`/upis/`, form_type = prijava) | **Lead** | prijava |
+| Open Day (`/open-day/`) | CompleteRegistration | open_day |
+| Simultanka (NXT Experience) | CompleteRegistration | simultanka |
+
+Custom conversion za simultanku: Events Manager → Custom conversions → događaj *Complete registration*, pravilo *Event parameters → content_name contains simultanka*.
