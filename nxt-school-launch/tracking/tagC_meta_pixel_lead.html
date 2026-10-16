@@ -1,9 +1,9 @@
 <script>
-/* Meta Pixel | Lead = upis form ("prijava") only. Every other form (Open Day, events like simultanka) = CompleteRegistration, told apart by content_name. eventID kept for CAPI dedup. */
+/* Meta Pixel | Lead (form "prijava") or CompleteRegistration (Open Day form). eventID is kept for CAPI deduplication later. */
 (function () {
   if (!window.fbq) return;
   var type = {{dlv - nxt_form_type}} || 'prijava';
-  var name = type === 'prijava' ? 'Lead' : 'CompleteRegistration';
+  var name = type.indexOf('open') > -1 ? 'CompleteRegistration' : 'Lead';
   fbq('track', name, { content_name: type }, { eventID: {{dlv - nxt_event_id}} });
 })();
 </script>

@@ -65,8 +65,8 @@ html body #nxt-cc .nxt-cc-yes:hover{filter:brightness(1.08);transform:translateY
   if (window.jQuery) jQuery(document).on('submit_success', function (e, resp) {
     var f = e.target, t = f && f.querySelector ? f.querySelector('[name="form_fields[form_type]"]') : null;
     var nm = ((f && f.getAttribute && f.getAttribute('name')) || '').toLowerCase();
-    // form_type hidden field wins; otherwise derive from the form name (e.g. "NXT Experience simultanka prijava" -> simultanka)
-    var type = (t && t.value) || (nm.indexOf('simultank') > -1 ? 'simultanka' : (nm.replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'prijava'));
+    // form_type hidden field wins; the simultanka event form is tagged by its name; everything else stays "prijava"
+    var type = (t && t.value) || (nm.indexOf('simultank') > -1 ? 'simultanka' : 'prijava');
     var id = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
     var redirect = resp && resp.data && resp.data.redirect_url;
     if (redirect) { try { sessionStorage.setItem('nxt_lead_pending', id + '|' + type); return; } catch (x) {} }

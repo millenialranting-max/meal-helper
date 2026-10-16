@@ -28,6 +28,7 @@ Pixel: **1732336671184657** · Stranica: https://nxtschool.edu.rs/upis/
 | `Page View - consent granted` | Page View | Some Page Views: `cjs - NXT consent` **equals** `1` |
 | `CE - nxt_consent granted` | Custom Event, event name `nxt_consent` | Some Custom Events: `dlv - nxt_consent` **equals** `1` |
 | `CE - nxt_lead` | Custom Event, event name `nxt_lead` | Some Custom Events: `cjs - NXT consent` **equals** `1` |
+| `CE - nxt_lead · simultanka (TEMP)` | Custom Event, event name `nxt_lead` | `dlv - nxt_form_type` **equals** `simultanka` **i** `cjs - NXT consent` **equals** `1` |
 
 ## 3. Tagovi (Tags → New → Custom HTML)
 
@@ -103,8 +104,8 @@ html body #nxt-cc .nxt-cc-yes:hover{filter:brightness(1.08);transform:translateY
   if (window.jQuery) jQuery(document).on('submit_success', function (e, resp) {
     var f = e.target, t = f && f.querySelector ? f.querySelector('[name="form_fields[form_type]"]') : null;
     var nm = ((f && f.getAttribute && f.getAttribute('name')) || '').toLowerCase();
-    // form_type hidden field wins; otherwise derive from the form name (e.g. "NXT Experience simultanka prijava" -> simultanka)
-    var type = (t && t.value) || (nm.indexOf('simultank') > -1 ? 'simultanka' : (nm.replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'prijava'));
+    // form_type hidden field wins; the simultanka event form is tagged by its name; everything else stays "prijava"
+    var type = (t && t.value) || (nm.indexOf('simultank') > -1 ? 'simultanka' : 'prijava');
     var id = 'lead.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
     var redirect = resp && resp.data && resp.data.redirect_url;
     if (redirect) { try { sessionStorage.setItem('nxt_lead_pending', id + '|' + type); return; } catch (x) {} }
@@ -128,16 +129,16 @@ fbq('track', 'PageView');
 ```
 
 **Tag 3 · `Meta Pixel - Lead`**
-- Okidač: `CE - nxt_lead`
+- Okidač: `CE - nxt_lead` · Exception (blokira): `CE - nxt_lead · simultanka (TEMP)`
 - Advanced Settings → Tag Sequencing: ✔ *Fire a tag before Meta Pixel - Lead fires* → `Meta Pixel - Base (PageView)`
 
 ```html
 <script>
-/* Meta Pixel | Lead = upis form ("prijava") only. Every other form (Open Day, events like simultanka) = CompleteRegistration, told apart by content_name. eventID kept for CAPI dedup. */
+/* Meta Pixel | Lead (form "prijava") or CompleteRegistration (Open Day form). eventID is kept for CAPI deduplication later. */
 (function () {
   if (!window.fbq) return;
   var type = {{dlv - nxt_form_type}} || 'prijava';
-  var name = type === 'prijava' ? 'Lead' : 'CompleteRegistration';
+  var name = type.indexOf('open') > -1 ? 'CompleteRegistration' : 'Lead';
   fbq('track', name, { content_name: type }, { eventID: {{dlv - nxt_event_id}} });
 })();
 </script>
@@ -164,8 +165,23 @@ Napomena: posle objave cookie banner (uvećan, centriran, blago zatamnjenje, nov
 
 | Forma | Meta događaj | content_name |
 |---|---|---|
-| Upis (`/upis/`, form_type = prijava) | **Lead** | prijava |
-| Open Day (`/open-day/`) | CompleteRegistration | open_day |
-| Simultanka (NXT Experience) | CompleteRegistration | simultanka |
+| Upis (`/upis/`, form_type = prijava) | **Lead** (isto kao v2) | prijava |
+| Open Day (`/open-day/`) | CompleteRegistration (isto kao v2) | open_day |
+| Simultanka (NXT Experience) | **SimultankaPrijava** (custom, privremeno) — više NIJE Lead | simultanka |
 
-Custom conversion za simultanku: Events Manager → Custom conversions → događaj *Complete registration*, pravilo *Event parameters → content_name contains simultanka*.
+**Tag 4 · `Meta Pixel - Simultanka prijava (TEMP)`** (privremeno, samo za kampanju simultanke)
+- Okidač: `CE - nxt_lead · simultanka (TEMP)` · isti okidač je Exception na `Meta Pixel - Lead`, pa simultanka ne kvari Lead.
+- Tag Sequencing: `Meta Pixel - Base (PageView)` pre ovog taga · Once per event.
+- Advanced Settings → Tag firing schedule: kraj **18.10.2026 00:00** (posle toga se sam gasi; tag i okidač onda obriši).
+
+```html
+<script>
+/* Meta Pixel | TEMP: simultanka signup = custom event "SimultankaPrijava" (NOT Lead). eventID kept for CAPI dedup. Delete after 17.10.2026. */
+(function () {
+  if (!window.fbq) return;
+  fbq('trackCustom', 'SimultankaPrijava', { content_name: 'simultanka' }, { eventID: {{dlv - nxt_event_id}} });
+})();
+</script>
+```
+
+**Custom conversion:** Events Manager → Custom conversions → Create → pixel NXT School → Conversion event: custom događaj **SimultankaPrijava** (pojavi se posle prve prijave) → ime „NXT Simultanka – prijava“ → kategorija *Complete registration*.
