@@ -1,0 +1,10 @@
+<script>
+/* NXT | Consent Mode: restore the stored choice on every page (the site script only grants it on the click page). */
+(function () {
+  var c = null; try { c = localStorage.getItem('nxt_consent_v1'); } catch (e) {}
+  if (c !== '1') return;
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+})();
+</script>

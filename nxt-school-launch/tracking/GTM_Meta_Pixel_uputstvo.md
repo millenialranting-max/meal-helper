@@ -185,3 +185,24 @@ Napomena: posle objave cookie banner (uvećan, centriran, blago zatamnjenje, nov
 ```
 
 **Custom conversion:** Events Manager → Custom conversions → Create → pixel NXT School → Conversion event: custom događaj **SimultankaPrijava** (pojavi se posle prve prijave) → ime „NXT Simultanka – prijava“ → kategorija *Complete registration*.
+
+## Google Analytics 4 (radni prostor „GA4 (Claude)“)
+
+| Element | Podešavanje |
+|---|---|
+| `const - GA4 Measurement ID` | Constant: `G-…` iz GA4 web stream-a |
+| `rt - GA4 form event name` | RegEx Table nad `dlv - nxt_form_type`: `open` → `open_day_prijava`, `simultank` → `simultanka_prijava`, sve ostalo → `generate_lead` |
+| `DOM Ready - consent granted` | DOM Ready, `cjs - NXT consent` **equals** `1` |
+| Tag `Consent - restore stored choice (Google)` | Custom HTML (`tagE_consent_restore_google.html`), okidač **Consent Initialization – All Pages** |
+| Tag `GA4 - Google tag` | Google tag, Tag ID = `{{const - GA4 Measurement ID}}`, okidači `DOM Ready - consent granted` + `CE - nxt_consent granted`, once per page |
+| Tag `GA4 - Form prijava (event)` | GA4 Event, ime `{{rt - GA4 form event name}}`, parametar `form_type` = `{{dlv - nxt_form_type}}`, okidač `CE - nxt_lead`, setup tag `GA4 - Google tag` |
+
+Zašto restore tag: skripta sajta na svakoj stranici postavlja Google Consent Mode na *denied*, a na *granted* prebacuje samo na stranici gde je kliknuto „Prihvatam“. Bez ovog taga GA na sledećoj stranici (npr. /hvala/) gubi kolačić, pa se sesija i izvor (UTM) raspadaju.
+
+Bitno:
+- `CFG.ga4` u skripti sajta mora da ostane prazan, inače bi se GA duplirao.
+- GTM je uz prvi GA4 tag sam napravio tag „Google Analytics G-…“ na *Initialization – All Pages*. On je slao page_view i bez pristanka, pa je **obrisan**. Ako se ponovo pojavi, obriši ga.
+- Automatsko prikupljanje podataka koje korisnik unese (mejl, telefon, adresa) je **isključeno** (Google tag settings).
+- U GA4 posle objave: Admin → Key events → označi `generate_lead` (i po želji `open_day_prijava`).
+
+Test (`test_ga4_preview.js`, rezultat u `test_ga4_preview_result.txt`): ništa se ne šalje pre pristanka i posle „Samo neophodni“. Posle „Prihvatam“ consent je *granted* i client ID je isti na /upis/ i /hvala/. Događaji: `generate_lead[prijava]`, `open_day_prijava[open_day]`, `simultanka_prijava[simultanka]`.
