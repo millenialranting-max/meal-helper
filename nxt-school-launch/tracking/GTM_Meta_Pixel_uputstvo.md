@@ -205,4 +205,4 @@ Bitno:
 - Automatsko prikupljanje podataka koje korisnik unese (mejl, telefon, adresa) je **isključeno** (Google tag settings).
 - U GA4 posle objave: Admin → Key events → označi `generate_lead` (i po želji `open_day_prijava`).
 
-Test (`test_ga4_preview.js`, rezultat u `test_ga4_preview_result.txt`): ništa se ne šalje pre pristanka i posle „Samo neophodni“. Posle „Prihvatam“ consent je *granted* i client ID je isti na /upis/ i /hvala/. Događaji: `generate_lead[prijava]`, `open_day_prijava[open_day]`, `simultanka_prijava[simultanka]`.
+Measurement ID: `G-5MC9NLWDRN` (stream 16142093655). Test (`test_ga4_preview.js`, rezultat u `test_ga4_preview_result.txt`, uključuje i dolazak sa UTM-om): ništa se ne šalje pre pristanka i posle „Samo neophodni“. Posle „Prihvatam“ consent je *granted* i client ID je isti na /upis/ i /hvala/. Događaji: `generate_lead[prijava]`, `open_day_prijava[open_day]`, `simultanka_prijava[simultanka]`.

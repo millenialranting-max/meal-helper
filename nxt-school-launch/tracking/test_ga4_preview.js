@@ -37,15 +37,16 @@ async function fillSubmit(p) {
   b = await chromium.launch(); HUA = await (await b.newPage()).evaluate(() => navigator.userAgent);
   const out = [];
   async function flow(label, path, redirect, choice) {
+    if (process.env.ONLY && !label.includes(process.env.ONLY)) return;
     const t = await ctxFor(redirect); await t.p.goto(S + path, { waitUntil: 'load' }); await t.p.waitForTimeout(3000);
     t.set(choice === 'no' ? 'after Samo neophodni' : 'after Prihvatam');
     await t.p.click(choice === 'no' ? '#nxt-cc .nxt-cc-no' : '#nxt-cc .nxt-cc-yes'); await t.p.waitForTimeout(2500);
-    t.set('after form'); await fillSubmit(t.p); await t.p.waitForTimeout(redirect ? 9000 : 7000);
+    t.set('after form'); await fillSubmit(t.p); await t.p.waitForTimeout(redirect ? 12000 : 7000); t.log.push(['', 'ended on ' + t.p.url().replace(S, '') + ' · readyState=' + await t.p.evaluate(() => document.readyState).catch(() => '?')]);
     t.set('on leave (flush)'); await t.p.goto('about:blank').catch(() => {}); await t.p.waitForTimeout(1500);
     out.push(`\n## ${label} (errors ${t.errs.length})\n` + (t.log.length ? t.log.map(([ph, x]) => `  ${ph.padEnd(22)} ${x}`).join('\n') : '  (no Google/Meta requests)'));
     await t.ctx.close();
   }
-  await flow('/upis/ · Prihvatam · form redirects to /hvala/', '/upis/', '/hvala/');
+  await flow('/upis/ (sa UTM) · Prihvatam · form redirects to /hvala/', '/upis/?utm_source=fb&utm_medium=paid_social&utm_campaign=nxt_upis_2026&utm_content=test', '/hvala/');
   await flow('/open-day/ · Prihvatam · redirect', '/open-day/', '/hvala-open-day/');
   await flow('simultanka · Prihvatam · no redirect', '/nxt-experience-simultanka-sa-vladimirom-potkinom/', null);
   await flow('/upis/ · Samo neophodni', '/upis/', '/hvala/', 'no');

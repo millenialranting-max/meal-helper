@@ -1,34 +1,38 @@
 
-## /upis/ · Prihvatam · form redirects to /hvala/ (errors 0)
-  after Prihvatam        load gtag.js G-XXXXXXXXXX
-  after Prihvatam        GA4 page_view tid=G-XXXXXXXXXX consent=granted cid=201588214.1792150024 page=/upis/
+## /upis/ (sa UTM) · Prihvatam · form redirects to /hvala/ (errors 0)
+  after Prihvatam        load gtag.js G-5MC9NLWDRN
   after Prihvatam        Meta PageView
-  after form             GA4 user_engagement tid=G-XXXXXXXXXX consent=granted cid=201588214.1792150024 page=/upis/
-  after form             load gtag.js G-XXXXXXXXXX
+  after Prihvatam        GA4 page_view tid=G-5MC9NLWDRN consent=granted cid=537297829.1792151918 page=/upis/?utm_source=fb&utm_medium=paid_social&utm_campaign=nxt_upis_2026&utm_content=test
+  after form             GA4 user_engagement tid=G-5MC9NLWDRN consent=granted cid=537297829.1792151918 page=/upis/?utm_source=fb&utm_medium=paid_social&utm_campaign=nxt_upis_2026&utm_content=test
   after form             Meta PageView
+  after form             load gtag.js G-5MC9NLWDRN
   after form             Meta Lead
-  after form             GA4 page_view tid=G-XXXXXXXXXX consent=granted cid=201588214.1792150024 page=/hvala/
-  after form             GA4 generate_lead[prijava] tid=G-XXXXXXXXXX consent=granted cid=201588214.1792150024 page=/hvala/
-  on leave (flush)       GA4 user_engagement tid=G-XXXXXXXXXX consent=granted cid=201588214.1792150024 page=/hvala/
+  after form             GA4 page_view tid=G-5MC9NLWDRN consent=granted cid=537297829.1792151918 page=/hvala/
+  after form             GA4 generate_lead[prijava] tid=G-5MC9NLWDRN consent=granted cid=537297829.1792151918 page=/hvala/
+                         ended on /hvala/ · readyState=complete
+  on leave (flush)       GA4 user_engagement tid=G-5MC9NLWDRN consent=granted cid=537297829.1792151918 page=/hvala/
 
 ## /open-day/ · Prihvatam · redirect (errors 0)
-  after Prihvatam        load gtag.js G-XXXXXXXXXX
-  after Prihvatam        GA4 page_view tid=G-XXXXXXXXXX consent=granted cid=1825438369.1792150042 page=/open-day/
+  after Prihvatam        load gtag.js G-5MC9NLWDRN
   after Prihvatam        Meta PageView
-  after form             load gtag.js G-XXXXXXXXXX
+  after Prihvatam        GA4 page_view tid=G-5MC9NLWDRN consent=granted cid=1410460996.1792151940 page=/open-day/
+  after form             GA4 user_engagement tid=G-5MC9NLWDRN consent=granted cid=1410460996.1792151940 page=/open-day/
   after form             Meta PageView
+  after form             load gtag.js G-5MC9NLWDRN
   after form             Meta CompleteRegistration
-  after form             GA4 page_view tid=G-XXXXXXXXXX consent=granted cid=1825438369.1792150042 page=/hvala-open-day/
-  after form             GA4 open_day_prijava[open_day] tid=G-XXXXXXXXXX consent=granted cid=1825438369.1792150042 page=/hvala-open-day/
-  on leave (flush)       GA4 user_engagement tid=G-XXXXXXXXXX consent=granted cid=1825438369.1792150042 page=/hvala-open-day/
+  after form             GA4 page_view tid=G-5MC9NLWDRN consent=granted cid=1410460996.1792151940 page=/hvala-open-day/
+  after form             GA4 open_day_prijava[open_day] tid=G-5MC9NLWDRN consent=granted cid=1410460996.1792151940 page=/hvala-open-day/
+                         ended on /hvala-open-day/ · readyState=complete
+  on leave (flush)       GA4 user_engagement tid=G-5MC9NLWDRN consent=granted cid=1410460996.1792151940 page=/hvala-open-day/
 
 ## simultanka · Prihvatam · no redirect (errors 0)
-  after Prihvatam        load gtag.js G-XXXXXXXXXX
-  after Prihvatam        GA4 page_view tid=G-XXXXXXXXXX consent=granted cid=1572621525.1792150061 page=/nxt-experience-simultanka-sa-vladimirom-potkinom/
+  after Prihvatam        load gtag.js G-5MC9NLWDRN
+  after Prihvatam        GA4 page_view tid=G-5MC9NLWDRN consent=granted cid=1929313738.1792151962 page=/nxt-experience-simultanka-sa-vladimirom-potkinom/
   after Prihvatam        Meta PageView
   after form             Meta SimultankaPrijava
-  after form             GA4 simultanka_prijava[simultanka] tid=G-XXXXXXXXXX consent=granted cid=1572621525.1792150061 page=/nxt-experience-simultanka-sa-vladimirom-potkinom/
-  on leave (flush)       GA4 user_engagement tid=G-XXXXXXXXXX consent=granted cid=1572621525.1792150061 page=/nxt-experience-simultanka-sa-vladimirom-potkinom/
+  after form             GA4 simultanka_prijava[simultanka] tid=G-5MC9NLWDRN consent=granted cid=1929313738.1792151962 page=/nxt-experience-simultanka-sa-vladimirom-potkinom/
+                         ended on /nxt-experience-simultanka-sa-vladimirom-potkinom/ · readyState=complete
+  on leave (flush)       GA4 user_engagement tid=G-5MC9NLWDRN consent=granted cid=1929313738.1792151962 page=/nxt-experience-simultanka-sa-vladimirom-potkinom/
 
 ## /upis/ · Samo neophodni (errors 0)
-  (no Google/Meta requests)
+                         ended on /hvala/ · readyState=complete
