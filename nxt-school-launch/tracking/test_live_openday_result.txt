@@ -1,0 +1,2 @@
+LIVE v4 · /open-day/ (redirect na /hvala-open-day/) | after form: PageView, CompleteRegistration[open_day] | now on /hvala-open-day/ | errors 0 | real POSTs blocked 5
+LIVE v4 · /open-day/ (bez redirekcije)           | after form: CompleteRegistration[open_day] | now on /open-day/ | errors 0 | real POSTs blocked 2
