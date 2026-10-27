@@ -309,6 +309,7 @@ p2 = f"""
 </section>
 """
 
-(OUT / "yea_budget_lp.html").write_text(page(p1, "Yea Budget and Pages"))
-(OUT / "yea_calendar.html").write_text(page(p2, "Yea Ads Calendar"))
-print("built")
+if __name__ == "__main__":
+    (OUT / "yea_budget_lp.html").write_text(page(p1, "Yea Budget and Pages"))
+    (OUT / "yea_calendar.html").write_text(page(p2, "Yea Ads Calendar"))
+    print("built")

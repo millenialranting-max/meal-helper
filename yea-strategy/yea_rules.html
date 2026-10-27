@@ -1,0 +1,176 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Yea Budget Rules</title><link href="fonts/fonts.css" rel="stylesheet"><style>
+  :root{--ink:#1f1a2e;--ink2:#4d475c;--muted:#847e92;--bg:#fbf8f3;--card:#fff;--line:#e9e3da;
+    --plum:#5b3fa0;--plum-soft:#efeaf8;--cherry:#a3263b;--cherry-soft:#f9e6e9;--good:#2f7d4a;--good-soft:#e5f3ea;--amber:#8a5a00;--amber-soft:#fbf1dc}
+  @page{size:A4;margin:0} *{box-sizing:border-box;margin:0;padding:0} html,body{background:var(--bg)}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);font-size:7.6pt;line-height:1.34;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:0 11mm 10mm;background:var(--bg)}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-size:6.8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+  .hero{margin:0 -11mm;height:27mm;background:url(img/hero.jpg) right 55%/cover no-repeat;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(251,248,243,.97) 0%,rgba(251,248,243,.9) 50%,rgba(251,248,243,0) 66%)}
+  .hero .txt{position:absolute;left:11mm;top:5.5mm;width:118mm}
+  .hero h1{font-size:20pt;line-height:1.05;margin:3px 0 3px}
+  .hero p{font-size:8pt;color:var(--ink2)}
+  h2{font-size:11.5pt;margin:7px 0 4px;display:flex;align-items:baseline;gap:8px}
+  h2 small{font-family:Inter;font-size:6.9pt;color:var(--muted);font-weight:500}
+  h3{font-size:9.5pt;margin-bottom:3px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 9px}
+  .card svg{width:100%;height:auto;display:block;font-family:Inter,sans-serif}
+  .grid2{display:grid;grid-template-columns:1.12fr 1fr;gap:7px}
+  .formula{background:var(--plum);color:#efeaf8;border-radius:9px;padding:7px 10px;font-size:7.6pt}
+  .formula b{color:#fff;font-size:8.6pt;display:block;margin-bottom:2px;font-family:Fraunces,serif;font-weight:600}
+  .formula code{font-family:Inter;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border-radius:4px;padding:1px 5px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:5px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 7px}
+  .tile .v{font-family:Fraunces,serif;font-size:13.5pt;font-weight:600;color:var(--plum);line-height:1.1}
+  .tile .s{font-size:6.8pt;color:var(--ink2)}
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  th{font-size:6.2pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:4px 6px;background:#f7f3ec;font-weight:700}
+  td{padding:3.5px 6px;border-top:1px solid var(--line);font-size:7.2pt;color:var(--ink2);vertical-align:top}
+  td b{color:var(--ink)} td.r,th.r{text-align:right} tr.tot td{background:#faf7f2;font-weight:700;color:var(--ink)}
+  tr.peak td:first-child{box-shadow:inset 3px 0 0 var(--plum)}
+  .pill{display:inline-block;border-radius:4px;padding:0 5px;font-size:6.4pt;font-weight:800;letter-spacing:.03em}
+  .pill.ok{background:var(--good-soft);color:var(--good)} .pill.no{background:var(--cherry-soft);color:var(--cherry)} .pill.q{background:var(--amber-soft);color:var(--amber)}
+  .note{font-size:6.8pt;color:var(--muted);margin-top:4px;line-height:1.35}
+  .callout{border-radius:8px;padding:5px 8px;font-size:7.1pt;margin-top:5px;line-height:1.35}
+  .callout.amber{background:var(--amber-soft);color:#5c4a1c} .callout.amber b{color:#8a5a00}
+  .callout.cherry{background:var(--cherry-soft);color:#6b1c2a} .callout.cherry b{color:var(--cherry)}
+  .wire{display:grid;grid-template-columns:50mm 1fr;gap:9px;align-items:start}
+  .phone{border:2px solid #cfc7dc;border-radius:12px;padding:5px;background:#fff;position:relative}
+  .blk{border-radius:5px;padding:2.5px 5px;margin-bottom:2.5px;font-size:6.2pt;line-height:1.25;color:var(--ink2);background:#f6f2fb;border:1px dashed #d9cfe9}
+  .blk b{color:var(--ink);font-size:6.4pt}
+  .blk.top{background:var(--plum);color:#efeaf8;border:0} .blk.top b{color:#fff;display:inline}
+  .sticky{background:var(--cherry);color:#fff;border-radius:5px;text-align:center;font-weight:800;font-size:6.6pt;padding:3px}
+  ul.tight{padding-left:11px} ul.tight li{font-size:7.2pt;color:var(--ink2);margin-bottom:2px} ul.tight li b{color:var(--ink)}
+  .foot{position:absolute;left:11mm;right:11mm;bottom:6mm;font-size:6.3pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+  /* calendar */
+  .head2{padding-top:8mm;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:5px}
+  .head2 h1{font-size:20pt}
+  table.cal td{font-size:7pt;padding:4px 5px;line-height:1.3}
+  table.cal td.when b{display:block;font-family:Fraunces,serif;font-size:8.6pt;font-weight:600}
+  table.cal td.bud{font-weight:800;color:var(--plum);white-space:nowrap;font-size:7.6pt}
+  .num{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:var(--plum);color:#fff;font-size:6.8pt;font-weight:800;margin-bottom:2px}
+  .num.base{background:#b9b1c9}
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+  .lane{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 8px;border-top:3px solid var(--plum)}
+  .lane.c{border-top-color:var(--cherry)} .lane.g{border-top-color:var(--good)}
+  .lane b{display:block;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+  .lane.c b{color:var(--cherry)} .lane.g b{color:var(--good)} .lane b{color:var(--plum)}
+  .lane p{font-size:7.1pt;color:var(--ink2)}
+
+  .rule-h{display:flex;align-items:center;gap:7px;margin:8px 0 4px}
+  .rule-h .k{width:20px;height:20px;border-radius:50%;background:var(--plum);color:#fff;font-weight:800;font-size:8pt;display:grid;place-items:center;flex:none}
+  .rule-h h2{margin:0}
+  .lights{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .light{border-radius:9px;padding:7px 9px;background:var(--card);border:1px solid var(--line);border-top:5px solid}
+  .light.g{border-top-color:#2f7d4a} .light.y{border-top-color:#d39a00} .light.r{border-top-color:var(--cherry)}
+  .light .h{display:flex;align-items:center;gap:6px;font-weight:800;font-size:8.4pt;margin-bottom:2px}
+  .dot{width:11px;height:11px;border-radius:50%;flex:none}
+  .light .c{font-size:7.2pt;color:var(--ink);font-weight:600;margin-bottom:2px}
+  .light .a{font-size:7.2pt;color:var(--ink2)}
+  .gauge{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:9px;overflow:hidden;border:1px solid var(--line)}
+  .gauge div{padding:6px 9px;font-size:7.2pt;color:var(--ink2)}
+  .gauge b{display:block;font-size:9pt;margin-bottom:1px}
+  .gauge .lo{background:#f9e6e9} .gauge .lo b{color:var(--cherry)}
+  .gauge .mid{background:#fbf1dc} .gauge .mid b{color:#8a5a00}
+  .gauge .hi{background:#e5f3ea} .gauge .hi b{color:#2f7d4a}
+  .split{display:flex;height:22px;border-radius:6px;overflow:hidden;gap:2px;margin-top:3px}
+  .split div{display:flex;align-items:center;padding:0 8px;color:#fff;font-weight:700;font-size:7.4pt;white-space:nowrap}
+  table.mx td,table.mx th{text-align:center;padding:4px 5px} table.mx td:first-child,table.mx th:first-child{text-align:left}
+  .m{font-size:11pt;line-height:1} .m.full{color:var(--plum)} .m.half{color:#a99bd0} .m.off{color:#d8d2e0}
+  .flow{display:grid;grid-template-columns:1fr 18px 1fr;gap:4px 4px;align-items:center}
+  .flow .ad{background:var(--plum-soft);border-radius:7px;padding:4px 8px;font-weight:700;font-size:7.4pt;color:var(--plum)}
+  .flow .arr{color:var(--muted);text-align:center;font-size:10pt}
+  .flow .pg{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:4px 8px;font-size:7.3pt;color:var(--ink)}
+  .chips span{display:inline-block;border-radius:20px;padding:2px 8px;font-size:7pt;font-weight:700;margin:2px 3px 0 0}
+  .chips .no{background:var(--cherry-soft);color:var(--cherry)}
+  .stat{background:var(--plum);color:#efeaf8;border-radius:9px;padding:7px 10px;font-size:7.3pt}
+  .stat b{font-family:Fraunces,serif;font-size:15pt;color:#fff;display:block;line-height:1.1}
+  .dt{display:inline-block;width:11px;height:11px;border-radius:50%;border:1.6px solid var(--plum);vertical-align:-2px}
+  .dt.f{background:var(--plum)} .dt.h{background:linear-gradient(90deg,var(--plum) 50%,#fff 50%)} .dt.o{border-color:#d3cbe0;background:#fff}
+  .gl{display:block;font-style:normal;font-weight:400;color:var(--muted);font-size:6.6pt;margin-top:1px}
+  .lvl{display:inline-flex;gap:2px;vertical-align:middle;margin-right:4px}
+  .lvl i{width:6px;height:11px;border-radius:2px;background:#e3dcef;display:block}
+  .lvl i.on{background:var(--plum)}
+  .bud2{font-weight:800;color:var(--plum);font-size:8pt;white-space:nowrap}
+  .msg{font-style:italic;color:var(--ink);font-weight:600}
+  .lanes4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px}
+</style></head><body>
+<section class="page">
+  <div class="hero"><div class="txt">
+    <div class="eyebrow">Yea Protein · how to run the ads</div>
+    <h1>Budget rules &amp; landing pages</h1>
+    <p>How much to spend and when, which ads to run, where they lead.</p>
+  </div></div>
+
+  <div class="grid2" style="grid-template-columns:1fr 1fr">
+    <div>
+      <div class="rule-h"><span class="k">1</span><h2>Spend follows the season</h2></div>
+      <div class="card"><svg viewBox="0 0 330 114" role="img" aria-label="Budget level by season as a multiple of a normal week"><text x="118" y="13" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="700">Off-season</text><text x="118" y="20.5" font-size="6.6" fill="#847e92" text-anchor="end" font-weight="400">Jan–Feb, May–Oct</text><path d="M124,7 L176.66666666666666,7 Q180.66666666666666,7 180.66666666666666,11 L180.66666666666666,16 Q180.66666666666666,20 176.66666666666666,20 L124,20 Z" fill="#d6d0de"/><text x="185.66666666666666" y="17" font-size="9" fill="#1f1a2e" text-anchor="start" font-weight="800">1×</text><text x="118" y="31" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="700">Build-up</text><text x="118" y="38.5" font-size="6.6" fill="#847e92" text-anchor="end" font-weight="400">1–2 weeks before a fast</text><path d="M124,25 L205.0,25 Q209.0,25 209.0,29 L209.0,34 Q209.0,38 205.0,38 L124,38 Z" fill="#d6d0de"/><text x="214.0" y="35" font-size="9" fill="#1f1a2e" text-anchor="start" font-weight="800">1.5×</text><text x="118" y="49" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="700">Christmas fast</text><text x="118" y="56.5" font-size="6.6" fill="#847e92" text-anchor="end" font-weight="400">28 Nov – 6 Jan</text><path d="M124,43 L233.33333333333331,43 Q237.33333333333331,43 237.33333333333331,47 L237.33333333333331,52 Q237.33333333333331,56 233.33333333333331,56 L124,56 Z" fill="#5b3fa0"/><text x="242.33333333333331" y="53" font-size="9" fill="#1f1a2e" text-anchor="start" font-weight="800">2×</text><text x="118" y="67" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="700">Rest of Lent</text><text x="118" y="74.5" font-size="6.6" fill="#847e92" text-anchor="end" font-weight="400">week 4 to Easter</text><path d="M124,61 L233.33333333333331,61 Q237.33333333333331,61 237.33333333333331,65 L237.33333333333331,70 Q237.33333333333331,74 233.33333333333331,74 L124,74 Z" fill="#5b3fa0"/><text x="242.33333333333331" y="71" font-size="9" fill="#1f1a2e" text-anchor="start" font-weight="800">2×</text><text x="118" y="85" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="700">Black Friday</text><text x="118" y="92.5" font-size="6.6" fill="#847e92" text-anchor="end" font-weight="400">4 days</text><path d="M124,79 L290.0,79 Q294.0,79 294.0,83 L294.0,88 Q294.0,92 290.0,92 L124,92 Z" fill="#5b3fa0"/><text x="299.0" y="89" font-size="9" fill="#1f1a2e" text-anchor="start" font-weight="800">3×</text><text x="118" y="103" font-size="8.2" fill="#1f1a2e" text-anchor="end" font-weight="700">Lent, weeks 1–3</text><text x="118" y="110.5" font-size="6.6" fill="#847e92" text-anchor="end" font-weight="400">from Clean Monday</text><path d="M124,97 L290.0,97 Q294.0,97 294.0,101 L294.0,106 Q294.0,110 290.0,110 L124,110 Z" fill="#5b3fa0"/><text x="299.0" y="107" font-size="9" fill="#1f1a2e" text-anchor="start" font-weight="800">3×</text></svg>
+        <p class="note"><b style="color:var(--ink)">1× = your normal week.</b> Set it from what stock and margin allow, then multiply. In the first week of Lent orders were 3.5× the weeks before, and they fell ~60% the week after Easter, in both years.</p>
+      </div>
+    </div>
+    <div>
+      <div class="rule-h"><span class="k">2</span><h2>Stock decides how far you go</h2></div>
+      <div class="lights" style="grid-template-columns:1fr">
+        <div class="light g"><div class="h"><span class="dot" style="background:#2f7d4a"></span>Green: go to the season level</div><div class="c">Chocolate and Vanilla Caramel each have 6+ weeks of stock</div><div class="a">Run the full season level from rule 1.</div></div>
+        <div class="light y"><div class="h"><span class="dot" style="background:#d39a00"></span>Yellow: hold at 1×</div><div class="c">2–6 weeks of stock, or one size missing</div><div class="a">Push the flavors and Combos you have; order more now.</div></div>
+        <div class="light r"><div class="h"><span class="dot" style="background:var(--cherry)"></span>Red: retargeting only</div><div class="c">Under 2 weeks, or a top flavor sold out</div><div class="a">Pause ads for missing flavors. Restock before you spend.</div></div>
+      </div>
+      <p class="note"><b style="color:var(--ink)">Weeks of stock</b> = units in stock ÷ units sold in a normal week. In a fast, stock runs out about twice as fast, so halve it.</p>
+    </div>
+  </div>
+
+  <div class="grid2" style="grid-template-columns:1fr 1fr">
+    <div>
+      <div class="rule-h"><span class="k">3</span><h2>Scale or cut every week, on real revenue</h2></div>
+      <div class="gauge">
+        <div class="lo"><b>Under 2×</b>2 weeks in a row: cut 20%, check stock, offer and page</div>
+        <div class="mid"><b>2–3×</b>Hold the budget, swap in fresh ads</div>
+        <div class="hi"><b>3× or more</b>Add 20%, at most twice a week</div>
+      </div>
+      <p class="note">× = shop revenue (WooCommerce) ÷ total ad spend, that week. 3× was the 2025 level; set your own line from margin. Don't use Meta's purchase count for this.</p>
+    </div>
+    <div>
+      <div class="rule-h"><span class="k">4</span><h2>Split the money the same way, always</h2></div>
+      <div class="split"><div style="flex:80;background:var(--plum)">~80% new customers (one prospecting campaign)</div><div style="flex:20;background:var(--cherry)">~20% retargeting</div></div>
+      <p class="note">Retargeting covers cart, site visitors and refill (500g lasts ~2 weeks, 1kg ~4 weeks). It never stops, even in Red. Test new ads off-season; in peaks, run the winners.</p>
+    </div>
+  </div>
+
+  <h2>Which ads, when</h2>
+  <table class="mx">
+    <tr><th>Ad type</th><th>Off-season</th><th>Build-up</th><th>Black Friday</th><th>Fasts (Božićni post, Lent)</th></tr>
+    <tr><td><b>Posni story</b> · recipes, morning routine, creators</td><td><span class="dt h"></span></td><td><span class="dt f"></span></td><td><span class="dt h"></span></td><td><span class="dt f"></span></td></tr>
+    <tr><td><b>Best-seller flavors</b> · Chocolate, Vanilla Caramel</td><td><span class="dt f"></span></td><td><span class="dt h"></span></td><td><span class="dt h"></span></td><td><span class="dt h"></span></td></tr>
+    <tr><td><b>Combo value / offer</b> · 2× pack, price per kg</td><td><span class="dt h"></span></td><td><span class="dt f"></span></td><td><span class="dt f"></span></td><td><span class="dt f"></span></td></tr>
+    <tr><td><b>New ad tests</b> · 4–6 at a time</td><td><span class="dt f"></span></td><td><span class="dt o"></span></td><td><span class="dt o"></span></td><td><span class="dt o"></span></td></tr>
+    <tr><td><b>Retargeting</b> · reviews, FAQ, refill reminder</td><td><span class="dt f"></span></td><td><span class="dt f"></span></td><td><span class="dt f"></span></td><td><span class="dt f"></span></td></tr>
+  </table>
+  <p class="note"><span class="dt f"></span> main &nbsp; <span class="dt h"></span> support &nbsp; <span class="dt o"></span> not now</p>
+
+  <h2>Where ads should lead</h2>
+  <div class="grid2" style="grid-template-columns:1.5fr 1fr">
+    <div class="card">
+      <div class="flow">
+        <div class="ad">Posni / season ads</div><div class="arr">→</div><div class="pg"><b>/posni-protein</b> (new landing page)</div>
+        <div class="ad">One-flavor ads</div><div class="arr">→</div><div class="pg">Product page with that flavor pre-selected</div>
+        <div class="ad">Combo / offer ads</div><div class="arr">→</div><div class="pg">2× Combo page (rebuild; old one is 404)</div>
+        <div class="ad">Retargeting</div><div class="arr">→</div><div class="pg">Cart · the product they viewed · refill</div>
+      </div>
+      <div class="chips" style="margin-top:5px"><b style="font-size:7.2pt;margin-right:4px">Never:</b><span class="no">homepage</span><span class="no">3× packs</span><span class="no">sold-out flavors</span></div>
+    </div>
+    <div>
+      <div class="stat"><b>~2× more per visit</b>2× Combo pages earn 94–114 RSD per Meta visit; the homepage earns 54.</div>
+      <ul class="tight" style="margin-top:6px">
+        <li><b>Same promise as the ad</b> on the first screen</li>
+        <li><b>Buy without scrolling</b> on a phone</li>
+        <li><b>Only in-stock flavors</b>, price per kg</li>
+        <li><b>Real reviews</b> near the top</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot"><span>Based on Yea Protein GA4 and Meta Ads, Sep 2025 – Oct 2026. Multipliers are starting points; adjust with rule 3.</span><span>1 / 2</span></div>
+</section>
+</body></html>
