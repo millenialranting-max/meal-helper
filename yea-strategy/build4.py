@@ -53,6 +53,32 @@ CSS4 = CSS + """
   .lane b{display:block;font-size:6.6pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;color:var(--plum)}
   .lane.c{border-top-color:var(--cherry)} .lane.c b{color:var(--cherry)} .lane.g{border-top-color:var(--good)} .lane.g b{color:var(--good)}
   .lane p{font-size:6.9pt;color:var(--ink2);line-height:1.3}
+  .lp3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .lpc{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:9px;padding:5px 7px 6px}
+  .lph{display:flex;align-items:center;gap:5px}
+  .lk{width:17px;height:17px;border-radius:4px;background:var(--c);color:#fff;font-weight:800;font-size:8.4pt;display:grid;place-items:center;flex:none}
+  .lph b{display:block;font-size:8.6pt;line-height:1.1} .lph small{display:block;font-size:6.2pt;color:var(--muted)}
+  .st{margin-left:auto;font-size:6pt;font-weight:800;padding:1px 6px;border-radius:10px;white-space:nowrap;background:var(--cs);color:var(--c)}
+  .lpc svg{width:100%;display:block;margin:3px 0 2px;font-family:Inter,sans-serif}
+  .lpb{display:grid;grid-template-columns:27mm 1fr;gap:6px}
+  .mob{border:2px solid #2a2438;border-radius:9px;background:#fff;overflow:hidden;font-size:5.4pt;line-height:1.2;color:var(--ink)}
+  .mob .sbar{display:flex;justify-content:space-between;padding:2px 5px;font-weight:800;font-size:5.4pt;border-bottom:1px solid var(--line)}
+  .mob .im{height:19mm;background:#f3eff9;display:flex;align-items:center;justify-content:center;position:relative}
+  .mob .im img{height:18mm}
+  .mob .tag{position:absolute;left:3px;top:3px;background:var(--good);color:#fff;font-size:4.8pt;font-weight:800;border-radius:3px;padding:0 3px}
+  .mob .hd{font-family:Fraunces,serif;font-weight:700;font-size:6.6pt;padding:3px 5px 1px;line-height:1.1}
+  .mob .sb{padding:0 5px;color:var(--ink2);font-size:5.1pt}
+  .mob .chips{display:flex;gap:2px;padding:2px 5px;flex-wrap:wrap}
+  .mob .chips i{font-style:normal;border:1px solid #cfc7dc;border-radius:6px;padding:0 3px;font-size:4.9pt}
+  .mob .chips i.on{border-color:var(--plum);background:var(--plum-soft);color:var(--plum);font-weight:800}
+  .mob .pr{padding:1px 5px;font-weight:800;font-size:6.2pt}
+  .mob .up{margin:1px 5px;border:1px dashed var(--good);border-radius:4px;padding:1px 3px;font-size:5pt;color:var(--good);font-weight:700}
+  .mob .btn{margin:3px 5px 4px;background:var(--cherry);color:#fff;text-align:center;border-radius:4px;font-weight:800;font-size:5.6pt;padding:2px}
+  .lpt p{font-size:6.6pt;color:var(--ink2);line-height:1.28;margin-bottom:3px}
+  .lpt p b{display:block;color:var(--c);font-size:5.9pt;letter-spacing:.08em;text-transform:uppercase}
+  .lpnote{margin-top:5px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:6.9pt;color:var(--ink2);line-height:1.35}
+  .lpnote b{color:var(--ink)} .lpnote .nv{color:var(--cherry)}
+  .pg{display:inline-grid;place-items:center;width:12px;height:12px;border-radius:3px;color:#fff;font-size:6.4pt;font-weight:800;margin-right:2px;vertical-align:-1px}
   .adlib{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
   .ad{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 7px;font-size:6.8pt;color:var(--ink2);line-height:1.3}
   .ad h5{font-size:7.6pt;color:var(--ink);font-weight:800;margin-bottom:1px}
@@ -92,61 +118,82 @@ def chart_season():
 
 # ---------- page 2: calendar ----------
 # (n, when, name, peak, budget, sales_last_year, stock, message_sr, message_en, ads, offer, landing)
+PAGES = {"A": ("Posni page", "#5b3fa0", "#efeaf8"), "B": ("Product page", "#2e8f6a", "#e3f1ea"), "C": ("Combo page", "#b8611f", "#f8eadf")}
+
+
+def pg(k, label=True):
+    name, col, _ = PAGES[k]
+    return f'<span class="pg" style="background:{col}">{k}</span>' + (f"<b>{name}</b>" if label else "")
+
+
+def when_bar(k, strong, light_all=False):
+    # Nov 1 = day 0 ... May 31 = day 211
+    col = PAGES[k][1]
+    W, x0, x1 = 200, 1, 199
+    sx = (x1 - x0) / 212
+    s = [f'<rect x="{x0}" y="9" width="{x1-x0}" height="7" rx="2" fill="{col}" opacity="{.22 if light_all else .08}"/>']
+    for a, b in strong:
+        s.append(f'<rect x="{x0+a*sx:.1f}" y="9" width="{(b-a+1)*sx:.1f}" height="7" rx="2" fill="{col}"/>')
+    for d, m in [(0, "Nov"), (30, "Dec"), (61, "Jan"), (92, "Feb"), (120, "Mar"), (151, "Apr"), (181, "May")]:
+        s.append(t(x0 + d * sx + 1, 6.5, m, 5.6, MUTED))
+    return f'<svg viewBox="0 0 {W} 17" role="img" aria-label="When this page gets ad traffic">{"".join(s)}</svg>'
+
+
 ROWS = [
     (1, "now – 19 Nov", "Restock + test", False, "1×",
      "1× (autumn 2025)", "6+ wks",
      "Omiljeni ukus je opet tu.", "Your favorite flavor is back.",
      "<b>“Back in stock” statics</b> for Chocolate and Vanilla Caramel (pack, flavor, price per kg). <b>Test 4–6 posni concepts</b>: posni breakfast Reel, morning shaker routine, flavor carousel, Combo value static, 2 creator partnership videos.",
      "<b>Sour Cherry 500g + free EasyGut</b> until 8 Nov (/akcije). <b>2× Combos return</b> at the usual Combo price once restocked (~25–30% under two singles).",
-     "Flavor ads → product page, flavor pre-selected · Sour Cherry → /akcije"),
+     f"{pg('B')}, flavor pre-selected · Sour Cherry ads → /akcije"),
     (2, "20 – 26 Nov", "Spremi se za post", False, "1.5×",
      "~1× (no pre-fast bump in 2025)", "6+ wks, plus 4 for BF",
      "Post počinje 28.11. Spremi se.", "The fast starts 28 Nov. Get ready.",
      "Move the <b>2–3 test winners</b> into the main campaign. <b>Countdown stories</b> “još 7 dana do posta”. <b>Combo carousel</b>: two packs = the whole fast.",
      "<b>2× Combo, any two flavors</b>, pitched as “one 2×1kg covers the whole 40-day fast”. Leftover Sour Cherry as a mixed 2×500g with Vanilla Caramel.",
-     "<b>/posni-protein</b> goes live · Combo ads → 2× Combo page"),
+     f"{pg('A')} goes live · Combo ads → {pg('C')}"),
     (3, "27 – 30 Nov", "Black Friday", True, "3×",
      "~4× (BF week 2025: 242 orders)", "4 wks for this week",
      "Najbolja cena ove godine.", "Best price of the year.",
      "<b>Offer static</b> with the discount and the Combo, <b>best-seller carousel</b> with BF prices, <b>countdown stories</b> Fri → Mon, retargeting to cart abandoners with the code.",
      "<b>Black Friday code on everything incl. Combos</b>, 4 days only. Last year's 10% code (yeabw10) brought 42 orders. Needs client OK.",
-     "/posni-protein with a code banner · cart → /cart"),
+     f"{pg('A')} + {pg('C')}, both with a code banner · cart ads → /cart"),
     (4, "1 Dec – 6 Jan", "Božićni post", True, "2× → 1×",
      "~1.8× in wks 1–2, ~1× over the holidays", "~7 wks for the period",
      "Posni protein za ceo post.", "Protein for the whole fast.",
      "<b>3 posni breakfast Reels</b> (oats, smoothie, pancakes), <b>“a fasting day” UGC</b>, creator partnership ads, Combo value static. New hooks every 2 weeks. <b>Drop to 1× from ~15 Dec</b>, when holiday sales fall.",
      "<b>2× Combo, no extra discount</b>, free delivery. Refill reminders for November buyers (500g lasts ~2 weeks, 1kg ~4).",
-     "<b>/posni-protein</b> · refill → their flavor"),
+     f"{pg('A')} · refill ads → {pg('B')}"),
     (5, "7 Jan – 28 Feb", "Off-season", False, "1×",
      "1× (Jan–Feb 2026: ~65 orders/wk)", "6+ wks",
      "Protein za svaki dan.", "Protein for every day.",
      "<b>Everyday use</b>: breakfast and training, taste-led flavor ads, a “new year, new routine” angle in early January. <b>From mid-Feb test 4–6 new Lent concepts</b> at small budget.",
      "<b>Singles + 2× Combos</b>, card −5%. No discounts: save them for the fasts.",
-     "Product pages · 2× Combo page"),
+     f"{pg('B')} · Combo ads → {pg('C')}"),
     (6, "1 – 14 Mar", "Build-up to Lent", False, "1.5×",
      "1× → 2× in the last week", "~3 wks, plus 14 for Lent",
      "Veliki post počinje 15.3. Spremi se.", "Lent starts 15 Mar. Stock up.",
      "<b>Lent teaser</b> ads and stories, <b>best Lent test ads</b> move into the main campaign, Combo carousel “za ceo post”.",
      "<b>2× Combo “za ceo post”</b> (Lent is 7 weeks). 3× shown only as an upsell on the page, never as the ad's offer.",
-     "<b>/posni-protein</b> (Lent version)"),
+     f"{pg('A')} (Lent version) · Combo ads → {pg('C')}"),
     (7, "15 Mar – 4 Apr", "Lent weeks 1–3", True, "3×",
      "4× in wk 1, ~2.2× in wks 2–3", "~8.5 wks for 3 weeks",
      "Posni protein koji je stvarno ukusan.", "Posni protein that actually tastes good.",
      "<b>The biggest weeks of the year.</b> Posni hero ads at full budget, recipe carousel, creator videos. Scale +20% while revenue holds; don't test new ads now.",
      "<b>Lent 2× Combo bundle</b> (a discount only with client OK). Free delivery.",
-     "<b>/posni-protein</b>"),
+     f"{pg('A')} · Combo ads → {pg('C')}"),
     (8, "5 Apr – 1 May", "Rest of Lent", True, "1.5×",
      "~1.75×, Easter week ~0.8×", "~6 wks",
      "Pola posta je iza tebe. Ne ostani bez zaliha.", "Halfway through. Don't run out.",
      "<b>Same winners with fresh hooks weekly.</b> <b>Refill ads</b> to March buyers (their packs run out now). Cut to 1× in Easter week.",
      "<b>2× Combos</b> + refill reminder with their last flavor.",
-     "<b>/posni-protein</b> · refill → their flavor"),
+     f"{pg('A')} · refill ads → {pg('B')}"),
     (9, "from 2 May", "After Easter", False, "1×",
      "~0.8× (May 2026)", "6+ wks",
      "Protein za svaki dan.", "Protein for every day.",
      "<b>Everyday protein</b>: breakfast, training, summer, taste. <b>Test new ads</b> again.",
      "<b>Singles + 2× Combos</b>.",
-     "Product pages · 2× Combo page"),
+     f"{pg('B')} · Combo ads → {pg('C')}"),
 ]
 # strip segments: (phase n, days, level, peak)
 SEG = [(1, 24, 1.0, False), (2, 7, 1.5, False), (3, 4, 3.0, True), (4, 14, 2.0, True), (4, 23, 1.0, True), (5, 53, 1.0, False),
@@ -198,11 +245,11 @@ html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Yea
 <section class="page">
   <div class="hero"><div class="txt">
     <div class="eyebrow">Yea Protein · ads playbook · Nov 2026 – May 2027</div>
-    <h1>How much to spend, when, and where</h1>
-    <p>Budget rules, landing pages, and the season calendar on page 2.</p>
+    <h1>The Yea ads playbook</h1>
+    <p>How much to spend, when, where to send people, and what to say.</p>
   </div></div>
 
-  <div class="fix"><strong>Fix first</strong><span>Restock Chocolate + Vanilla Caramel</span><span>Bring back 2× Combos</span><span>Build /posni-protein</span><span>Turn on stock tracking</span><span>Keep EasyGut's budget separate</span><span>Judge by shop revenue, not Meta</span></div>
+  <div class="fix"><strong>Fix first</strong><span>Restock Choco + Vanilla Caramel</span><span>Bring back 2× Combos</span><span>Build page A</span><span>Stock tracking on</span><span>EasyGut on its own budget</span></div>
 
   <div class="grid2" style="grid-template-columns:1fr 1.08fr;margin-top:6px">
     <div class="base">
@@ -227,7 +274,7 @@ html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Yea
       <div class="tl"><i style="background:#2f7d4a"></i><span><b>Green</b>: Chocolate and Vanilla Caramel have 6+ normal weeks → run the planned level.</span></div>
       <div class="tl"><i style="background:#d39a00"></i><span><b>Yellow</b>: 2–6 weeks or a size missing → hold at 1×, push what you have, reorder.</span></div>
       <div class="tl"><i style="background:var(--cherry)"></i><span><b>Red</b>: under 2 weeks or a top flavor sold out → retargeting only.</span></div>
-      <p class="note" style="margin-top:1px">Weeks of stock = units ÷ units sold in a normal week. In a fast, divide by the "last year" multiple on page 2.</p></div>
+      <p class="note" style="margin-top:1px">Weeks of stock = units in stock ÷ units sold in a normal week.</p></div>
     <div class="rc"><h4><span class="k">2</span>Every week: scale or cut</h4>
       <div class="tl"><i style="background:#2f7d4a"></i><span><b>3× or more</b> revenue ÷ ad spend → add 20% (max twice a week).</span></div>
       <div class="tl"><i style="background:#d39a00"></i><span><b>2–3×</b> → hold, swap in fresh ads.</span></div>
@@ -237,47 +284,71 @@ html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Yea
       <p style="font-size:7pt;color:var(--ink2);line-height:1.35"><b style="color:var(--ink)">~80%</b> to one prospecting campaign, <b style="color:var(--ink)">~20%</b> to retargeting (cart, visitors, refill). Retargeting never stops, even in Red.<br><b style="color:var(--ink)">Test new ads off-season</b>, 4–6 at a time; in peaks, run only the winners.</p></div>
   </div>
 
-  <h2>Landing pages <small>99% of ad visitors are on a phone, and 63% leave after one page</small></h2>
-  <div class="lpwrap">
-    <div class="phone">
-      <div class="blk top"><span class="bn">1</span><span><b>Posni protein</b> · pack photo · price per kg · free delivery · [Dodaj u korpu]</span></div>
-      <div class="blk"><span class="bn">2</span><span><b>Pick flavor + pack</b> · in-stock only · 2× Combo with saving</span></div>
-      <div class="blk"><span class="bn">3</span><span><b>Why it's posni</b> · yeast protein · 9 amino acids · no added sugar</span></div>
-      <div class="blk"><span class="bn">4</span><span><b>3 posni breakfasts</b> · oats, smoothie, pancakes</span></div>
-      <div class="blk"><span class="bn">5</span><span><b>Real reviews</b> · photos + names</span></div>
-      <div class="blk"><span class="bn">6</span><span><b>FAQ</b> · delivery 2–3 days · card −5% · 14-day returns · how long a pack lasts</span></div>
-      <div class="sticky">Dodaj u korpu · pinned on mobile</div>
+  <h2>Landing pages <small>3 pages, one job each. Every ad goes to the page that repeats its promise. Letters match page 2.</small></h2>
+  <div class="lp3">
+    <div class="lpc" style="--c:#5b3fa0;--cs:#efeaf8">
+      <div class="lph"><span class="lk">A</span><div><b>Posni page</b><small>/posni-protein</small></div><span class="st">New · build by 20 Nov</span></div>
+      {when_bar("A", [(19, 66), (120, 180)])}
+      <div class="lpb">
+        <div class="mob"><div class="sbar"><span>YEA</span><span>Korpa</span></div>
+          <div class="im"><span class="tag">POSNO</span><img src="img/pack-1kg.webp" alt=""></div>
+          <div class="hd">Posni protein koji je stvarno ukusan</div><div class="sb">Protein iz kvasca · posno</div>
+          <div class="chips"><i class="on">Čokolada</i><i>Vanilla</i><i>Višnja</i></div>
+          <div class="pr">2× 1 kg za ceo post</div><div class="up">Besplatna dostava</div><div class="btn">Dodaj u korpu</div></div>
+        <div class="lpt">
+          <p><b>When</b>Both fasts, plus 2–3 weeks before each.</p>
+          <p><b>Ads that land here</b>Posni breakfast Reels, creator videos, countdown stories.</p>
+          <p><b>Below the first screen</b>Posni facts, 3 posni breakfasts, reviews, FAQ.</p>
+          <p><b>Why</b>The fast is the top reason to buy (4× orders in Lent week 1). No page says "posni" today.</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <table class="why">
-        <tr><th>Block</th><th>Why it's there</th></tr>
-        <tr><td><span class="bn2">1</span>First screen sells</td><td>Most ad visitors see one phone screen and leave, so the promise, price and buy button must be on it.</td></tr>
-        <tr><td><span class="bn2">2</span>In stock + Combo</td><td>Combos were 40–66% of revenue at their peak. A sold-out flavor is a paid click with nothing to buy.</td></tr>
-        <tr><td><span class="bn2">3</span>Posni facts</td><td>The fast is why people buy (4× orders in Lent week 1). Facts only, no health claims.</td></tr>
-        <tr><td><span class="bn2">4</span>Recipes</td><td>Answers "how do I use it while fasting", which none of the current pages do.</td></tr>
-        <tr><td><span class="bn2">5</span>Reviews</td><td>Every product page shows 0 reviews today, next to "10.000 zadovoljnih kupaca".</td></tr>
-        <tr><td><span class="bn2">6</span>FAQ</td><td>Removes the last doubts: delivery time, payment, returns.</td></tr>
-      </table>
-      <table class="lead" style="margin-top:5px">
-        <tr><th>Ad</th><th>Goes to</th><th>Why</th></tr>
-        <tr><td><b>Posni / season</b></td><td>/posni-protein</td><td>Same reason to buy as the ad</td></tr>
-        <tr><td><b>One flavor</b></td><td>Product page, flavor pre-selected</td><td>One tap less, same promise</td></tr>
-        <tr><td><b>Combo / offer</b></td><td>2× Combo page (rebuild, now 404)</td><td>Best revenue per visit: 94–114 RSD</td></tr>
-        <tr><td><b>Never</b></td><td>Homepage · 3× packs · sold-out</td><td>Homepage earns 54 RSD; 3× packs 0.6% buy</td></tr>
-      </table>
+    <div class="lpc" style="--c:#2e8f6a;--cs:#e3f1ea">
+      <div class="lph"><span class="lk">B</span><div><b>Product page</b><small>/proizvod/yea-protein-1kg/</small></div><span class="st">Exists · 4 fixes</span></div>
+      {when_bar("B", [(0, 18), (67, 119), (181, 211)], light_all=True)}
+      <div class="lpb">
+        <div class="mob"><div class="sbar"><span>YEA</span><span>Korpa</span></div>
+          <div class="im"><img src="img/pack-1kg.webp" alt=""></div>
+          <div class="hd">Yea Protein 1 kg</div><div class="sb">★★★★★ recenzije</div>
+          <div class="chips"><i class="on">Čokolada ✓</i><i>Vanilla Caramel</i></div>
+          <div class="pr">4.499 RSD</div><div class="up">Uzmi 2× i uštedi →</div><div class="btn">Dodaj u korpu</div></div>
+        <div class="lpt">
+          <p><b>When</b>Off-season, and any ad that shows one flavor.</p>
+          <p><b>Ads that land here</b>One-flavor ads, "back in stock", refill ads.</p>
+          <p><b>Fix</b>Flavor pre-selected from the ad link, sold-out flavors hidden, real reviews (0 today), 2× Combo box under the price.</p>
+          <p><b>Why</b>They land on the flavor they saw: one tap less.</p>
+        </div>
+      </div>
+    </div>
+    <div class="lpc" style="--c:#b8611f;--cs:#f8eadf">
+      <div class="lph"><span class="lk">C</span><div><b>Combo page</b><small>/proizvod/combo-2x1kg/</small></div><span class="st">Rebuild · now 404</span></div>
+      {when_bar("C", [(19, 29)], light_all=True)}
+      <div class="lpb">
+        <div class="mob"><div class="sbar"><span>YEA</span><span>Korpa</span></div>
+          <div class="im"><img src="img/pack-1kg.webp" alt="" style="height:15mm;margin-right:-4mm"><img src="img/pack-1kg.webp" alt="" style="height:15mm"></div>
+          <div class="hd">2 pakovanja = ceo post</div><div class="sb">Izaberi 2 ukusa</div>
+          <div class="chips"><i class="on">Čokolada</i><i class="on">Vanilla</i></div>
+          <div class="pr">2× 1 kg · manje po kg</div><div class="up">Besplatna dostava</div><div class="btn">Dodaj u korpu</div></div>
+        <div class="lpt">
+          <p><b>When</b>All year, whenever the ad's offer is the Combo. Busiest 20–30 Nov.</p>
+          <p><b>Ads that land here</b>Combo value static, Black Friday offer, cart retargeting.</p>
+          <p><b>Why</b>Most money per visit: 94–114 RSD vs 54 on the homepage. Combos were 40–66% of revenue.</p>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="lpnote"><b>All three:</b> 99% of ad visitors are on a phone and 63% leave after one screen, so the <b>first screen</b> = photo, promise, price, buy button (pinned). Only in-stock flavors. Bar = when the page gets ads (dark = main page). <b class="nv">Never</b> send ads to the homepage (54 RSD a visit), 3× packs (0.6% buy) or a sold-out flavor.</div>
 
   <h2>The ads and offers <small>numbers = calendar phases on page 2 · show only in-stock flavors · facts, no health claims</small></h2>
   <div class="adlib">
-    <div class="ad"><h5>Posni breakfast Reel</h5>15–20s, hands only: oats, smoothie or pancakes with Yea in 2 minutes. Text on screen, ends on pack + price per kg.<span class="ph">Phases 1 · 4 · 7</span></div>
+    <div class="ad"><h5>Posni breakfast Reel</h5>15–20s, hands only: oats, smoothie or pancakes with Yea. Ends on pack + price per kg.<span class="ph">Phases 1 · 4 · 7</span></div>
     <div class="ad"><h5>"A fasting day" creator video</h5>A creator's real morning in the fast, shaker in hand. Runs as a partnership ad from their profile.<span class="ph">Phases 1 · 4 · 7 · 8</span></div>
     <div class="ad"><h5>Flavor carousel</h5>One card per in-stock flavor: pack cut-out + one taste line. Last card is the 2× Combo.<span class="ph">Phases 2 · 3 · 5</span></div>
     <div class="ad"><h5>Combo value static</h5>Two packs side by side, price per kg vs a single, "dovoljno za ceo post".<span class="ph">Phases 1 · 2 · 4 · 6 · 7</span></div>
-    <div class="ad"><h5>"Back in stock" static</h5>The restocked flavor big, "Vratio se omiljeni ukus", price per kg. Run for 2–3 weeks after a restock.<span class="ph">Phase 1, and after any restock</span></div>
+    <div class="ad"><h5>"Back in stock" static</h5>The restocked flavor big, "Vratio se omiljeni ukus", price per kg. Runs 2–3 weeks.<span class="ph">Phase 1, and after any restock</span></div>
     <div class="ad"><h5>Countdown stories</h5>"Još 7 dana do posta" or "BF još 2 dana". 3 frames: date, Combo, buy button.<span class="ph">Phases 2 · 3 · 6</span></div>
     <div class="ad"><h5>Offer static</h5>Only for Black Friday: the code, the price, the end date. Nothing else on it.<span class="ph">Phase 3</span></div>
-    <div class="ad"><h5>Refill ad (retargeting)</h5>"Tvoj [ukus] je pri kraju?" to buyers 2 weeks (500g) or 4 weeks (1kg) after the order, with their flavor.<span class="ph">Always on</span></div>
+    <div class="ad"><h5>Refill ad (retargeting)</h5>"Tvoj [ukus] je pri kraju?" to buyers 2 weeks (500g) or 4 weeks (1kg) after ordering.<span class="ph">Always on</span></div>
   </div>
   <div class="offers">
     <div><b>2× Combo = the default</b>Cheaper per kg than two singles, and covers a whole fast. Lead with it in every season.</div>
