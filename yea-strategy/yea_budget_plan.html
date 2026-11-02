@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Yea Budget Plan</title>
+<link href="fonts/fonts.css" rel="stylesheet"><style>
+  :root{--ink:#1f1a2e;--ink2:#4d475c;--muted:#847e92;--bg:#fbf8f3;--card:#fff;--line:#e9e3da;
+    --plum:#5b3fa0;--plum-soft:#efeaf8;--cherry:#a3263b;--cherry-soft:#f9e6e9;--good:#2f7d4a;--good-soft:#e5f3ea;--amber:#8a5a00;--amber-soft:#fbf1dc}
+  @page{size:A4;margin:0} *{box-sizing:border-box;margin:0;padding:0} html,body{background:var(--bg)}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);font-size:7.6pt;line-height:1.34;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:0 11mm 10mm;background:var(--bg)}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-size:6.8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--plum)}
+  .hero{margin:0 -11mm;height:27mm;background:url(img/hero.jpg) right 55%/cover no-repeat;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(251,248,243,.97) 0%,rgba(251,248,243,.9) 50%,rgba(251,248,243,0) 66%)}
+  .hero .txt{position:absolute;left:11mm;top:5.5mm;width:118mm}
+  .hero h1{font-size:20pt;line-height:1.05;margin:3px 0 3px}
+  .hero p{font-size:8pt;color:var(--ink2)}
+  h2{font-size:11.5pt;margin:7px 0 4px;display:flex;align-items:baseline;gap:8px}
+  h2 small{font-family:Inter;font-size:6.9pt;color:var(--muted);font-weight:500}
+  h3{font-size:9.5pt;margin-bottom:3px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 9px}
+  .card svg{width:100%;height:auto;display:block;font-family:Inter,sans-serif}
+  .grid2{display:grid;grid-template-columns:1.12fr 1fr;gap:7px}
+  .formula{background:var(--plum);color:#efeaf8;border-radius:9px;padding:7px 10px;font-size:7.6pt}
+  .formula b{color:#fff;font-size:8.6pt;display:block;margin-bottom:2px;font-family:Fraunces,serif;font-weight:600}
+  .formula code{font-family:Inter;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border-radius:4px;padding:1px 5px}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:5px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 7px}
+  .tile .v{font-family:Fraunces,serif;font-size:13.5pt;font-weight:600;color:var(--plum);line-height:1.1}
+  .tile .s{font-size:6.8pt;color:var(--ink2)}
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  th{font-size:6.2pt;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:4px 6px;background:#f7f3ec;font-weight:700}
+  td{padding:3.5px 6px;border-top:1px solid var(--line);font-size:7.2pt;color:var(--ink2);vertical-align:top}
+  td b{color:var(--ink)} td.r,th.r{text-align:right} tr.tot td{background:#faf7f2;font-weight:700;color:var(--ink)}
+  tr.peak td:first-child{box-shadow:inset 3px 0 0 var(--plum)}
+  .pill{display:inline-block;border-radius:4px;padding:0 5px;font-size:6.4pt;font-weight:800;letter-spacing:.03em}
+  .pill.ok{background:var(--good-soft);color:var(--good)} .pill.no{background:var(--cherry-soft);color:var(--cherry)} .pill.q{background:var(--amber-soft);color:var(--amber)}
+  .note{font-size:6.8pt;color:var(--muted);margin-top:4px;line-height:1.35}
+  .callout{border-radius:8px;padding:5px 8px;font-size:7.1pt;margin-top:5px;line-height:1.35}
+  .callout.amber{background:var(--amber-soft);color:#5c4a1c} .callout.amber b{color:#8a5a00}
+  .callout.cherry{background:var(--cherry-soft);color:#6b1c2a} .callout.cherry b{color:var(--cherry)}
+  .wire{display:grid;grid-template-columns:50mm 1fr;gap:9px;align-items:start}
+  .phone{border:2px solid #cfc7dc;border-radius:12px;padding:5px;background:#fff;position:relative}
+  .blk{border-radius:5px;padding:2.5px 5px;margin-bottom:2.5px;font-size:6.2pt;line-height:1.25;color:var(--ink2);background:#f6f2fb;border:1px dashed #d9cfe9}
+  .blk b{color:var(--ink);font-size:6.4pt}
+  .blk.top{background:var(--plum);color:#efeaf8;border:0} .blk.top b{color:#fff;display:inline}
+  .sticky{background:var(--cherry);color:#fff;border-radius:5px;text-align:center;font-weight:800;font-size:6.6pt;padding:3px}
+  ul.tight{padding-left:11px} ul.tight li{font-size:7.2pt;color:var(--ink2);margin-bottom:2px} ul.tight li b{color:var(--ink)}
+  .foot{position:absolute;left:11mm;right:11mm;bottom:6mm;font-size:6.3pt;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+  /* calendar */
+  .head2{padding-top:8mm;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:5px}
+  .head2 h1{font-size:20pt}
+  table.cal td{font-size:7pt;padding:4px 5px;line-height:1.3}
+  table.cal td.when b{display:block;font-family:Fraunces,serif;font-size:8.6pt;font-weight:600}
+  table.cal td.bud{font-weight:800;color:var(--plum);white-space:nowrap;font-size:7.6pt}
+  .num{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:var(--plum);color:#fff;font-size:6.8pt;font-weight:800;margin-bottom:2px}
+  .num.base{background:#b9b1c9}
+  .lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+  .lane{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 8px;border-top:3px solid var(--plum)}
+  .lane.c{border-top-color:var(--cherry)} .lane.g{border-top-color:var(--good)}
+  .lane b{display:block;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+  .lane.c b{color:var(--cherry)} .lane.g b{color:var(--good)} .lane b{color:var(--plum)}
+  .lane p{font-size:7.1pt;color:var(--ink2)}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 9px}
+  .kpi .v{font-family:Fraunces,serif;font-size:15pt;font-weight:600;line-height:1.1;color:var(--plum)}
+  .kpi .s{font-size:6.8pt;color:var(--ink2);line-height:1.3}
+  .kpi .s b{color:var(--ink)}
+  .rules{display:grid;gap:5px}
+  .rule{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 9px;font-size:7pt;color:var(--ink2);line-height:1.38}
+  .rule h4{font-size:8pt;color:var(--ink);font-weight:800;margin-bottom:2px}
+  .rule b{color:var(--ink)}
+  .rule .g{color:#2f7d4a;font-weight:800} .rule .y{color:#8a5a00;font-weight:800} .rule .r{color:var(--cherry);font-weight:800}
+  table.plan td{font-size:6.9pt;padding:3.4px 5px;vertical-align:middle;line-height:1.25}
+  table.plan th{font-size:5.9pt;padding:4px 5px}
+  table.plan tr.peak td{background:#f6f2fb} table.plan tr.fast td{background:#fcf8f0}
+  .rng{display:block;font-size:5.8pt;color:var(--muted);font-weight:500}
+  .pill{display:inline-block;font-size:5.6pt;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:0 5px;border-radius:8px;margin-left:2px;vertical-align:1px}
+  .leg{display:flex;gap:10px;font-size:6.3pt;color:var(--ink2);margin-top:2px}
+  .leg i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+</style></head><body>
+<section class="page">
+  <div class="hero"><div class="txt">
+    <div class="eyebrow">Yea Protein · ads budget · Nov 2026 – Oct 2027</div>
+    <h1>Budget plan, month by month</h1>
+    <p>Built from 14 months of real spend and shop orders.</p>
+  </div></div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">€27,300</div><div class="s">ads for 12 months (Meta + Google). Last 12 months: <b>€42,984</b></div></div>
+    <div class="kpi"><div class="v">~2,841</div><div class="s">orders predicted. Last 12 months: <b>3,863</b></div></div>
+    <div class="kpi"><div class="v">€9.6</div><div class="s">blended cost per order. Last 12 months: <b>€11.1</b></div></div>
+    <div class="kpi"><div class="v">3.9×</div><div class="s">revenue ÷ ad spend. Last 12 months: <b>3.4×</b></div></div>
+  </div>
+
+  <div class="grid2" style="grid-template-columns:1.25fr 1fr;margin-top:7px">
+    <div class="card">
+      <h2 style="margin:0 0 2px">What an order really cost <small>all ad spend ÷ all shop orders, per month</small></h2>
+      <svg viewBox="0 0 400 182" role="img" aria-label="Cost per order by month"><line x1="26" x2="396" y1="116.0" y2="116.0" stroke="#ebe5dc"/><text x="22" y="118.5" font-size="6.2" fill="#847e92" text-anchor="end" font-weight="400">€5</text><line x1="26" x2="396" y1="82.0" y2="82.0" stroke="#ebe5dc"/><text x="22" y="84.5" font-size="6.2" fill="#847e92" text-anchor="end" font-weight="400">€10</text><line x1="26" x2="396" y1="48.0" y2="48.0" stroke="#ebe5dc"/><text x="22" y="50.5" font-size="6.2" fill="#847e92" text-anchor="end" font-weight="400">€15</text><line x1="26" x2="396" y1="14.0" y2="14.0" stroke="#ebe5dc"/><text x="22" y="16.5" font-size="6.2" fill="#847e92" text-anchor="end" font-weight="400">€20</text><rect x="26" y="68.4" width="370" height="81.6" fill="#e5f3ea" opacity=".55"/><text x="394" y="65.4" font-size="6.2" fill="#2f7d4a" text-anchor="end" font-weight="700">target: €12 or less</text><rect x="30.8" y="33.2" width="16.9" height="116.8" rx="2" fill="#9a92ab"/><text x="39.214285714285715" y="30.20662251655631" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">17</text><text x="39.214285714285715" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Sep</text><text x="39.214285714285715" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">5.2k</text><rect x="57.2" y="51.7" width="16.9" height="98.3" rx="2" fill="#9a92ab"/><text x="65.64285714285714" y="48.74228187919462" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">14</text><text x="65.64285714285714" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Oct</text><text x="65.64285714285714" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">4.3k</text><rect x="83.6" y="85.2" width="16.9" height="64.8" rx="2" fill="#5b3fa0"/><text x="92.07142857142857" y="82.24186046511628" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">10</text><text x="92.07142857142857" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Nov</text><text x="92.07142857142857" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">4.1k</text><rect x="110.0" y="29.4" width="16.9" height="120.6" rx="2" fill="#9a92ab"/><text x="118.49999999999999" y="26.401558441558464" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">18</text><text x="118.49999999999999" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Dec</text><text x="118.49999999999999" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">6.8k</text><rect x="136.5" y="39.1" width="16.9" height="110.9" rx="2" fill="#9a92ab"/><text x="144.92857142857144" y="36.13043478260869" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">16</text><text x="144.92857142857144" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Jan</text><text x="144.92857142857144" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">4.5k</text><rect x="162.9" y="103.5" width="16.9" height="46.5" rx="2" fill="#5b3fa0"/><text x="171.35714285714286" y="100.52045454545456" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">7</text><text x="171.35714285714286" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Feb</text><text x="171.35714285714286" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">3.6k</text><rect x="189.3" y="102.3" width="16.9" height="47.7" rx="2" fill="#5b3fa0"/><text x="197.78571428571428" y="99.29816971713811" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">7</text><text x="197.78571428571428" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Mar</text><text x="197.78571428571428" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">4.2k</text><rect x="215.8" y="65.2" width="16.9" height="84.8" rx="2" fill="#9a92ab"/><text x="224.21428571428572" y="62.184496124031" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">12</text><text x="224.21428571428572" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Apr</text><text x="224.21428571428572" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">3.2k</text><rect x="242.2" y="69.7" width="16.9" height="80.3" rx="2" fill="#9a92ab"/><text x="250.64285714285714" y="66.67685589519651" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">12</text><text x="250.64285714285714" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">May</text><text x="250.64285714285714" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">2.7k</text><rect x="268.6" y="97.6" width="16.9" height="52.4" rx="2" fill="#c9c1d6"/><text x="277.07142857142856" y="94.56765957446808" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">8</text><text x="277.07142857142856" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Jun</text><text x="277.07142857142856" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">1.8k</text><rect x="295.0" y="102.0" width="16.9" height="48.0" rx="2" fill="#c9c1d6"/><text x="303.5" y="99.0304347826087" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">7</text><text x="303.5" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Jul</text><text x="303.5" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">1.3k</text><rect x="321.5" y="89.9" width="16.9" height="60.1" rx="2" fill="#c9c1d6"/><text x="329.92857142857144" y="86.94160583941607" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">9</text><text x="329.92857142857144" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Aug</text><text x="329.92857142857144" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">1.2k</text><rect x="347.9" y="111.2" width="16.9" height="38.8" rx="2" fill="#c9c1d6"/><text x="356.35714285714283" y="108.1593220338983" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">6</text><text x="356.35714285714283" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Sep</text><text x="356.35714285714283" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">0.7k</text><rect x="374.3" y="99.0" width="16.9" height="51.0" rx="2" fill="#c9c1d6"/><text x="382.7857142857143" y="96.04197530864198" font-size="6.4" fill="#1f1a2e" text-anchor="middle" font-weight="700">7</text><text x="382.7857142857143" y="159" font-size="6.2" fill="#4d475c" text-anchor="middle" font-weight="400">Oct</text><text x="382.7857142857143" y="167" font-size="5.8" fill="#847e92" text-anchor="middle" font-weight="400">0.6k</text><line x1="26" x2="396" y1="150" y2="150" stroke="#847e92"/><text x="22" y="167" font-size="5.8" fill="#847e92" text-anchor="end" font-weight="400">spend</text><text x="28.642857142857142" y="177" font-size="5.8" fill="#847e92" text-anchor="start" font-weight="400">2025</text><text x="134.35714285714283" y="177" font-size="5.8" fill="#847e92" text-anchor="start" font-weight="400">2026</text></svg>
+      <div class="leg"><span><i style="background:#5b3fa0"></i>fast months</span><span><i style="background:#9a92ab"></i>off-season, €2k+ spend</span><span><i style="background:#c9c1d6"></i>off-season, under €2k</span></div>
+      <p class="note">Fasts cost €7–10 an order. Off-season months with €4–7k budgets cost €14–18, because extra money off-season buys few extra orders. Under €2k off-season stays at €7–9.</p>
+    </div>
+    <div class="rules">
+      <div class="rule"><h4>How much per season</h4>
+        <b>Peak (Lent):</b> €4–5k a month, about €115–150 a day on Meta.<br>
+        <b>Fast (Božićni post, BF):</b> €2.8–3.6k a month.<br>
+        <b>Off-season:</b> €1.5–1.8k a month. More than ~€2k off-season wastes money.<br>
+        <b>Google:</b> Brand €250 every month, +€350 "posni protein" search in Lent.</div>
+      <div class="rule"><h4>Weekly check: cost per order</h4>
+        Total ad spend that week ÷ all WooCommerce orders that week.<br>
+        <span class="g">Under €10</span> → raise budget +20% (up to the "max" column).<br>
+        <span class="y">€10–13</span> → hold, swap in fresh ads.<br>
+        <span class="r">Over €13 for 7 days</span> → cut 20%. Never above €15 (that is under 2.5× return).</div>
+      <div class="rule"><h4>Stock decides first</h4>
+        If Chocolate or Vanilla Caramel is out, run the off-season budget whatever the month says. Order tubs for the next two months before each fast (column "Tubs").</div>
+    </div>
+  </div>
+
+  <h2>The plan, month by month <small>budget = Meta + Google · orders = budget ÷ planned cost per order, ±20%</small></h2>
+  <table class="plan">
+    <colgroup><col style="width:58px"><col><col style="width:46px"><col style="width:54px"><col style="width:40px"><col style="width:52px"><col style="width:38px"><col style="width:42px"><col style="width:34px"><col style="width:48px"></colgroup>
+    <tr><th>Month</th><th>What happens</th><th class="r">Budget</th><th class="r">Meta</th><th class="r">Google</th><th class="r">Orders</th><th class="r">€/order</th><th class="r">Revenue</th><th class="r">Tubs</th><th class="r">Max budget</th></tr>
+    <tr class="fast"><td><b>Nov 26</b> <span class="pill q">fast</span></td><td>Restock, then Black Friday 27.11 and Božićni post from 28.11</td><td class="r"><b>€2,800</b></td><td class="r">€83/day</td><td class="r">€300</td><td class="r"><b>255</b> <span class="rng">204–305</span></td><td class="r"><b>€11</b><span class="rng"></span></td><td class="r">€9.6k</td><td class="r">433</td><td class="r">€3,400</td></tr><tr class="fast"><td><b>Dec 26</b> <span class="pill q">fast</span></td><td>Božićni post: strong 1–15 Dec, weak over the holidays</td><td class="r"><b>€3,000</b></td><td class="r">€87/day</td><td class="r">€300</td><td class="r"><b>261</b> <span class="rng">209–313</span></td><td class="r"><b>€12</b><span class="rng"></span></td><td class="r">€9.9k</td><td class="r">470</td><td class="r">€3,600</td></tr><tr class="off"><td><b>Jan 27</b> </td><td>Fast ends 6 Jan. Off-season, new-year routine</td><td class="r"><b>€1,800</b></td><td class="r">€50/day</td><td class="r">€250</td><td class="r"><b>180</b> <span class="rng">144–216</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€6.8k</td><td class="r">288</td><td class="r">€2,200</td></tr><tr class="off"><td><b>Feb 27</b> </td><td>Off-season. Test Lent ads from mid-Feb</td><td class="r"><b>€1,800</b></td><td class="r">€55/day</td><td class="r">€250</td><td class="r"><b>180</b> <span class="rng">144–216</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€6.8k</td><td class="r">288</td><td class="r">€2,200</td></tr><tr class="peak"><td><b>Mar 27</b> <span class="pill no">peak</span></td><td>Build-up 1–14 Mar, Lent from 15 Mar (week 1 = peak)</td><td class="r"><b>€4,200</b></td><td class="r">€116/day</td><td class="r">€600</td><td class="r"><b>525</b> <span class="rng">420–630</span></td><td class="r"><b>€8</b><span class="rng"></span></td><td class="r">€19.9k</td><td class="r">998</td><td class="r">€5,000</td></tr><tr class="peak"><td><b>Apr 27</b> <span class="pill no">peak</span></td><td>Lent all month (Easter 2 May)</td><td class="r"><b>€4,000</b></td><td class="r">€113/day</td><td class="r">€600</td><td class="r"><b>471</b> <span class="rng">376–565</span></td><td class="r"><b>€8</b><span class="rng"></span></td><td class="r">€17.8k</td><td class="r">894</td><td class="r">€5,000</td></tr><tr class="off"><td><b>May 27</b> </td><td>Easter, then the post-fast drop</td><td class="r"><b>€1,600</b></td><td class="r">€44/day</td><td class="r">€250</td><td class="r"><b>160</b> <span class="rng">128–192</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€6.1k</td><td class="r">256</td><td class="r">€2,000</td></tr><tr class="off"><td><b>Jun 27</b> </td><td>Summer off-season</td><td class="r"><b>€1,500</b></td><td class="r">€42/day</td><td class="r">€250</td><td class="r"><b>150</b> <span class="rng">120–180</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€5.7k</td><td class="r">240</td><td class="r">€1,800</td></tr><tr class="off"><td><b>Jul 27</b> </td><td>Summer off-season</td><td class="r"><b>€1,500</b></td><td class="r">€40/day</td><td class="r">€250</td><td class="r"><b>150</b> <span class="rng">120–180</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€5.7k</td><td class="r">240</td><td class="r">€1,800</td></tr><tr class="off"><td><b>Aug 27</b> </td><td>Summer off-season</td><td class="r"><b>€1,500</b></td><td class="r">€40/day</td><td class="r">€250</td><td class="r"><b>150</b> <span class="rng">120–180</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€5.7k</td><td class="r">240</td><td class="r">€1,800</td></tr><tr class="off"><td><b>Sep 27</b> </td><td>Autumn off-season. Test new ads</td><td class="r"><b>€1,800</b></td><td class="r">€52/day</td><td class="r">€250</td><td class="r"><b>180</b> <span class="rng">144–216</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€6.8k</td><td class="r">288</td><td class="r">€2,200</td></tr><tr class="off"><td><b>Oct 27</b> </td><td>Off-season. Brief Black Friday + fast creatives</td><td class="r"><b>€1,800</b></td><td class="r">€50/day</td><td class="r">€250</td><td class="r"><b>180</b> <span class="rng">144–216</span></td><td class="r"><b>€10</b><span class="rng"></span></td><td class="r">€6.8k</td><td class="r">288</td><td class="r">€2,200</td></tr><tr class="tot"><td>12 months</td><td></td><td class="r">€27,300</td><td></td><td></td><td class="r">2,841</td><td class="r">€9.6</td><td class="r">€107.7k</td><td class="r">4,922</td><td class="r">€33,200</td></tr>
+  </table>
+
+  <div class="grid2" style="grid-template-columns:1fr 1fr 1fr;margin-top:6px">
+    <div class="callout amber" style="font-size:7pt;line-height:1.4"><b>Lent moves later in 2027.</b> In 2026 Lent ran 23 Feb – 11 Apr, so Feb + Mar peaked. In 2027 it is 15 Mar – 1 May, so the peak is <b>mid-March + April</b>. Keep February at off-season budget.</div>
+    <div class="callout amber" style="font-size:7pt;line-height:1.4"><b>Stock to have ready:</b> by 20 Nov about <b>900 tubs</b> for Nov–Dec. By 1 Mar about <b>1,890 tubs</b> for Mar–Apr. Over half should be Chocolate + Vanilla Caramel.</div>
+    <div class="callout amber" style="font-size:7pt;line-height:1.4"><b>Why ~€16k less than last year.</b> The cut comes from off-season months that cost €14–18 an order (Sep–Oct 2025, Dec, Jan). Fast months keep about last year's budget, and can go to the "Max budget" column if cost per order holds.</div>
+  </div>
+
+  <div class="foot"><span>Actuals Sep 2025 – Oct 2026: GA4 orders, Meta (minus EasyGut), Google Ads. Average order 4,443 RSD ≈ €38 at 117.2 RSD/€. Tubs assume Combos are back (1.6–1.9 per order). Conservative: orders are lower now (81 in Oct).</span><span style="white-space:nowrap">Nov 2026</span></div>
+</section>
+</body></html>
